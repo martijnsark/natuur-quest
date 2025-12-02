@@ -19,8 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
-
-Route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
 
 
 require __DIR__ . '/auth.php';
