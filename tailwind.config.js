@@ -13,14 +13,28 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                heading: ['spicy sale', 'sans-serif'],
+                text: ['Comic Neue', 'sans-serif']
             },
             colors: {
+                primary: '#36298B',
                 nav: '#007866',
                 secondary: '#E20147',
             },
             width: {
                 mainButton: '50vw',
-                secondaryButton: '25vw',
+                secondaryButton: '35vw',
+                bg: '150vw',
+                body: '100vw',
+            },
+            height: {
+                bg: '40vh',
+            },
+            rotate: {
+                bg: '25deg',
+            },
+            spacing: {
+                bg: '32rem',
             }
         },
     },
