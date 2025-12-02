@@ -7,6 +7,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//to make and test the button
+Route::get('/test', function () {
+    return view('test-handin');
+});
+
+Route::get('/handedin', function () {
+    return view('handedin');
+})->name('handedin');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -17,4 +26,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

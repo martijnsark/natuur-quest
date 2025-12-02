@@ -14,6 +14,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                nav: '#007866',
+                secondary: '#E20147',
+            },
+            width: {
+                mainButton: '50vw',
+                secondaryButton: '25vw',
+            }
         },
     },
 
