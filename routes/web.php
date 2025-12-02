@@ -12,7 +12,7 @@ Route::get('/test', function () {
     return view('test-handin');
 });
 
-Route::get('/handedin', function () {
+Route::get('/handedin/', function () {
     return view('handedin');
 })->name('handedin');
 
