@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'ChallengeController@index');
+Route::post('/broadcast', 'ChallengeController@broadcast');
+Route::post('/receive', 'ChallengeController@receive');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
