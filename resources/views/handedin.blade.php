@@ -13,14 +13,14 @@
         <div class="flex justify-between w-full items-center">
             <div class="w-20 text-center">
                 <img class="w-20" src="{{ Vite::asset('resources/images/user.png') }}" alt="Profiel foto jij">
-                <p class="font-text text-xl">Naam</p>
+                <p class="font-text text-xl">Jij</p>
             </div>
 
             <p class="font-heading text-white text-4xl text-shadow-outline">3-2</p>
 
             <div class="w-20 text-center">
                 <img class="w-20" src="{{ Vite::asset('resources/images/user.png') }}" alt="Profiel foto je vriend">
-                <p class="font-text text-xl">Naam</p>
+                <p class="font-text text-xl">Je vriend</p>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
 
     {{-- balance section --}}
     <section class="text-white text-center p-4">
-        <x-h3>Niew balans:</x-h3>
+        <x-h3>Niewe balans:</x-h3>
         <p class="font-text text-xl">🌸 1500</p>
     </section>
 
