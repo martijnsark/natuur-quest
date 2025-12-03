@@ -6,48 +6,40 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Natuur Quest</title>
 </head>
+<body class="bg-gray-300 min-h-screen">
 
-<body class="bg-gray-300 min-h-screen flex flex-col">
-
-<main class="flex-1 flex flex-col">
+<main class="pb-20">
     {{ $slot }}
 </main>
 
-{{-- FOOTER / NAV --}}
-{{-- FOOTER / NAV --}}
-<footer class=" text-white w-full mt-auto">
-    <nav class="flex h-16 w-full items-stretch justify-between gap-px">
+<footer class="fixed bottom-0 left-0 w-full text-white">
+    <nav class="h-20 flex items-end justify-between gap-px ">
 
-        {{-- 1: Audio --}}
         <a href="/audio"
-           class="bg-[#006B56] flex-1 h-full border border-white/30 flex items-center justify-center">
+           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
             <span class="text-xl">🎧</span>
         </a>
 
-        {{-- 2: Map --}}
         <a href="/map"
-           class="bg-[#006B56] flex-1 h-full border border-white/30 flex items-center justify-center">
+           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
             <span class="text-xl">🗺️</span>
         </a>
 
         {{-- 3: Home (actief, hoger en afgerond) --}}
         <a href="/welcome"
-           class="flex-1 h-24 bg-[#006B56] border border-white/30
+           class="flex-1 h-20 bg-[#006B56] border border-white/30
           rounded-t-3xl flex items-center justify-center
-          -translate-y-[25px] shadow-[0_-2px_0_rgba(255,255,255,0.6)]">
+          -translate-y-[px] shadow-[0_-2px_0_rgba(255,255,255,0.6)]">
             <span class="text-2xl">🏠</span>
         </a>
 
-
-        {{-- 4: Friends --}}
         <a href="/friends"
-           class="bg-[#006B56] flex-1 h-full border border-white/30 flex items-center justify-center">
+           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
             <span class="text-xl">👥</span>
         </a>
 
-        {{-- 5: Shop --}}
         <a href="/shop"
-           class="bg-[#006B56] flex-1 h-full border border-white/30 flex items-center justify-center">
+           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
             <span class="text-xl">🏪</span>
         </a>
 
