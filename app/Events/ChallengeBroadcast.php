@@ -6,11 +6,11 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChallengeBroadcast implements ShouldBroadcastNow
+class ChallengeBroadcast implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -30,19 +30,11 @@ class ChallengeBroadcast implements ShouldBroadcastNow
      */
     public function broadcastOn(): array
     {
-        return [new Channel('public')];
+        return ['public'];
     }
 
-
-    public function broadcastAs()
+    public function broadcastAs(): array
     {
-        return 'chat';
-    }
-
-    public function broadcastWith(): array
-    {
-        return [
-            'message' => $this->message,
-        ];
+        return ['chat'];
     }
 }

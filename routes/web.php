@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Challenge;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,9 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/challenge', [Challenge::class, 'index']);
-Route::post('/broadcast', [Challenge::class, 'broadcast']);
-Route::post('/receive', [Challenge::class, 'receive']);
+Route::get('/', 'ChallengeController@index');
+Route::post('/broadcast', 'ChallengeController@broadcast');
+Route::post('/receive', 'ChallengeController@receive');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
