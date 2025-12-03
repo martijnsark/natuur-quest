@@ -20,7 +20,7 @@
 
     <!-- Page Heading -->
     @isset($header)
-        <header class="bg-nav shadow text-center">
+        <header role="banner" class="bg-nav shadow text-center">
             <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
@@ -28,7 +28,7 @@
     @endisset
 
     <!-- Page Content -->
-    <main>
+    <main role="main">
         {{ $slot }}
     </main>
 </div>

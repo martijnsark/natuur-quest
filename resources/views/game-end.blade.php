@@ -7,8 +7,8 @@
     <x-styling-arrow-right></x-styling-arrow-right>
 
     {{-- Score section --}}
-    <section class="text-white pt-16 px-14 flex flex-col items-center gap-8">
-        <x-h2>Eindstand:</x-h2>
+    <section aria-labelledby="score" class="text-white pt-16 px-14 flex flex-col items-center gap-8">
+        <x-h2 id="score">Eindstand:</x-h2>
 
         <div class="flex justify-between w-full items-center">
             <div class="w-20 text-center">
@@ -32,20 +32,20 @@
         </div>
     </section>
 
-    {{-- Rewards section --}}
-    <section class="text-white text-center pt-28 pb-4">
-        <x-h2>Beloning:</x-h2>
-        <p class="font-text text-2xl">+ 🌸 500</p>
-    </section>
-
-    {{-- balance section --}}
-    <section class="text-white text-center p-4">
-        <x-h3>Niewe balans:</x-h3>
-        <p class="font-text text-xl">🌸 1500</p>
+    {{-- rewards and balance section --}}
+    <section aria-labelledby="reward" class="text-white text-center pt-24 p-4">
+        <div class="py-4">
+            <x-h2 id="reward">Beloning:</x-h2>
+            <p class="font-text text-2xl">+ 🌸 500</p>
+        </div>
+        <div class="py-4">
+            <x-h3>Niewe balans:</x-h3>
+            <p class="font-text text-xl">🌸 1500</p>
+        </div>
     </section>
 
     {{-- Button for next game --}}
-    <section class="flex w-full justify-center pt-4">
+    <section class="flex w-full justify-center pt-2">
         <div class="w-mainButton">
             <x-main-button :href="route('handed-in')"> {{-- Insert route new game --}}
                 {{ __('Nieuw spel') }}

@@ -7,9 +7,9 @@
     <x-styling-diagonal-right></x-styling-diagonal-right>
 
     {{-- Score section --}}
-    <section class="w-full overflow-hidden">
+    <section aria-labelledby="score" class="w-full overflow-hidden">
         <div class="text-white pt-28 px-14 flex flex-col items-center gap-8 rotate-2 text-center">
-            <x-h2>Jouw score</x-h2>
+            <x-h2 id="score">Jouw score</x-h2>
             <p class="font-text text-2xl">1</p> {{-- Insert score --}}
 
             <x-h2>Gespeelde challenges:</x-h2>
@@ -17,8 +17,8 @@
         </div>
     </section>
 
-    <section class="-z-50 w-fact text-white mt-20 py-2 px-4 flex flex-col gap-2 -rotate-2">
-        <p class="font-heading text-white text-2xl text-shadow-outline">Wist je dat?</p>
+    <section aria-labelledby="fact" class="-z-50 w-fact text-white mt-20 py-2 px-4 flex flex-col gap-2 -rotate-2">
+        <p id="fact" class="font-heading text-white text-2xl text-shadow-outline">Wist je dat?</p>
         <p class="font-heading text-white text-xl text-shadow-outline">Er zijn 3000 verschillende soorten tulpen
             wereldWijd!</p> {{-- Insert random fact from database --}}
     </section>
