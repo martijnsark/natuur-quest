@@ -26,7 +26,7 @@
 
         {{-- Answers button --}}
         <div class="w-secondaryButton">
-            <x-secondary-button :href="route('handedin')">
+            <x-secondary-button :href="route('handed-in')">{{-- Insert route anwers --}}
                 {{ __('Antwoorden') }}
             </x-secondary-button>
         </div>
@@ -47,7 +47,7 @@
     {{-- Button for next game --}}
     <section class="flex w-full justify-center pt-4">
         <div class="w-mainButton">
-            <x-main-button :href="route('handedin')">
+            <x-main-button :href="route('handed-in')"> {{-- Insert route new game --}}
                 {{ __('Nieuw spel') }}
             </x-main-button>
         </div>

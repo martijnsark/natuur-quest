@@ -13,8 +13,12 @@ Route::get('/test', function () {
 });
 
 Route::get('/handedin/', function () {
-    return view('handedin');
-})->name('handedin');
+    return view('challenge-end');
+})->name('handed-in');
+
+Route::get('/game-end/', function () {
+    return view('game-end');
+})->name('game-end');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

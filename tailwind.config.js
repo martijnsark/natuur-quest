@@ -26,6 +26,7 @@ export default {
                 secondaryButton: '35vw',
                 bg: '150vw',
                 body: '100vw',
+                fact: '70vw',
             },
             height: {
                 bg: '40vh',
@@ -35,6 +36,7 @@ export default {
             },
             spacing: {
                 bg: '32rem',
+                bgDiagonal: '37rem',
             }
         },
     },
