@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="font-heading text-white text-4xl text-shadow-outline">Je hebt gewonnen!</h1>
+        <x-header-h1>Je hebt gewonnen!</x-header-h1>
     </x-slot>
 
     {{-- Background styling right arrow component --}}
@@ -8,7 +8,7 @@
 
     {{-- Score section --}}
     <section class="text-white pt-16 px-14 flex flex-col items-center gap-8">
-        <h2 class="font-heading text-white text-3xl text-shadow-outline">Eindstand:</h2>
+        <x-h2>Eindstand:</x-h2>
 
         <div class="flex justify-between w-full items-center">
             <div class="w-20 text-center">
@@ -34,13 +34,13 @@
 
     {{-- Rewards section --}}
     <section class="text-white text-center pt-28 pb-4">
-        <h2 class="font-heading text-white text-3xl text-shadow-outline">Beloning:</h2>
+        <x-h2>Beloning:</x-h2>
         <p class="font-text text-2xl">+ 🌸 500</p>
     </section>
 
     {{-- balance section --}}
     <section class="text-white text-center p-4">
-        <h3 class="font-heading text-white text-2xl text-shadow-outline">Niew balans:</h3>
+        <x-h3>Niew balans:</x-h3>
         <p class="font-text text-xl">🌸 1500</p>
     </section>
 
