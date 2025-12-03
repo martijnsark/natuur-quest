@@ -17,7 +17,9 @@
         </div>
     </section>
 
-    <section aria-labelledby="fact" class="-z-50 w-fact text-white mt-20 py-2 px-4 flex flex-col gap-2 -rotate-2">
+    <section aria-labelledby="fact"
+             class="-z-50 w-fact text-white mt-20 py-8 px-6 flex flex-col gap-2 -rotate-2
+             bg-[url(../images/backgroundFact.png)] bg-center bg-cover">
         <p id="fact" class="font-heading text-white text-2xl text-shadow-outline">Wist je dat?</p>
         <p class="font-heading text-white text-xl text-shadow-outline">Er zijn 3000 verschillende soorten tulpen
             wereldWijd!</p> {{-- Insert random fact from database --}}

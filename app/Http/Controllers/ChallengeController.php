@@ -46,7 +46,7 @@ class ChallengeController extends Controller
     public function random()
     {
 
-//        steeds random challenge zichtbaar
+        //steeds random challenge zichtbaar
         $challenge = Challenge::inRandomOrder()->first();
 
         if (empty($challenge)) {
