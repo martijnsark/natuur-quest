@@ -10,10 +10,10 @@
     <section aria-labelledby="score" class="w-full overflow-hidden">
         <div class="text-white pt-28 px-14 flex flex-col items-center gap-8 rotate-2 text-center">
             <x-h2 id="score">Jouw score</x-h2>
-            <p class="font-text text-2xl">1</p> {{-- Insert score --}}
+            <p class="font-text text-2xl">{{ $points }}</p> {{-- Insert score --}}
 
             <x-h2>Gespeelde challenges:</x-h2>
-            <p class="font-text text-2xl">1/3</p> {{-- Insert number of challenges played --}}
+            <p class="font-text text-2xl">{{ $challenge }}/3</p> {{-- Insert number of challenges played --}}
         </div>
     </section>
 

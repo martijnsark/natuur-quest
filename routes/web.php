@@ -8,15 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//to make and test the button
-Route::get('/test', function () {
-    return view('test-handin');
-});
-
-Route::get('/handedin/', function () {
-    return view('challenge-end');
-})->name('handed-in');
-
 Route::get('/game-end/', function () {
     return view('game-end');
 })->name('game-end');
@@ -34,6 +25,7 @@ Route::middleware('auth')->group(function () {
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
 route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
 route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
-
+Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('handed-in');
+Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
 require __DIR__ . '/auth.php';

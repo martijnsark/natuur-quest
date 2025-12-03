@@ -1,11 +1,11 @@
-{{--<x-app-layout>--}}
+<x-app-layout>
 
-<a href="{{route('challenges.random')}}">
-    <button> Krijg random waterbak challenge
-    </button>
-</a>
+    <div class="w-mainButton">
+        <x-main-button :href="route('challenges.random')">
+            {{ __('Start') }}
+        </x-main-button>
+    </div>
 
-
-{{--</x-app-layout>--}}
+</x-app-layout>
 
 

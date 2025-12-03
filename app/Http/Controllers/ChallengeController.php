@@ -57,6 +57,33 @@ class ChallengeController extends Controller
         return redirect()->route('challenges.show', $challenge->id);
     }
 
+
+    public function check(Request $request)
+    {
+        $id = $request->challenge_id;
+        $challenge = Challenge::find($id);
+
+        if ($challenge->right_answer === $request->option_1) {
+            $right = 1;
+        } else {
+            $right = 0;
+        }
+
+        return redirect()->route('done', $right);
+    }
+
+    public function end($right)
+    {
+        //Insert points plus and challenge plus
+        if ($right) {
+            $points = 1;
+        } else {
+            $points = 0;
+        }
+        $challenge = 1;
+        return view('challenges.end', ['points' => $points, 'challenge' => $challenge]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
