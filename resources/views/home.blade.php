@@ -16,7 +16,7 @@
 
     <main class="flex flex-1 justify-center items-center p-4">
         <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/810.png"
-        alt="Monke" class="-rotate-45"
+        alt="Monke" class="-rotate-45 w-96 overflow-auto"
         >
     </main>
 
