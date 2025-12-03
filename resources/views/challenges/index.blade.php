@@ -1,6 +1,11 @@
-<form method="GET" action="{{route('challenges.random')}}">
-    <button type="submit"> Krijg random waterbak challenge
+{{--<x-app-layout>--}}
+
+<a href="{{route('challenges.random')}}">
+    <button> Krijg random waterbak challenge
     </button>
-</form>
+</a>
+
+
+{{--</x-app-layout>--}}
 
 

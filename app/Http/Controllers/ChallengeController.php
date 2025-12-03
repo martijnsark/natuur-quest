@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Challenge;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\error;
 
 class ChallengeController extends Controller
 {
@@ -37,14 +38,23 @@ class ChallengeController extends Controller
      */
     public function show(string $id)
     {
+        $challenge = Challenge::findOrFail($id);
+        return view('challenges.show', compact('challenge'));
 
     }
 
     public function random()
     {
+
 //        steeds random challenge zichtbaar
         $challenge = Challenge::inRandomOrder()->first();
-        return view('challenges.show', compact('challenge'));
+
+        if (empty($challenge)) {
+            return redirect()->route('challenges.index', compact('challenge'));
+
+        }
+
+        return redirect()->route('challenges.show', $challenge->id);
     }
 
     /**
