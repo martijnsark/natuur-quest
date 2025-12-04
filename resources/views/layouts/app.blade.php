@@ -14,7 +14,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased">
+<body class="flex font-sans antialiased">
 <div class="min-h-screen ">
     {{--            @include('layouts.navigation')--}}
 
@@ -28,7 +28,7 @@
     @endisset
 
     <!-- Page Content -->
-    <main role="main">
+    <main class="flex-grow" role="main">
         {{ $slot }}
     </main>
 </div>

@@ -27,9 +27,11 @@ export default {
                 bg: '150vw',
                 body: '100vw',
                 fact: '76vw',
+                bgImg: '150vw',
             },
             height: {
                 bg: '40vh',
+                bgImg: '40vh',
             },
             rotate: {
                 bg: '25deg',
