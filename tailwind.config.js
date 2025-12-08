@@ -26,10 +26,12 @@ export default {
                 secondaryButton: '35vw',
                 bg: '150vw',
                 body: '100vw',
-                fact: '70vw',
+                fact: '76vw',
+                bgImg: '150vw',
             },
             height: {
                 bg: '40vh',
+                bgImg: '40vh',
             },
             rotate: {
                 bg: '25deg',
