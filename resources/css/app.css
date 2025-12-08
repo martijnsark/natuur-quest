@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+@font-face {
+    font-family: 'spicy sale';
+    src: url('../fonts/SpicySale.ttf') format('ttf');
+}
+
+.text-outline {
+    -webkit-text-stroke: 4px black;
+}
+
+.text-shadow-outline {
+    text-shadow: 3px 3px 0 black,
+    -3px 3px 0 black,
+    3px -3px 0 black,
+    -3px -3px 0 black;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
