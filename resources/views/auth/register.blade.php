@@ -1,52 +1,82 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<x-app-layout>
+    <!-- Diagonal background like homepage -->
+    <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+    <div class="flex flex-col items-center justify-center min-h-screen px-4">
+        <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
+            <h1 class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">Registreren</h1>
+            <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
+                Creëer jou account en begin met spelen!
+            </p>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <!-- Name -->
+                <div class="mb-4 text-left">
+                    <x-input-label for="name" :value="__('Naam')" />
+                    <x-text-input
+                        id="name"
+                        class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                        type="text"
+                        name="name"
+                        :value="old('name')"
+                    />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                <!-- Email -->
+                <div class="mb-4 text-left">
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input
+                        id="email"
+                        class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                        type="email"
+                        name="email"
+                        :value="old('email')"
+                    />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                <!-- Password -->
+                <div class="mb-4 text-left">
+                    <x-input-label for="password" :value="__('Wachtwoord')" />
+                    <x-text-input
+                        id="password"
+                        class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                        type="password"
+                        name="password"
+                    />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <!-- Confirm Password -->
+                <div class="mb-4 text-left">
+                    <x-input-label for="password_confirmation" :value="__('Verifieer wachtwoord')" />
+                    <x-text-input
+                        id="password_confirmation"
+                        class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                        type="password"
+                        name="password_confirmation"
+                    />
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                <!-- Submit -->
+                <x-primary-button class="ml-4 w-full py-2">
+                    registreer
+                </x-primary-button>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+                <!-- Login Link -->
+                @if (Route::has('login'))
+                    <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                        Heb je al een account?
+                        <a href="{{ route('login') }}" class="underline text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200">
+                            Inloggen
+                        </a>
+                    </p>
+                @endif
+            </form>
+        </section>
+    </div>
+</x-app-layout>

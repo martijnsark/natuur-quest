@@ -1,12 +1,26 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+//login
+Route::get('/login', function () {
+    return redirect()->route('login');
+});
+
+
+//register
+Route::get('/register', function () {
+    return redirect()->route('register');
+});
+
+
+//home
 Route::get('/', function () {
     return view('homepage');
-});
+})->name('home');
 
 Route::get('/game-end/', function () {
     return view('game-end');
