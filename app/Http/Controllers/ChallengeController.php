@@ -8,6 +8,12 @@ use function Laravel\Prompts\error;
 
 class ChallengeController extends Controller
 {
+    public function connectionTest()
+    {
+
+        return view('challenges.connection');
+    }
+
     /**
      * Display a listing of the resource.
      */

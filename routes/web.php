@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/test', [ChallengeController::class, 'connectionTest'])->name('test');
+
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
 route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
 route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
