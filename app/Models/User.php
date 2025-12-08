@@ -12,6 +12,18 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    public function games()
+    {
+        return $this->belongsToMany(Game::class)
+            ->withPivot('score');
+    }
+
+    public function gameRoles()
+    {
+        return $this->belongsToMany(Role::class, 'user_game_role')
+            ->using(UserGameRole::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

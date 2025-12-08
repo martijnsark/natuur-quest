@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/test', [ChallengeController::class, 'connectionTest'])->name('test');
+Route::post('/test/send', [ChallengeController::class, 'connectionSend'])->name('test.name');
+Route::get('/test/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
 route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');

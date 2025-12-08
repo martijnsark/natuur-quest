@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Challenge;
+use App\Models\Game;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\error;
 
@@ -10,8 +13,32 @@ class ChallengeController extends Controller
 {
     public function connectionTest()
     {
+        $friends = User::all();
+        $roles = Role::all();
+        return view('challenges.connection', compact('friends'), compact('roles'));
+    }
 
-        return view('challenges.connection');
+    public function connectionSend(Request $request)
+    {
+        //dd($request);
+
+        $game = new Game();
+
+        $game->save();
+        foreach ($request->except('_token') as $roleId => $userId) {
+
+            $game->roles()->attach($roleId, [
+                'user_id' => $userId
+            ]);
+        }
+
+        return redirect()->route('test.show', $game->id);
+    }
+
+    public function showGame(string $id)
+    {
+        $game = Game::find($id);
+        return view('challenges.showGame', compact('game'));
     }
 
     /**

@@ -1,9 +1,16 @@
 <x-app-layout>
-    <x-input-label for="player_one" :value="__('Speler 1')"/>
-    <select name="game_id" id="game_id">
-        @foreach($friends as $friend)
-            <option value="{{ $friend->id }}">{{ $friend->name }}</option>
+    <form action="{{ route('test.name') }}" method="post">
+        @csrf
+        @foreach($roles as $role)
+            <x-input-label for="{{ $role->id }}" :value="__('{{$role->name}}')"/>
+            <select name="{{ $role->id }}" id="{{ $role->id }}">
+                @foreach($friends as $friend)
+                    <option value="{{ $friend->id }}">{{ $friend->name }}</option>
+                @endforeach
+            </select>
         @endforeach
-    </select>
-    <x-input-error :messages="$errors->get('game_id')" class="mt-2"/>
+
+        <x-form-button>Send</x-form-button>
+
+    </form>
 </x-app-layout>
