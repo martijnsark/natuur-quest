@@ -14,10 +14,8 @@ class ChallengeSeeder extends Seeder
     public function run(): void
     {
         Challenge::create([
-            'title' => 'Waterbakken vullen',
-            'water_trough' => 3,
-            'water_description' => 'Je hebt drie waterbakken met verschillende groottes. Vul ze allemaal tot de aangegeven hoogte zonder water te verspillen.',
-            'right_answer' => 'Vul eerst de kleinste bak, giet dan over in de middelste, en vul de grootste als laatste',
+            'title' => 'Natuur 30 seconds',
+            'nature_word' => 'Eikenboom',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

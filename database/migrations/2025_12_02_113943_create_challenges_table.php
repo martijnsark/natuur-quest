@@ -13,9 +13,7 @@ return new class extends Migration {
         Schema::create('challenges', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->smallInteger('water_trough');
-            $table->text('water_description');
-            $table->string('right_answer');
+            $table->string('nature_word');
             $table->timestamps();
         });
     }
