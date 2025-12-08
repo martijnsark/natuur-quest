@@ -6,7 +6,7 @@
         <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
             <h1 class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">Inloggen</h1>
             <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                Welcome, Login om games te gaan spelen!.
+                Welkom, Login om games te gaan spelen!.
             </p>
 
             <!-- Session Status -->
