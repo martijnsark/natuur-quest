@@ -51,7 +51,7 @@
         </section>
     </section>
 
-    <section>
+    <section aria-label="Knop om naar challenge uitleg te gaan.">
         <div class="flex justify-center items-center">
             <x-main-button :href="route('challenges.details')">
                 {{ __('Begin met challenge') }}

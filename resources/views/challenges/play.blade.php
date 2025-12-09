@@ -7,7 +7,7 @@
 
     <section aria-label="Vijf natuur woorden"
              class="text-white pt-20 px-14 flex flex-col items-center gap-10 rotate-2 text-left">
-        <ul class="flex flex-col gap-10">
+        <ul class="flex flex-col gap-10 whitespace-nowrap">
             @foreach($challenge as $word)
                 <li class="text-4xl font-black [-webkit-text-stroke:1px_black]">
                     {{--                    <p>{{$word->id}}</p>--}}

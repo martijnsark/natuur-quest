@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-header-h1>Kruis de woorden aan die goed geraden zijn:</x-header-h1>
+        <x-header-h1>Natuur 30 seconds</x-header-h1>
     </x-slot>
 
     {{-- Background styling diagonal right component --}}
@@ -11,19 +11,27 @@
         <form method="GET" action="{{ route('game-end') }}">
             @csrf
             <div class="flex flex-col gap-10">
-                @foreach($challenge as $word)
-                    <div class="flex items-center gap-4">
-                        {{--checkbox for each word, selected checkboxes go in correct array, value sets submitted if checked,
-                        id gives each checkbox unique id  --}}
-                        <input type="checkbox" name="correct[]" value="{{$word->id}}" id="word-{{$word->id}}"
-                               class="w-8 h-8">
-                        <label for="word-{{$word->id}}"
-                               class="text-4xl font-black [-webkit-text-stroke:1px_black]">{{$word->nature_word}}</label>
-                    </div>
-                @endforeach
+                <fieldset>
+                    <legend class="text-4xl font-bold mb-6 [-webkit-text-stroke:1px_black]">Kruis de woorden aan
+                        die
+                        goed geraden zijn:
+                    </legend>
+                    @foreach($challenge as $word)
+                        <div class="flex items-center gap-4 whitespace-nowrap">
+                            {{--checkbox for each word, selected checkboxes go in correct array, value sets submitted if checked,
+                            id gives each checkbox unique id  --}}
+                            <input type="checkbox" name="correct[]" value="{{$word->id}}" id="word-{{$word->id}}"
+                                   class="w-8 h-8">
+                            <label for="word-{{$word->id}}"
+                                   class="text-4xl font-black [-webkit-text-stroke:1px_black]">{{$word->nature_word}}</label>
+                        </div>
+                    @endforeach
+                </fieldset>
             </div>
             <div class="mt-10">
-                <x-form-button type="submit">Inleveren</x-form-button>
+                <section aria-label="Aangekruiste woorden inleveren">
+                    <x-form-button type="submit">Inleveren</x-form-button>
+                </section>
             </div>
         </form>
     </section>
