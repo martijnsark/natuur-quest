@@ -1,21 +1,29 @@
 <x-app-layout>
-    <!-- Diagonal background like homepage -->
+    <!-- diagonal background like homepage -->
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
 
-    <div class="flex flex-col items-center justify-center min-h-screen px-4">
-        <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-            <h1 class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">Inloggen</h1>
-            <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                Welkom, Login om games te gaan spelen!.
-            </p>
 
-            <!-- Session Status -->
+    <main class="flex flex-col items-center justify-center min-h-screen px-4">
+        <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
+
+            <!-- page header -->
+            <header class="text-center">
+                <h1 id="login-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                    Inloggen
+                </h1>
+
+                <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
+                    Welkom, log in om games te gaan spelen!
+                </p>
+            </header>
+
+            <!-- session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- Email -->
+                <!-- email -->
                 <div class="mb-4 text-left">
                     <x-input-label for="email" :value="__('Email')" />
                     <x-text-input
@@ -28,7 +36,7 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
-                <!-- Password -->
+                <!-- password -->
                 <div class="mb-4 text-left">
                     <x-input-label for="password" :value="__('Wachtwoord')" />
                     <x-text-input
@@ -40,26 +48,26 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <!-- Remember Me -->
+                <!-- remember Me -->
                 <div class="flex items-center justify-between mb-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">onthou mij</span>
+                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Onthoud mij</span>
                     </label>
 
                     @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" href="{{ route('password.request') }}">
-                           wachtwoord vergeten?
+                           Wachtwoord vergeten?
                         </a>
                     @endif
                 </div>
 
-                <!-- Submit -->
+                <!-- submit -->
                 <x-primary-button class="w-full py-2">
                     Inloggen
                 </x-primary-button>
 
-                <!-- Register Link -->
+                <!-- register Link -->
                 @if (Route::has('register'))
                     <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
                         Heb je nog geen account?
@@ -70,5 +78,6 @@
                 @endif
             </form>
         </section>
-    </div>
+    </main>
+
 </x-app-layout>
