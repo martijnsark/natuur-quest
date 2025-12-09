@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
+    <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex flex-row items-center justify-between">
             <!-- Profiel button -->
