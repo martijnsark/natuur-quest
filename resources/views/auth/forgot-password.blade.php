@@ -16,8 +16,6 @@
                 </p>
             </header>
 
-
-
             <!-- session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -43,7 +41,7 @@
 
                 <section aria-labelledby="Reset wachtwoord knop">
                     <x-primary-button class="w-full py-2">
-                        E-mail wachtwoord reset link
+                        Krijg email voor wachtwoord reset link
                     </x-primary-button>
                 </section>
 
