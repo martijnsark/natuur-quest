@@ -5,35 +5,40 @@
 
     <x-styling-arrow-right></x-styling-arrow-right>
 
-    <section aria-label="Vijf natuur woorden"
-             class="text-white pt-20 px-14 flex flex-col items-center gap-10 rotate-2 text-left">
-        <ul class="flex flex-col gap-10 whitespace-nowrap">
-            @foreach($challenge as $word)
-                <li class="text-4xl font-black [-webkit-text-stroke:1px_black]">
-                    {{--                    <p>{{$word->id}}</p>--}}
 
-                    <p>{{$word->nature_word}}</p>
-                </li>
-
-            @endforeach
-        </ul>
-        <section>
-
-            <form method="POST" action="{{ route('challenges.check') }}">
-                @csrf
+    <x-card>
+        <section aria-label="Vijf natuur woorden"
+                 class="text-white pt-20 px-14 flex flex-col items-center gap-10 text-left">
+            <ul class="flex flex-col gap-10 whitespace-nowrap">
                 @foreach($challenge as $word)
-                    {{--saves the word id's in an array so i can save multiple and send them to check--}}
-                    <input type="hidden" name="words[]" value="{{$word->id}}">
-                @endforeach
-                <div class="flex justify-center items-center">
-                    <x-form-button type="submit">
-                        {{ __('Verder') }}
-                    </x-form-button>
-                </div>
-            </form>
+                    <li class="text-4xl font-black [-webkit-text-stroke:1px_black]">
+                        {{--                    <p>{{$word->id}}</p>--}}
 
+                        <p>{{$word->nature_word}}</p>
+                    </li>
+
+                @endforeach
+            </ul>
+            <section>
+
+                <form method="POST" action="{{ route('challenges.check') }}">
+                    @csrf
+                    @foreach($challenge as $word)
+                        {{--saves the word id's in an array so i can save multiple and send them to check--}}
+                        <input type="hidden" name="words[]" value="{{$word->id}}">
+                    @endforeach
+                    <div class="flex justify-center items-center">
+                        <x-form-button type="submit">
+                            {{ __('Verder') }}
+                        </x-form-button>
+                    </div>
+                </form>
+
+            </section>
         </section>
-    </section>
+    </x-card>
+
+
     {{--        <p class="font-text text-xl">uitleg opdracht en hoe 30 seconds werkt. Verdeel jezelf in rollen 1 scheidsrechter--}}
     {{--            2 spelers.--}}
     {{--        <p class="font-text text-xl">Uitleg over bonus punten ronde met foto's maken</p>--}}
