@@ -1,18 +1,26 @@
 <x-app-layout>
-    <!-- Diagonal background like homepage -->
+    <!-- diagonal background like homepage -->
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
 
+    <!-- div to focus form center of screen -->
     <div class="flex flex-col items-center justify-center min-h-screen px-4">
-        <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-            <h1 class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">Registreren</h1>
-            <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                Creëer jou account en begin met spelen!
-            </p>
+        <section aria-labelledby="Registratie formulier" class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
+
+            <!-- page header -->
+            <header class="text-center">
+                <h1 id="register-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                    Registreren
+                </h1>
+
+                <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
+                    Creëer jouw account en begin met spelen!
+                </p>
+            </header>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <!-- Name -->
+                <!-- name -->
                 <div class="mb-4 text-left">
                     <x-input-label for="name" :value="__('Naam')" />
                     <x-text-input
@@ -25,7 +33,7 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
-                <!-- Email -->
+                <!-- email -->
                 <div class="mb-4 text-left">
                     <x-input-label for="email" :value="__('Email')" />
                     <x-text-input
@@ -38,7 +46,7 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
-                <!-- Password -->
+                <!-- password -->
                 <div class="mb-4 text-left">
                     <x-input-label for="password" :value="__('Wachtwoord')" />
                     <x-text-input
@@ -50,7 +58,7 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <!-- Confirm Password -->
+                <!-- confirm Password -->
                 <div class="mb-4 text-left">
                     <x-input-label for="password_confirmation" :value="__('Verifieer wachtwoord')" />
                     <x-text-input
@@ -62,12 +70,12 @@
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
 
-                <!-- Submit -->
+                <!-- submit -->
                 <x-primary-button class="ml-4 w-full py-2">
-                    registreer
+                    Registreer
                 </x-primary-button>
 
-                <!-- Login Link -->
+                <!-- login Link -->
                 @if (Route::has('login'))
                     <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
                         Heb je al een account?

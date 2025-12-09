@@ -2,9 +2,9 @@
     <!-- diagonal background like homepage -->
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
 
-
+    <!-- div to focus form center of screen -->
     <div class="flex flex-col items-center justify-center min-h-screen px-4">
-        <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
+        <section aria-labelledby="Login formulier" class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
 
             <!-- page header -->
             <header class="text-center">
@@ -48,7 +48,7 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <!-- remember Me -->
+                <!-- remember me -->
                 <div class="flex items-center justify-between mb-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
