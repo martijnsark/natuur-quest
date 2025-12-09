@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use App\Models\Challenge;
 use App\Models\Game;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Word;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\error;
 
@@ -13,18 +15,18 @@ class ChallengeController extends Controller
 {
     public function connectionTest()
     {
-        $friends = User::all();
-        $roles = Role::all();
+        $friends = User::all(); //this has to be the friends when we have that part
+        $roles = Role::all(); //takes the roles out of the database
         return view('challenges.connection', compact('friends'), compact('roles'));
     }
 
     public function connectionSend(Request $request)
     {
-        //dd($request);
-
+        //makes a game and saves it
         $game = new Game();
 
         $game->save();
+        //connects the rolls to the game and with the user and puts this in database
         foreach ($request->except('_token') as $roleId => $userId) {
 
             $game->roles()->attach($roleId, [
@@ -32,13 +34,31 @@ class ChallengeController extends Controller
             ]);
         }
 
+        //loads the show page and sends the game id
         return redirect()->route('test.show', $game->id);
     }
 
     public function showGame(string $id)
     {
+        //finds the game and sends it to the page
         $game = Game::find($id);
         return view('challenges.showGame', compact('game'));
+    }
+
+    public function sendAssignment(Request $request)
+    {
+        //makes the assignment and sends it to the user
+        $assignment = new Assignment();
+        $assignment->user_id = $request->input('user_id');
+        $assignment->game_id = $request->input('game_id');
+        $assignment->role_id = $request->input('role_id');
+        $assignment->save();
+
+        //connects the words with the assignments
+        $words = Word::offset(0)->limit(5)->get();
+        $assignment->words()->sync($words);
+
+        return redirect()->route('test.show', $request->input('game_id'));
     }
 
     /**

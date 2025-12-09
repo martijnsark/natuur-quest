@@ -24,6 +24,8 @@ export default {
             width: {
                 mainButton: '50vw',
                 secondaryButton: '35vw',
+                popup: '75vw',
+                popupButton: '60%',
                 bg: '150vw',
                 body: '100vw',
                 fact: '76vw',

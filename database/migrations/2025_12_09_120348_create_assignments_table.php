@@ -18,15 +18,8 @@ return new class extends Migration {
             $table->foreignId('game_id')->constrained();
             $table->foreignId('role_id')->constrained();
             $table->foreignId('user_id')->constrained();
-
-            $table->timestamps();
-        });
-
-        Schema::create('user_game', function (Blueprint $table) {
-            $table->id();
-
-            $table->foreignIdFor(Assignment::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Word::class)->constrained()->cascadeOnDelete();
+            $table->integer('score')->default(0);
+            $table->boolean('active')->default(1);
 
             $table->timestamps();
         });
