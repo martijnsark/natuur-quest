@@ -3,7 +3,7 @@
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
 
 
-    <main class="flex flex-col items-center justify-center min-h-screen px-4">
+    <div class="flex flex-col items-center justify-center min-h-screen px-4">
         <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
 
             <!-- page header -->
@@ -78,6 +78,6 @@
                 @endif
             </form>
         </section>
-    </main>
+    </div>
 
 </x-app-layout>
