@@ -8,12 +8,12 @@
 
             <!-- page header -->
             <header class="text-center">
-                <h1 id="login-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                <x-header-h1 id="login-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
                     Inloggen
-                </h1>
+                </x-header-h1>
 
                 <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                    Welkom, log in om games te gaan spelen!
+                    Log in om Natuur Quest te spelen!
                 </p>
             </header>
 
@@ -63,19 +63,24 @@
                 </div>
 
                 <!-- submit -->
-                <x-primary-button class="w-full py-2">
-                    Inloggen
-                </x-primary-button>
+                <section aria-labelledby="Login">
+                    <x-primary-button class="w-full py-2">
+                        Inloggen
+                    </x-primary-button>
+                </section>
 
-                <!-- register Link -->
-                @if (Route::has('register'))
-                    <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
-                        Heb je nog geen account?
-                        <a href="{{ route('register') }}" class="underline text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200">
-                            Registreren
-                        </a>
-                    </p>
-                @endif
+                <section aria-labelledby="Knop naar registreren">
+                    <!-- register Link -->
+                    @if (Route::has('register'))
+                        <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                            Heb je nog geen account?
+
+                            <x-main-button href="{{ route('register') }}" class="underline text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200">
+                                Registreren
+                            </x-main-button>
+                        </p>
+                    @endif
+                </section>
             </form>
         </section>
     </div>
