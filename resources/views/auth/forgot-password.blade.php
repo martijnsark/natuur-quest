@@ -7,7 +7,7 @@
 
             <!-- page header -->
             <header class="text-center">
-                <x-header-h1 id="login-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                <x-header-h1 id="change-password-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
                     Wachtwoord vergeten
                 </x-header-h1>
 
