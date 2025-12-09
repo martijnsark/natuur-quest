@@ -5,11 +5,19 @@
 
     <x-styling-arrow-right></x-styling-arrow-right>
 
-    <section aria-label="Uitleg opdracht"
-             class="text-white pt-10 px-14 flex flex-col items-center gap-2 rotate-2 text-center">
-        <p class="font-text text-xl">uitleg opdracht en hoe 30 seconds werkt. Verdeel jezelf in rollen 1 scheidsrechter
-            2 spelers.
-        <p class="font-text text-xl">Uitleg over bonus punten ronde met foto's maken</p>
+    <section aria-label="Uitleg van opdracht 30 seconds"
+             class="text-white pt-10 px-14 flex flex-col items-center mt-2 rotate-2 text-center ">
+        <p class="font-text text-xl"> Jullie gaan omstebeurt het spel 30 seconds spelen. Je krijgt 5 woorden die met de
+            Nederlands natuur te maken hebben en deze ga je proberen uit te leggen, zonder het woord of een deel van het
+            woord te zeggen, zodat de andere persoon de woorden kan raden. Je hebt hier 30 seconden voor. Wie de meeste
+            woorden heeft kunnen uitleggen
+            wint.
+    </section>
+    <section aria-label="Uitleg van bonus punten verkrijgen"
+             class="text-white pt-10 px-14 flex flex-col items-center mt-12 -rotate-2 text-center">
+        <p class="font-text text-xl">Nadat jullie beide zijn geweest volgt er nog een bonus ronde. Maak van de goed
+            geraden natuur woorden bijpassende
+            foto's om bonus punten te verdienen. Deze worden nagekeken door de scheidsrechter.</p>
     </section>
     {{--antwoorden van de challenge--}}
     {{--    <section aria-label="Antwoorden voor de opdracht" class="text-center text-white pt-36">--}}
@@ -43,10 +51,11 @@
 
     {{--        </form>--}}
     {{--    </section>--}}
-
-    <x-main-button :href="route('challenges.play')">
-        {{ __('Start') }}
-    </x-main-button>
+    <div class="mt-5">
+        <x-main-button :href="route('challenges.play')">
+            {{ __('Start') }}
+        </x-main-button>
+    </div>
 
 </x-app-layout>
 

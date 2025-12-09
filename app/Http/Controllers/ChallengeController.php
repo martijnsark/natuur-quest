@@ -45,6 +45,11 @@ class ChallengeController extends Controller
     public function details()
     {
         $challenge = Challenge::all();
+
+        if (empty($challenge)) {
+            return redirect()->route('challenges.index', compact('challenge'));
+        }
+
         return view('challenges.details', compact('challenge'));
 
     }
@@ -56,7 +61,6 @@ class ChallengeController extends Controller
 
         if (empty($challenge)) {
             return redirect()->route('challenges.index', compact('challenge'));
-
         }
 
         return view('challenges.play', compact('challenge'));
@@ -77,6 +81,14 @@ class ChallengeController extends Controller
 
     public function check(Request $request)
     {
+
+        $request->validate([
+            //checked as the array
+            'words' => ['required', 'array', 'size:5'],
+            //checked individually
+            'words.' => ['integer', 'exists:challenges,id'],
+        ]);
+
 
         // array of the ids in variable
         $natureWordsId = $request->input('words');

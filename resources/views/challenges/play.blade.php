@@ -5,11 +5,11 @@
 
     <x-styling-arrow-right></x-styling-arrow-right>
 
-    <section aria-label="5 woorden"
-             class="text-white pt-10 px-14 flex flex-col items-center gap-2 rotate-2 text-center">
-        <ul>
+    <section aria-label="Vijf natuur woorden"
+             class="text-white pt-20 px-14 flex flex-col items-center gap-10 rotate-2 text-left">
+        <ul class="flex flex-col gap-10">
             @foreach($challenge as $word)
-                <li>
+                <li class="text-4xl font-black [-webkit-text-stroke:1px_black]">
                     {{--                    <p>{{$word->id}}</p>--}}
 
                     <p>{{$word->nature_word}}</p>

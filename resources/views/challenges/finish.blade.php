@@ -5,19 +5,26 @@
 
     {{-- Background styling diagonal right component --}}
     <x-styling-diagonal-right></x-styling-diagonal-right>
-    <section class="text-white pt-10 px-14 flex flex-col items-center gap-2 rotate-2 text-center">
+    <section aria-label="Checklist vijf natuur woorden"
+             class="text-white pt-10 px-14 flex flex-col items-center gap-10 rotate-2 text-center">
 
         <form method="GET" action="{{ route('game-end') }}">
             @csrf
-            @foreach($challenge as $word)
-                <div>
-                    {{--checkbox for each word, selected checkboxes go in correct array, value sets submitted if checked,
-                    id gives each checkbox unique id  --}}
-                    <input type="checkbox" name="correct[]" value="{{$word->id}}" id="word-{{$word->id}}">
-                    <label for="word-{{$word->id}}">{{$word->nature_word}}</label>
-                </div>
-            @endforeach
-            <x-form-button type="submit">Inleveren</x-form-button>
+            <div class="flex flex-col gap-10">
+                @foreach($challenge as $word)
+                    <div class="flex items-center gap-4">
+                        {{--checkbox for each word, selected checkboxes go in correct array, value sets submitted if checked,
+                        id gives each checkbox unique id  --}}
+                        <input type="checkbox" name="correct[]" value="{{$word->id}}" id="word-{{$word->id}}"
+                               class="w-8 h-8">
+                        <label for="word-{{$word->id}}"
+                               class="text-4xl font-black [-webkit-text-stroke:1px_black]">{{$word->nature_word}}</label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="mt-10">
+                <x-form-button type="submit">Inleveren</x-form-button>
+            </div>
         </form>
     </section>
 
