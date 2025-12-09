@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            ChallengeSeeder::class
+            ChallengeSeeder::class,
+            RoleSeeder::class
         ]);
 
         User::factory(10)->create();
