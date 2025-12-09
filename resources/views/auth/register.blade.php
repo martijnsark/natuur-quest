@@ -8,12 +8,12 @@
 
             <!-- page header -->
             <header class="text-center">
-                <h1 id="register-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                <x-header-h1 id="register-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
                     Registreren
-                </h1>
+                </x-header-h1>
 
                 <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                    Creëer jouw account en begin met spelen!
+                    Creëer jouw account en begin met Natuur Quest!
                 </p>
             </header>
 
@@ -71,19 +71,23 @@
                 </div>
 
                 <!-- submit -->
-                <x-primary-button class="ml-4 w-full py-2">
-                    Registreer
-                </x-primary-button>
+                <section aria-labelledby="Registreer knop">
+                    <x-primary-button class="ml-4 w-full py-2">
+                        Registreer
+                    </x-primary-button>
+                </section>
 
                 <!-- login Link -->
-                @if (Route::has('login'))
-                    <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
-                        Heb je al een account?
-                        <a href="{{ route('login') }}" class="underline text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200">
-                            Inloggen
-                        </a>
-                    </p>
-                @endif
+                <section aria-labelledby="Knop naar login">
+                    @if (Route::has('login'))
+                        <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                            Heb je al een account?
+                            <a href="{{ route('login') }}" class="underline text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200">
+                                Log in
+                            </a>
+                        </p>
+                    @endif
+                </section>
             </form>
         </section>
     </div>
