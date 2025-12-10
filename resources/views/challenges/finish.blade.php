@@ -15,7 +15,8 @@
                 @csrf
                 <div class="flex flex-col gap-10 w-full">
                     <fieldset>
-                        <legend class="text-4xl font-bold mb-6 [-webkit-text-stroke:1px_black]">Kruis de woorden aan
+                        <legend class="font-text text-4xl font-bold mb-6 [-webkit-text-stroke:1px_black]">Kruis de
+                            woorden aan
                             die
                             goed geraden zijn:
                         </legend>
@@ -26,7 +27,7 @@
                                 <input type="checkbox" name="correct[]" value="{{$word->id}}" id="word-{{$word->id}}"
                                        class="w-8 h-8">
                                 <label for="word-{{$word->id}}"
-                                       class="text-3xl font-black [-webkit-text-stroke:1px_black]">{{$word->nature_word}}</label>
+                                       class=" font-text text-3xl [-webkit-text-stroke:1px_black] max-w-lg">{{$word->nature_word}}</label>
                             </div>
                         @endforeach
                     </fieldset>

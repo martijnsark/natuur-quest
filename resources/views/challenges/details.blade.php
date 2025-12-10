@@ -19,7 +19,7 @@
             </section>
             <section aria-label="Uitleg van bonus punten verkrijgen"
                      class="text-white flex flex-col items-center text-center">
-                <p class="font-text text-xl max-w-xl"> Na jullie beurten is er een bonus ronde. Maak van de goed geraden
+                <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van de goed geraden
                     natuurwoorden
                     een bijpassende foto. De scheidsrechter kijkt jullie creaties na en geeft bonuspunten!</p>
             </section>
@@ -30,7 +30,7 @@
     <div class="lg:hidden space-y-10 px-6">
         <section aria-label="Uitleg van opdracht 30 seconds"
                  class="text-white pt-10 px-14 lg:px-40 flex flex-col items-center mt-19 rotate-2 lg:rotate-0 text-center ">
-            <p class="font-text text-xl max-w-xl"> Jullie spelen om de beurt. Je krijgt 5 woorden over de Nederlandse
+            <p class="font-text text-xl max-w-lg"> Jullie spelen om de beurt. Je krijgt 5 woorden over de Nederlandse
                 natuur. Leg
                 deze
                 uit zonder het woord of een deel ervan te zeggen, zodat de andere kan raden. Je hebt 30 seconden per

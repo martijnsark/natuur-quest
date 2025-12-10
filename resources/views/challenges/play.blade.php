@@ -11,10 +11,10 @@
                  class="text-white pt-20 px-14 flex flex-col items-center gap-10 text-left">
             <ul class="flex flex-col gap-10 whitespace-nowrap">
                 @foreach($challenge as $word)
-                    <li class="text-4xl font-black [-webkit-text-stroke:1px_black]">
+                    <li class="text-4xl [-webkit-text-stroke:1px_black]">
                         {{--                    <p>{{$word->id}}</p>--}}
 
-                        <p>{{$word->nature_word}}</p>
+                        <p class="font-text ">{{$word->nature_word}}</p>
                     </li>
 
                 @endforeach
