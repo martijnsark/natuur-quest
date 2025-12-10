@@ -7,9 +7,9 @@
 
             <!-- page heading -->
             <header class="text-center">
-                <h1 id="login-page-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0" aria-label="Loginpagina voor Natuur Quest">
+                <x-header-h1 id="login-page-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0" aria-label="Loginpagina voor Natuur Quest">
                     Inloggen
-                </h1>
+                </x-header-h1>
 
                 <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
                     Log in om Natuur Quest te spelen!
