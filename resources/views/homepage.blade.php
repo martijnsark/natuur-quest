@@ -44,9 +44,12 @@
 
     </x-slot>
 
-    <section aria-labelledby="NatuurQuestTitle" class="text-white text-center pt-24 p-4">
+    <section aria-labelledby="NatuurQuestTitel" class="text-white text-center pt-24 p-4">
         <div class="py-4">
-            <x-h1>Natuurquest</x-h1>
+            <x-h1
+                aria-label="NatuurQuest. Verken de natuur op een actieve, maar speelse manier! Speel alleen,met of tegen je vrienden!">
+                Natuurquest
+            </x-h1>
             <p class="font-text text-2xl text-white">Verken de natuur op een actieve, maar speelse manier! Speel alleen,
                 met of tegen je vrienden!</p>
         </div>
@@ -73,8 +76,8 @@
                         class="absolute inset-0 flex flex-col items-center justify-center text-black  p-4 rounded-lg -translate-x-1 -translate-y-2">
                         <h3 class="text-2xl font-bold">Wist je dat?</h3>
                         <p class="font-text leading-none">Spinnen geen insecten zijn?!</p>
-                        {{--                        <p class="font-text leading-none">Ze behoren tot de spinachtigen en<br>--}}
-                        {{--                        zijn cruciaal tegen insectenoverlast!</p>--}}
+                        <p class="font-text leading-none">Ze behoren tot de spinachtigen en<br>
+                            zijn cruciaal tegen insectenoverlast!</p>
                     </div>
                 </div>
 
@@ -86,12 +89,10 @@
 
     <section>
         <div class="flex justify-center items-center">
-            <x-main-button :href="route('challenges.random')">
+            <x-main-button :href="route('challenges.random')" aria-label="Begin met spelen!">
                 {{ __('Start') }}
             </x-main-button>
         </div>
     </section>
-
-    </div>
 
 </x-app-layout>
