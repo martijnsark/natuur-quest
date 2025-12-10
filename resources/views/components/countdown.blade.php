@@ -20,7 +20,7 @@
                         this.time--;
                     } else {
                         clearInterval(interval);
-                        this.time = 'Tijd op!';
+                        this.time = 'Tijd is op!';
                     }
                 }, 1000);
             }
