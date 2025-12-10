@@ -15,31 +15,52 @@
 <footer class="fixed bottom-0 left-0 w-full text-white">
     <nav class="h-20 flex items-end justify-between gap-px ">
 
+        {{-- DASHBOARD --}}
         <a href="/dashboard"
-           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
-            <span class="text-xl">🏠</span>
+           class="bg-[#006B56] flex-1 h-16 border border-white/30
+                  flex items-center justify-center">
+            <img src="{{ asset('images/Home-Icon.png') }}"
+                 alt="Home"
+                 class="w-8 h-8 object-contain">
         </a>
 
+        {{-- FRIENDS --}}
         <a href="/friends"
-           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
-            <span class="text-xl">👥</span>
+           class="bg-[#006B56] flex-1 h-16 border border-white/30
+                  flex items-center justify-center">
+            <img src="{{ asset('images/Friends-Icon.png') }}"
+                 alt="Friends"
+                 class="w-8 h-8 object-contain">
         </a>
 
-        <a href="/challenge"
+        {{-- PLAY / CHALLENGES (middelste, hoger en rond) --}}
+        <a href="/challenges"
            class="flex-1 h-20 bg-[#006B56] border border-white/30
           rounded-t-3xl flex items-center justify-center
           -translate-y-[px] shadow-[0_-2px_0_rgba(255,255,255,0.6)]">
-            <span class="text-2xl">Play</span>
+            <span class="text-2xl">
+                <img src="{{ asset('images/Play-Icon.png') }}"
+                     alt="Friends"
+                     class="w-8 h-8 object-contain">
+            </span>
         </a>
 
+        {{-- SHOP --}}
         <a href="/shop"
-           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
-            <span class="text-xl">🏪</span>
+           class="bg-[#006B56] flex-1 h-16 border border-white/30
+                  flex items-center justify-center">
+            <img src="{{ asset('images/Shop-Icon.png') }}"
+                 alt="Shop"
+                 class="w-8 h-8 object-contain">
         </a>
 
-        <a href="/Profile"
-           class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
-            <span class="text-xl">>.<</span>
+        {{-- PROFILE --}}
+        <a href="/profile"
+           class="bg-[#006B56] flex-1 h-16 border border-white/30
+                  flex items-center justify-center">
+            <img src="{{ asset('images/Profile-Icon.jpg') }}"
+                 alt="Profile"
+                 class="w-8 h-8 object-contain rounded-full">
         </a>
 
     </nav>
