@@ -18,9 +18,7 @@ Route::get('/register', function () {
 
 
 //home
-Route::get('/', function () {
-    return view('homepage');
-})->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 Route::get('/profiel', function () {
     return view('profiel');
