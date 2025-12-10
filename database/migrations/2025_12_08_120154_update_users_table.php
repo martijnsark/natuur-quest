@@ -10,11 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('challenges', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('nature_word');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('balance')->default(0);
         });
     }
 
@@ -23,6 +20,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('challenges');
+        //
     }
 };

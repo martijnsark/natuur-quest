@@ -13,13 +13,48 @@ class ChallengeSeeder extends Seeder
      */
     public function run(): void
     {
-        Challenge::create([
-            'title' => 'Waterbakken vullen',
-            'water_trough' => 3,
-            'water_description' => 'Je hebt drie waterbakken met verschillende groottes. Vul ze allemaal tot de aangegeven hoogte zonder water te verspillen.',
-            'right_answer' => 'Vul eerst de kleinste bak, giet dan over in de middelste, en vul de grootste als laatste',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $words = [
+            'Eikenboom',
+            'Waddenzee',
+            'Duinen',
+            'Kwelders',
+            'Strand',
+            'Zeehond',
+            'Grutto',
+            'Schotse hooglander',
+            'Ree',
+            'Vos',
+            'Eik',
+            'Beuk',
+            'Dennenbos',
+            'Zandverstuiving',
+            'Heide',
+            'Hunebed',
+            'Veengebied',
+            'Polder',
+            'Dijk',
+            'Sloten',
+            'Rietland',
+            'Ooievaar',
+            'Weidevogels',
+            'Tulp',
+            'Narcis',
+            'Waterbuffel',
+            'Bever',
+            'IJsvogel',
+            'Zonnebloemveld',
+            'Reeënpad',
+            'Vlinder',
+        ];
+
+        foreach ($words as $word) {
+            Challenge::create([
+                'title' => 'Natuur 30 seconds',
+                'nature_word' => $word,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
     }
 }

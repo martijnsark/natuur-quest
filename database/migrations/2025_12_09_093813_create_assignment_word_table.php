@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Assignment;
+use App\Models\Word;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,10 +12,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('challenges', function (Blueprint $table) {
+        Schema::create('assignment_word', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('nature_word');
+
+            $table->foreignIdFor(Word::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Assignment::class)->constrained()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('challenges');
+        Schema::dropIfExists('assignment_word');
     }
 };
