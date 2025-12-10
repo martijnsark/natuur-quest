@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/test', [ChallengeController::class, 'connectionTest'])->name('test');
+Route::post('/test/send', [ChallengeController::class, 'connectionSend'])->name('test.name');
+Route::get('/test/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
+Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
 //route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
