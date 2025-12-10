@@ -20,7 +20,7 @@
            class="bg-[#006B56] flex-1 h-16 border border-white/30
                   flex items-center justify-center">
             <img src="{{ asset('images/Home-Icon.png') }}"
-                 alt="Home"
+                 alt="Homepagina"
                  class="w-8 h-8 object-contain">
         </a>
 
@@ -29,7 +29,7 @@
            class="bg-[#006B56] flex-1 h-16 border border-white/30
                   flex items-center justify-center">
             <img src="{{ asset('images/Friends-Icon.png') }}"
-                 alt="Friends"
+                 alt="Vriendenpagina"
                  class="w-8 h-8 object-contain">
         </a>
 
@@ -40,7 +40,7 @@
           -translate-y-[px] shadow-[0_-2px_0_rgba(255,255,255,0.6)]">
             <span class="text-2xl">
                 <img src="{{ asset('images/Play-Icon.png') }}"
-                     alt="Friends"
+                     alt="Challenges"
                      class="w-8 h-8 object-contain">
             </span>
         </a>
@@ -50,7 +50,7 @@
            class="bg-[#006B56] flex-1 h-16 border border-white/30
                   flex items-center justify-center">
             <img src="{{ asset('images/Shop-Icon.png') }}"
-                 alt="Shop"
+                 alt="Winkelpagina"
                  class="w-8 h-8 object-contain">
         </a>
 
@@ -59,7 +59,7 @@
            class="bg-[#006B56] flex-1 h-16 border border-white/30
                   flex items-center justify-center">
             <img src="{{ asset('images/Profile-Icon.jpg') }}"
-                 alt="Profile"
+                 alt="Profielpagina"
                  class="w-8 h-8 object-contain rounded-full">
         </a>
 
