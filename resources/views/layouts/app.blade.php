@@ -30,6 +30,8 @@
     <main class="flex-grow" role="main">
         {{ $slot }}
     </main>
+
+    <x-navbar></x-navbar>
 </div>
 </body>
 </html>
