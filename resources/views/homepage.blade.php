@@ -130,7 +130,7 @@
 
     <section aria-label="Knop om naar challenge uitleg te gaan.">
         <div class="flex justify-center items-center">
-            <x-main-button :href="route('challenges.random')" aria-label="Begin met spelen!">
+            <x-main-button :href="route('challenges.details')" aria-label="Begin met spelen!">
                 {{ __('Start') }}
             </x-main-button>
         </div>
