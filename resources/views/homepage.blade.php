@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="meta">
         {{-- Makes sure the page refreshes --}}
-        <meta http-equiv="refresh" content="30">
+        <meta http-equiv="refresh" content="10">
     </x-slot>
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
