@@ -22,12 +22,21 @@ class ChallengeController extends Controller
 
     public function connectionSend(Request $request)
     {
+
+        $request->validate([
+            '1' => 'required|different:2|different:3',
+            '2' => 'required|different:1|different:3',
+            '3' => 'required|different:1|different:2'
+        ]);
+
         //makes a game and saves it
         $game = new Game();
-
         $game->save();
+
+        $game->roles()->attach('1', ['user_id' => $request->input('1')]);
+
         //connects the rolls to the game and with the user and puts this in database
-        foreach ($request->except('_token') as $roleId => $userId) {
+        foreach ($request->except('_token', '1') as $roleId => $userId) {
 
             $game->roles()->attach($roleId, [
                 'user_id' => $userId

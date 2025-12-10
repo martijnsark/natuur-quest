@@ -1,15 +1,15 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <x-header-h1>Spelers in de game</x-header-h1>
+        <x-header-h1>Spelers in het spel</x-header-h1>
     </x-slot>
 
     <x-styling-arrow-left></x-styling-arrow-left>
 
     {{-- Loads all the players that are part of the game and places them at the role they have --}}
-    <section class="text-center text-white flex flex-col gap-4 mt-10">
+    <section aria-label="rol verdeling" class="text-center text-white flex flex-col gap-10 mt-10">
         @foreach($game->roles as $role)
-            <div class="mt-5 flex flex-col gap-2">
+            <article aria-label="{{ $role->name }}" class="mt-5 flex flex-col gap-2">
                 <x-h2>{{ $role->name }}</x-h2>
                 @foreach($game->users as $user)
                     @if($role->id === $user->pivot->role_id)
@@ -34,7 +34,7 @@
                         </div>
                     @endif
                 @endforeach
-            </div>
+            </article>
         @endforeach
     </section>
 </x-app-layout>
