@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::get('/profiel', function () {
+    return view('profiel');
+})->middleware(['auth', 'verified'])->name('profiel');
+
 Route::get('/game-end/', function () {
     return view('game-end');
 })->name('game-end');

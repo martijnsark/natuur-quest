@@ -3,10 +3,42 @@
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
     <x-slot name="header">
         <div class="flex flex-row items-center justify-between">
-            <!-- Profiel button -->
             <div class="w-20 text-center">
                 <x-h3>Profiel</x-h3>
-                <img class="w-20" src="{{ Vite::asset('resources/images/user.png') }}" alt="Ga naar je Profiel">
+
+                <div x-data="{ open: false }" class="relative inline-block text-left">
+                    <!-- profile button -->
+                    <button @click="open = !open" @click.outside="open = false" class="focus:outline-none">
+                        <img class="w-20 cursor-pointer" src="{{ Vite::asset('resources/images/user.png') }}" alt="Ga naar jouw profiel.">
+                    </button>
+
+                    <!-- Dropdown styling -->
+                    <div x-show="open" x-transition class="absolute center-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50">
+
+                        <!-- link to profile page button-->
+                        <a href="{{ route('profiel') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            Profiel
+                        </a>
+
+                        <!-- if logged in -->
+                        @auth
+                        <!-- logout button -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                Log out
+                            </button>
+                        </form>
+                            <!-- if logged out -->
+                        @else
+                            <!-- to login page button -->
+                            <a href="{{ route('login') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                Log in
+                            </a>
+                        @endauth
+                    </div>
+
+                </div>
             </div>
 
             <!-- Balans -->
