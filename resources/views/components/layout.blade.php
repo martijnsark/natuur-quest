@@ -15,7 +15,7 @@
 <footer class="fixed bottom-0 left-0 w-full text-white">
     <nav class="h-20 flex items-end justify-between gap-px ">
 
-        <a href="/welcome"
+        <a href="/dashboard"
            class="bg-[#006B56] flex-1 h-16 border border-white/30 flex items-center justify-center">
             <span class="text-xl">🏠</span>
         </a>
