@@ -1,7 +1,11 @@
 @props(['seconds' => 30])
 
-<div x-data="countdownTimer({{ $seconds }})" x-init="start()"
-     class="text-center text-white text-2xl font-bold select-none">
+<div
+    x-data="countdownTimer({{ $seconds }})"
+    x-init="start()"
+    class="fixed top-3 right-4 z-50
+           text-white text-4xl font-extrabold
+           bg-black/40 px-4 py-2 rounded-xl shadow-lg select-none">
 
     <span x-text="time"></span>s
 </div>
@@ -16,7 +20,7 @@
                         this.time--;
                     } else {
                         clearInterval(interval);
-                        this.time = 'Tijd is op!';
+                        this.time = 'Tijd op!';
                     }
                 }, 1000);
             }
@@ -24,4 +28,4 @@
     }
 </script>
 
-{{--GEBRUIK DEZE CODE OM DE COUNTDOWN TOE TE VOEGEN: <x-countdown seconds="30"/>    --}}
+{{--Gebruik: <x-countdown seconds="30" />--}}
