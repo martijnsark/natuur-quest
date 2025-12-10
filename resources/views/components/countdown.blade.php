@@ -3,11 +3,20 @@
 <div
     x-data="countdownTimer({{ $seconds }})"
     x-init="start()"
+    role="timer"
+    aria-live="polite"
     class="fixed top-3 right-4 z-50
            text-white text-4xl font-extrabold
            bg-black/40 px-4 py-2 rounded-xl shadow-lg select-none">
 
-    <span x-text="time"></span>s
+
+    <time
+        :datetime="time > 0 ? `PT${time}S` : null"
+        x-text="time > 0 ? time : 'Tijd is op!'">
+    </time>
+
+
+    <time x-show="time > 0"></time>
 </div>
 
 <script>
@@ -20,7 +29,6 @@
                         this.time--;
                     } else {
                         clearInterval(interval);
-                        this.time = 'Tijd is op!';
                     }
                 }, 1000);
             }
@@ -28,4 +36,4 @@
     }
 </script>
 
-{{--Gebruik: <x-countdown seconds="30" />--}}
+{{-- Gebruik: <x-countdown seconds="30" /> --}}
