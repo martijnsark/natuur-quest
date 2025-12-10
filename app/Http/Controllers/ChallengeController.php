@@ -38,50 +38,107 @@ class ChallengeController extends Controller
      */
     public function show(string $id)
     {
-        $challenge = Challenge::findOrFail($id);
-        return view('challenges.show', compact('challenge'));
+
 
     }
 
-    public function random()
+    public function details()
     {
-
-        //steeds random challenge zichtbaar
-        $challenge = Challenge::inRandomOrder()->first();
+        $challenge = Challenge::all();
 
         if (empty($challenge)) {
             return redirect()->route('challenges.index', compact('challenge'));
-
         }
 
-        return redirect()->route('challenges.show', $challenge->id);
+        return view('challenges.details', compact('challenge'));
+
     }
+
+    public function play()
+    {
+        //selects the id and the belonging nature word, does this randomly, max 5 words get selected and shown at play
+        $challenge = Challenge::select('id', 'nature_word')->inRandomOrder()->limit(5)->get();
+
+        if (empty($challenge)) {
+            return redirect()->route('challenges.index', compact('challenge'));
+        }
+
+        return view('challenges.play', compact('challenge'));
+    }
+
+
+//    public function random()
+//    {
+//
+//        //steeds random challenge zichtbaar
+//        $challenge = Challenge::inRandomOrder()->limit(5)->get('nature_word');
+//
+//
+//
+//        return redirect()->route('challenges.play');
+//    }
 
 
     public function check(Request $request)
     {
-        $id = $request->challenge_id;
-        $challenge = Challenge::find($id);
 
-        if ($challenge->right_answer === $request->option_1) {
-            $right = 1;
-        } else {
-            $right = 0;
-        }
+        $request->validate([
+            //checked as the array
+            'words' => ['required', 'array', 'size:5'],
+            //checked individually
+            'words.' => ['integer', 'exists:challenges,id'],
+        ]);
 
-        return redirect()->route('done', $right);
+
+        // array of the ids in variable
+        $natureWordsId = $request->input('words');
+
+        //add session so words can be remembered and send to finish
+        $request->session()->put('natureWordsId', $natureWordsId);
+
+//        $id = $request->challenge_id;
+//        $challenge = Challenge::find($id);
+//
+//        if ($challenge->right_answer === $request->option_1) {
+//            $right = 1;
+//        } else {
+//            $right = 0;
+//        }
+//
+//        return redirect()->route('done', $right);
+        return redirect()->route('challenges.finish');
+
     }
 
-    public function end($right)
+    public function finish()
     {
         //Insert points plus and challenge plus
-        if ($right) {
-            $points = 1;
-        } else {
-            $points = 0;
+//        if ($right) {
+//            $points = 1;
+//        } else {
+//            $points = 0;
+//        }
+//        $challenge = 1;
+//        return view('challenges.end', ['points' => $points, 'challenge' => $challenge]);
+
+
+        //looks for session variable with key naturewordsid, this is an array and if not give back empty array
+        $natureWordsId = session('natureWordsId', []);
+
+        //make sure variable is array, otherwise whereIn won't accept it
+        if (!is_array($natureWordsId)) {
+            $natureWordsId = [];
         }
-        $challenge = 1;
-        return view('challenges.end', ['points' => $points, 'challenge' => $challenge]);
+
+        if (empty($natureWordsId)) {
+            return redirect()->route('challenges.play');
+        }
+
+        //whereIn focuses only on if the ids are the same as the ids of the words on the play page, it skips over the nature words
+        $challenge = Challenge::whereIn('id', $natureWordsId)->get();
+
+
+        return view('challenges.finish', compact('challenge'));
     }
 
     /**

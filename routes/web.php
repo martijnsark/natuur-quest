@@ -23,9 +23,20 @@ Route::middleware('auth')->group(function () {
 });
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
-route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
+//route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
+route::get('/challenges/details', [ChallengeController::class, 'details'])->name('challenges.details');
+//route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
+
 route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
-Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('handed-in');
-Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
+
+//Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
+
+//middelware to make session work, starts session, encrypts cookies, csrf token
+Route::middleware(['web'])->group(function () {
+    Route::get('/play', [ChallengeController::class, 'play'])->name('challenges.play');
+    Route::post('/check', [ChallengeController::class, 'check'])->name('challenges.check');
+    Route::get('/finish', [ChallengeController::class, 'finish'])->name('challenges.finish');
+});
+
 
 require __DIR__ . '/auth.php';
