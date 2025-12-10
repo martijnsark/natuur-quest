@@ -51,7 +51,11 @@ class ChallengeController extends Controller
     {
         //finds the game and sends it to the page
         $game = Game::find($id);
-        return view('challenges.showGame', compact('game'));
+        if ($game !== null) {
+            return view('challenges.showGame', compact('game'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     public function sendAssignment(Request $request)

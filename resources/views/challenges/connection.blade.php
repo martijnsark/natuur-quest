@@ -6,8 +6,7 @@
     <x-styling-arrow-right></x-styling-arrow-right>
 
     <section aria-label="informatie" class="text-white text-center mt-16">
-        <p class="font-text text-xl">Voeg de spelers toe aan de rollen die deze persoon in zal nemen tijdens het
-            spel.</p>
+        <p class="font-text text-xl">Voeg de spelers toe aan de rollen die zij tijdens het spel op zich nemen.</p>
     </section>
 
     <section aria-label="spelers invul form" class="text-center mt-5">
