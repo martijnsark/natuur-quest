@@ -10,11 +10,11 @@
         <section aria-label="Vijf natuur woorden"
                  class="text-white pt-10 px-14 flex flex-col items-center gap-10 text-left">
             <ul class="flex flex-col gap-10 whitespace-nowrap">
-                @foreach($challenge as $word)
+                @foreach($challenge->words as $word)
                     <li class="text-4xl [-webkit-text-stroke:1px_black]">
                         {{--                    <p>{{$word->id}}</p>--}}
 
-                        <p class="font-text ">{{$word->nature_word}}</p>
+                        <p class="font-text ">{{ $word->name }}</p>
                     </li>
 
                 @endforeach
@@ -23,7 +23,7 @@
 
                 <form method="POST" action="{{ route('challenges.check') }}">
                     @csrf
-                    @foreach($challenge as $word)
+                    @foreach($challenge->words as $word)
                         {{--saves the word id's in an array so i can save multiple and send them to check--}}
                         <input type="hidden" name="words[]" value="{{$word->id}}">
                     @endforeach

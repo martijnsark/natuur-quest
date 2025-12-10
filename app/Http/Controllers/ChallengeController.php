@@ -68,7 +68,7 @@ class ChallengeController extends Controller
         $assignment->save();
 
         //connects the words with the assignments
-        $words = Word::offset(0)->limit(5)->get();
+        $words = Word::select('id', 'name')->inRandomOrder()->limit(5)->get();
         $assignment->words()->sync($words);
 
         return redirect()->route('test.show', $request->input('game_id'));
@@ -104,8 +104,8 @@ class ChallengeController extends Controller
      */
     public function show(string $id)
     {
-
-
+        $challenge = Assignment::find($id);
+        return view('challenges.play', compact('challenge'));
     }
 
     public function details()

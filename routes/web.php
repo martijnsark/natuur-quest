@@ -40,8 +40,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])
     ->name('challenges.connection');
-Route::post('/test/send', [ChallengeController::class, 'connectionSend'])->name('test.name');
-Route::get('/test/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
+Route::post('/challenges/start', [ChallengeController::class, 'connectionSend'])
+    ->name('challenges.start');
+Route::get('/challenges/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
 Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
@@ -49,7 +50,7 @@ route::get('/challenges', [ChallengeController::class, 'index'])->name('challeng
 route::get('/challenges/details', [ChallengeController::class, 'details'])->name('challenges.details');
 //route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
 
-route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
 
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 

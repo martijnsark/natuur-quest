@@ -5,13 +5,13 @@
 
     <x-styling-arrow-right></x-styling-arrow-right>
 
-    <div>
+    <div class="w-body">
         <section aria-label="informatie" class="text-white text-center mt-16">
             <p class="font-text text-xl">Voeg de spelers toe aan de rollen die zij tijdens het spel op zich nemen.</p>
         </section>
 
         <section aria-label="spelers invul form" class="text-center mt-5">
-            <form class="flex-col flex gap-4" action="{{ route('test.name') }}" method="post">
+            <form class="flex-col flex gap-4" action="{{ route('challenges.start') }}" method="post">
                 @csrf
                 {{-- You can pick the users for the roles --}}
                 @foreach($roles as $role)
