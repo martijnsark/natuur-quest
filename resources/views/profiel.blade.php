@@ -4,7 +4,7 @@
 
     <!-- div to focus form center of screen -->
     <div class="flex flex-col items-center justify-center min-h-screen px-4">
-        <section aria-labelledby="Login formulier" class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
+        <section aria-labelledby="Gebruiker data" class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center">
 
             <!-- page header -->
             <header class="text-center">
@@ -13,12 +13,10 @@
                 </x-header-h1>
 
                 <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                    Welkom user X
+                    Welkom, {{ auth()->user()->name }}
                 </p>
             </header>
 
-            <!-- session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action=" {{route('logout') }}">
                 @csrf
