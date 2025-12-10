@@ -18,9 +18,7 @@ Route::get('/register', function () {
 
 
 //home
-Route::get('/', function () {
-    return view('homepage');
-})->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 Route::get('/profiel', function () {
     return view('profiel');
@@ -40,7 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test', [ChallengeController::class, 'connectionTest'])->name('test');
+Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])
+    ->name('challenges.connection');
 Route::post('/test/send', [ChallengeController::class, 'connectionSend'])->name('test.name');
 Route::get('/test/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
 Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');

@@ -19,7 +19,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased">
-<div class="flex-grow flex flex-col ">
+<div class="flex-grow flex flex-col">
     {{--    @include('layouts.navigation')--}}
 
     <!-- Page Heading -->

@@ -123,7 +123,7 @@ class ChallengeController extends Controller
     public function play()
     {
         //selects the id and the belonging nature word, does this randomly, max 5 words get selected and shown at play
-        $challenge = Challenge::select('id', 'nature_word')->inRandomOrder()->limit(5)->get();
+        $challenge = Word::select('id', 'nature_word')->inRandomOrder()->limit(5)->get();
 
         if (empty($challenge)) {
             return redirect()->route('challenges.index', compact('challenge'));
