@@ -1,3 +1,4 @@
+<a href="#h1" class="skip-link">Ga naar hoofdinhoud</a>
 <x-app-layout>
     <x-slot name="meta">
         {{-- Makes sure the page refreshes --}}
@@ -5,6 +6,8 @@
     </x-slot>
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
+    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>
+    <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex flex-row items-center justify-between">
             <div class="w-20 text-center">
@@ -53,10 +56,13 @@
         </div>
     </x-slot>
 
-    <section aria-labelledby="NatuurQuestTitle" class="text-white text-center pt-24 p-4">
+    <section aria-labelledby="NatuurQuestTitel" class="text-white text-center pt-24 p-4">
         <div class="py-4">
-            <x-h1>Natuurquest</x-h1>
-            <p class="font-text text-2xl text-black">Verken de natuur op een actieve, maar speelse manier! Speel alleen,
+            <x-h1
+                aria-label="NatuurQuest. Verken de natuur op een actieve, maar speelse manier! Speel alleen,met of tegen je vrienden!">
+                Natuurquest
+            </x-h1>
+            <p class="font-text text-2xl text-white">Verken de natuur op een actieve, maar speelse manier! Speel alleen,
                 met of tegen je vrienden!</p>
         </div>
         <div class="py-4">
@@ -71,13 +77,19 @@
                 <div class="w-3/5 relative -rotate-12 -translate-x-8 -translate-y-4">
                     <img
                         src="{{ Vite::asset('resources/images/backgroundFact.png') }}"
-                        alt="Highlight marker"
-                        class="w-full h-[120px] rounded-lg"
+                        alt="Feitjes markeerstift"
+                        class="w-full h-auto max-h-28 rounded-lg mx-auto
+                        max-w-[220px] sm:max-w-[280px] md:max-w-[320px]"
+
+
                     >
                     <!-- Overlay tekst -->
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-black  p-4 rounded-lg">
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center text-black  p-4 rounded-lg -translate-x-1 -translate-y-2">
                         <h3 class="text-2xl font-bold">Wist je dat?</h3>
                         <p class="font-text leading-none">Spinnen geen insecten zijn?!</p>
+                        <p class="font-text leading-none">Ze behoren tot de spinachtigen en<br>
+                            zijn cruciaal tegen insectenoverlast!</p>
                     </div>
                 </div>
 
@@ -118,11 +130,10 @@
 
     <section aria-label="Knop om naar challenge uitleg te gaan.">
         <div class="flex justify-center items-center">
-            <x-main-button :href="route('challenges.details')">
-                {{ __('Begin met challenge') }}
+            <x-main-button :href="route('challenges.random')" aria-label="Begin met spelen!">
+                {{ __('Start') }}
             </x-main-button>
         </div>
     </section>
-
 
 </x-app-layout>
