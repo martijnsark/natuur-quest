@@ -12,11 +12,13 @@
 
     <time
         :datetime="time > 0 ? `PT${time}S` : null"
-        x-text="time > 0 ? time : 'Tijd is op!'">
+        x-text="time > 0 ? time : ''">
     </time>
 
+    <span x-show="time <= 0">Tijd is op!</span>
 
-    <time x-show="time > 0"></time>
+
+
 </div>
 
 <script>
