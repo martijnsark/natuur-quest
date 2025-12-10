@@ -15,7 +15,7 @@
                     @if($role->id === $user->pivot->role_id)
                         <div class="flex flex-col gap-2">
                             <p class="font-text text-xl">{{ $user->name }}</p>
-                            @if($role->name !== "spelleider")
+                            @if($role->name !== "Spelleider")
                                 <form action="{{ route('assignment.send')}}" method="post">
                                     @csrf
                                     <input type="hidden" id="user_id" name="user_id" value="{{ $user->id }}">

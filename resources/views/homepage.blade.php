@@ -66,14 +66,14 @@
                     @if($assignment[0]->role->name === "speler 1")
                         <p>{{ $assignment[0]->user->name }}</p>
                     @else
-                        <p>{{ App\Models\User::find($assignment[0]->game->roles[0]->pivot->user_id)->name }}</p>
+                        <p>{{ App\Models\User::find($assignment[0]->game->roles[1]->pivot->user_id)->name }}</p>
                     @endif
                     <p>VS</p>
                     {{-- Makes sure that te person who is player 2 is on this side --}}
                     @if($assignment[0]->role->name === "speler 2")
                         <p>{{ $assignment[0]->user->name }}</p>
                     @else
-                        <p>{{ App\Models\User::find($assignment[0]->game->roles[1]->pivot->user_id)->name }}</p>
+                        <p>{{ App\Models\User::find($assignment[0]->game->roles[2]->pivot->user_id)->name }}</p>
                     @endif
                 </div>
                 {{-- Route to the challenge index that sends the assignment id --}}
