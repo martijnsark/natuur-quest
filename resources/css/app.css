@@ -16,6 +16,10 @@
     -3px -3px 0 black;
 }
 
+.skip-link {
+    @apply absolute left-0 top-0 -translate-y-full bg-[#E20147] text-black px-4 py-2 z-[9999] opacity-0 focus:opacity-100 focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-md;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

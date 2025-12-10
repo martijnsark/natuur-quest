@@ -43,7 +43,7 @@ export default {
 
             animation: {
                 blob: "blob 7s infinite",
-                pan: 'pan 4s linear infinite'
+                pan: "pan 20s linear infinite",
             },
             keyframes: {
                 blob: {
@@ -61,8 +61,8 @@ export default {
                     }
                 },
                 pan: {
-                    '0%': {backgroundPosition: '0% 0%'},
-                    '100%': {backgroundPosition: '-50px 50px'},
+                    "0%": {backgroundPosition: "0 0"},
+                    "100%": {backgroundPosition: "-100px 100px"},
                 }
             }
         },
