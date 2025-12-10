@@ -13,7 +13,7 @@
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'dashboard' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Home.png') }}"
-                 alt="Home-pagina"
+                 alt="knop naar de Home-pagina"
                  class="w-8 h-8 object-contain">
         </a>
 
@@ -22,7 +22,7 @@
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'friends' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Friends-Icon.png') }}"
-                 alt="Vriendenpagina"
+                 alt="Knop naar de vrienden-pagina"
                  class="w-8 h-8 object-contain">
         </a>
 
@@ -31,7 +31,7 @@
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'challenges' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Play-Icon.png') }}"
-                 alt="Challenges"
+                 alt="knop naar de Challenges"
                  class="w-10 h-10 object-contain">
         </a>
 
@@ -40,7 +40,7 @@
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'shop' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Shop-Icon.png') }}"
-                 alt="Winkelpagina"
+                 alt="knop naar de Winkel-pagina"
                  class="w-8 h-8 object-contain">
         </a>
 
@@ -49,7 +49,7 @@
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'profile' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Profile-Icon.jpg') }}"
-                 alt="Profielpagina"
+                 alt="knop naar de Profiel-pagina"
                  class="w-8 h-8 object-contain rounded-full">
         </a>
 
