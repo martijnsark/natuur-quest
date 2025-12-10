@@ -8,6 +8,11 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::get('/about-us', function () {
+    return view('about-us');
+});
+
+
 Route::get('/game-end/', function () {
     return view('game-end');
 })->name('game-end');
