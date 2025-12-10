@@ -9,9 +9,10 @@
 
             <!-- page header -->
             <header class="text-center">
-                <h1 id="register-page-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                <h1 id="register-page-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0" aria-label="Registratiepagina voor Natuur Quest">
                     Registreren
                 </h1>
+
                 <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
                     Creëer jouw account en begin met Natuur Quest!
                 </p>

@@ -9,9 +9,10 @@
 
             <!-- page header -->
             <header class="text-center">
-                <h1 id="reset-password-page-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white">
+                <h1 id="reset-password-page-heading" class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0" aria-label="Wachtwoord reset pagina voor Natuur Quest">
                     Wachtwoord vergeten
                 </h1>
+
                 <p class="mb-6 text-sm font-text text-gray-700 dark:text-gray-300">
                     Geen probleem. Laat ons uw e-mailadres weten en we sturen een link om uw wachtwoord te resetten, zodat u een nieuw wachtwoord kunt kiezen.
                 </p>
