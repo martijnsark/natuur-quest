@@ -72,7 +72,7 @@
 
                 <!-- submit -->
                 <section aria-labelledby="Registreer knop">
-                    <x-primary-button class="ml-4 w-full py-2">
+                    <x-primary-button class="w-full py-2">
                         Registreer
                     </x-primary-button>
                 </section>
