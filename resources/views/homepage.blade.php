@@ -106,8 +106,22 @@
 
     @auth()
         <div id="challengePopup">
-        @include('components.challenge-popup')
-    </div>
+            @include('components.challenge-popup')
+        </div>
+
+        {{-- Refreshed only the popup --}}
+        <script>
+            function refreshPopup() {
+                fetch('{{ route('refresh') }}')
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('challengePopup').innerHTML = html;
+                    });
+            }
+
+            // update elke 3 seconden
+            setInterval(refreshPopup, 1000);
+        </script>
     @endauth
 
     <section aria-label="Knop om naar challenge uitleg te gaan.">
@@ -118,18 +132,6 @@
         </div>
     </section>
 
-    {{-- Refreshed only the popup --}}
-    <script>
-        function refreshPopup() {
-            fetch('{{ route('refresh') }}')
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('challengePopup').innerHTML = html;
-                });
-        }
 
-        // update elke 3 seconden
-        setInterval(refreshPopup, 1000);
-    </script>
 
 </x-app-layout>
