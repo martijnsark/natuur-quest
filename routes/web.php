@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Assignment;
 use Illuminate\Support\Facades\Route;
 
 //login
@@ -10,12 +11,10 @@ Route::get('/login', function () {
     return redirect()->route('login');
 });
 
-
 //register
 Route::get('/register', function () {
     return redirect()->route('register');
 });
-
 
 //home
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -38,9 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test', [ChallengeController::class, 'connectionTest'])->name('test');
-Route::post('/test/send', [ChallengeController::class, 'connectionSend'])->name('test.name');
-Route::get('/test/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
+Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])
+    ->name('challenges.connection');
+Route::post('/challenges/start', [ChallengeController::class, 'connectionSend'])
+    ->name('challenges.start');
+Route::get('/challenges/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
 Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
@@ -48,16 +49,25 @@ route::get('/challenges', [ChallengeController::class, 'index'])->name('challeng
 route::get('/challenges/details', [ChallengeController::class, 'details'])->name('challenges.details');
 //route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
 
-route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
 
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
-//middelware to make session work, starts session, encrypts cookies, csrf token
-Route::middleware(['web'])->group(function () {
-    Route::get('/play', [ChallengeController::class, 'play'])->name('challenges.play');
-    Route::post('/check', [ChallengeController::class, 'check'])->name('challenges.check');
-    Route::get('/finish', [ChallengeController::class, 'finish'])->name('challenges.finish');
-});
+//Route::get('/play/{challenge}', [ChallengeController::class, 'play'])->name('challenges.play')
 
+//middelware to make session work, starts session, encrypts cookies, csrf token
+//Route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
+Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('challenges.check');
+Route::get('/challenges/finish/{challenge}', [ChallengeController::class, 'finish'])->name('challenges.finish');
+
+Route::get('/popup/check', function () {
+    $assignmentCheck = Assignment::with(['role', 'user', 'game'])->where('user_id', '=', Auth::user()->id)->where('active', '=', 1)->first();
+    if ($assignmentCheck != null) {
+        $assignment = $assignmentCheck;
+    } else {
+        $assignment = '';
+    }
+    return view('components.challenge-popup', compact('assignment'))->render();
+})->name('refresh');
 
 require __DIR__ . '/auth.php';
