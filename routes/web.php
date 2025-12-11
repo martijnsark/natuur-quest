@@ -10,12 +10,10 @@ Route::get('/login', function () {
     return redirect()->route('login');
 });
 
-
 //register
 Route::get('/register', function () {
     return redirect()->route('register');
 });
-
 
 //home
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -54,12 +52,12 @@ route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 's
 
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
+//Route::get('/play/{challenge}', [ChallengeController::class, 'play'])->name('challenges.play')
+
 //middelware to make session work, starts session, encrypts cookies, csrf token
-Route::middleware(['web'])->group(function () {
-    Route::get('/play', [ChallengeController::class, 'play'])->name('challenges.play');
-    Route::post('/check', [ChallengeController::class, 'check'])->name('challenges.check');
-    Route::get('/finish', [ChallengeController::class, 'finish'])->name('challenges.finish');
-});
+//Route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
+Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('challenges.check');
+Route::get('/challenges/finish/{challenge}', [ChallengeController::class, 'finish'])->name('challenges.finish');
 
 
 require __DIR__ . '/auth.php';

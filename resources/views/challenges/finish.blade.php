@@ -4,36 +4,36 @@
     </x-slot>
 
     {{-- Background styling diagonal right component --}}
-    <x-styling-diagonal-right></x-styling-diagonal-right>
+    <x-styling-arrow-left></x-styling-arrow-left>
 
 
     <x-card>
         <section aria-label="Checklist vijf natuur woorden"
-                 class="text-white flex flex-col items-center gap-10 text-center w-full">
+                 class="text-white mt-7 flex flex-col items-center gap-10 text-center w-full">
 
             <form method="GET" action="{{ route('game-end') }}">
                 @csrf
                 <div class="flex flex-col gap-10 w-full">
-                    <fieldset>
+                    <fieldset class="flex flex-col gap-2">
                         <legend class="font-text text-4xl font-bold mb-6 [-webkit-text-stroke:1px_black]">Kruis de
                             woorden aan
                             die
                             goed geraden zijn:
                         </legend>
-                        @foreach($challenge as $word)
+                        @foreach($challenge->words as $word)
                             <div class="flex items-center gap-4 whitespace-nowrap">
                                 {{--checkbox for each word, selected checkboxes go in correct array, value sets submitted if checked,
                                 id gives each checkbox unique id  --}}
                                 <input type="checkbox" name="correct[]" value="{{$word->id}}" id="word-{{$word->id}}"
                                        class="w-8 h-8">
                                 <label for="word-{{$word->id}}"
-                                       class=" font-text text-3xl [-webkit-text-stroke:1px_black] max-w-lg">{{$word->nature_word}}</label>
+                                       class=" font-text text-3xl [-webkit-text-stroke:1px_black] max-w-lg">{{$word->name}}</label>
                             </div>
                         @endforeach
                     </fieldset>
                 </div>
                 <div class="mt-10">
-                    <section aria-label="Aangekruiste woorden inleveren">
+                    <section aria-label="Aangekruiste woorden inleveren" class="w-mainButton m-auto">
                         <x-form-button type="submit">Inleveren</x-form-button>
                     </section>
                 </div>
