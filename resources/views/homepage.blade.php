@@ -16,11 +16,13 @@
                 <div x-data="{ open: false }" class="relative inline-block text-left">
                     <!-- profile button -->
                     <button @click="open = !open" @click.outside="open = false" class="focus:outline-none">
-                        <img class="w-20 cursor-pointer" src="{{ Vite::asset('resources/images/user.png') }}" alt="Ga naar jouw profiel.">
+                        <img class="w-20 cursor-pointer" src="{{ Vite::asset('resources/images/user.png') }}"
+                             alt="Ga naar jouw profiel.">
                     </button>
 
                     <!-- Dropdown styling -->
-                    <div x-show="open" x-transition class="absolute center-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50">
+                    <div x-show="open" x-transition
+                         class="absolute center-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50">
 
                         <!-- link to profile page button-->
                         <a href="{{ route('profiel') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
@@ -29,13 +31,14 @@
 
                         <!-- if logged in -->
                         @auth
-                        <!-- logout button -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                Log out
-                            </button>
-                        </form>
+                            <!-- logout button -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                    Log out
+                                </button>
+                            </form>
                             <!-- if logged out -->
                         @else
                             <!-- to login page button -->
@@ -106,7 +109,7 @@
     <section aria-label="Knop om naar challenge uitleg te gaan.">
         <div class="flex justify-center items-center">
             <x-main-button :href="route('challenges.connection')">
-                {{ __('Begin de challenge') }}
+                {{ __('Begin met spelen!') }}
             </x-main-button>
         </div>
     </section>
