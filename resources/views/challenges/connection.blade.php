@@ -18,7 +18,7 @@
                     @if($role->id === 1)
                         <div>
                             {{--  Gameleader is logged-in user that is send with hidden field  --}}
-                            <x-input-label aria-labelledby="role" for="{{ $role->id }}" :value="$role->name"/>
+                            <p class="block font-medium font-text text-lg text-white"> {{ $role->name }} </p>
                             <p class="text-white">{{ Auth::user()->name }}</p>
                             <input type="hidden" name="{{ $role->id }}" id="{{ $role->id }}"
                                    value="{{ Auth::user()->id }}">
