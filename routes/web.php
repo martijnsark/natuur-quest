@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Assignment;
 use Illuminate\Support\Facades\Route;
 
 //login
@@ -59,5 +60,14 @@ route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 's
 Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('challenges.check');
 Route::get('/challenges/finish/{challenge}', [ChallengeController::class, 'finish'])->name('challenges.finish');
 
+Route::get('/popup/check', function () {
+    $assignmentCheck = Assignment::with(['role', 'user', 'game'])->where('user_id', '=', Auth::user()->id)->where('active', '=', 1)->first();
+    if ($assignmentCheck != null) {
+        $assignment = $assignmentCheck;
+    } else {
+        $assignment = '';
+    }
+    return view('components.challenge-popup', compact('assignment'))->render();
+})->name('refresh');
 
 require __DIR__ . '/auth.php';

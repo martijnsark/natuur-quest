@@ -8,10 +8,10 @@
 
     <x-card>
         <section aria-label="Vijf natuur woorden"
-                 class="text-white pt-5 px-14 flex flex-col items-center gap-10 text-center">
-            <ul class="flex flex-col gap-10 whitespace-nowrap">
+                 class="text-white px-14 flex flex-col items-center gap-10 text-center">
+            <ul class="flex flex-col gap-5 whitespace-nowrap">
                 @foreach($challenge->words as $word)
-                    <li class="text-4xl [-webkit-text-stroke:1px_black]">
+                    <li class="text-3xl [-webkit-text-stroke:1px_black]">
                         {{--<p>{{$word->id}}</p>--}}
 
                         <p class="font-text ">{{ $word->name }}</p>
