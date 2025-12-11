@@ -11,13 +11,14 @@ class PageController extends Controller
 {
     public function home()
     {
-        if (Auth::user()) {
-            $assignment = Assignment::with(['role', 'user', 'game'])->where('user_id', '=', Auth::user()->id)->get();
-            return view('homepage', compact('assignment'));
-        } else {
-            $assignment = '';
-        }
+//        if (Auth::user()) {
+//            $assignment = Assignment::first()->with(['role', 'user', 'game'])->where('user_id', '=', Auth::user()->id)->where('active', '=', 1)->get();
+//            return view('homepage', compact('assignment'));
+//        } else {
+//            $assignment = '';
+//        }
 
-        return view('homepage', compact('assignment'));
+        //return view('homepage', compact('assignment'));
+        return view('homepage');
     }
 }

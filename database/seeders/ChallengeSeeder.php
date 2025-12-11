@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Challenge;
+use App\Models\Word;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -48,9 +49,8 @@ class ChallengeSeeder extends Seeder
         ];
 
         foreach ($words as $word) {
-            Challenge::create([
-                'title' => 'Natuur 30 seconds',
-                'nature_word' => $word,
+            Word::create([
+                'name' => $word,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
