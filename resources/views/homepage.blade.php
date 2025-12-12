@@ -6,7 +6,7 @@
     {{--    </x-slot>--}}
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
-    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>
+    {{--    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>--}}
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center
@@ -75,34 +75,10 @@
         </div>
     </section>
 
-    <section aria-labelledby="NatuurFeitje" class="flex flex-row text-center pt-24 p-4">
-        <section class="w-full p-4">
-            <div class="flex flex-row gap-4 translate-y-8">
-                <!-- Linker div: afbeelding + overlay tekst -->
-                <div class="w-3/5 relative -rotate-12 -translate-x-8 -translate-y-4">
-                    <img
-                        src="{{ Vite::asset('resources/images/backgroundFact.png') }}"
-                        alt="Feitjes markeerstift"
-                        class="w-full h-auto max-h-28 rounded-lg mx-auto
-                        max-w-[220px] sm:max-w-[280px] md:max-w-[320px]"
-
-
-                    >
-                    <!-- Overlay tekst -->
-                    <div
-                        class="absolute inset-0 flex flex-col items-center justify-center text-black  p-4 rounded-lg -translate-x-1 -translate-y-2">
-                        <h3 class="text-2xl font-bold">Wist je dat?</h3>
-                        <p class="font-text leading-none">Spinnen geen insecten zijn?!</p>
-                        <p class="font-text leading-none">Ze behoren tot de spinachtigen en<br>
-                            zijn cruciaal tegen insectenoverlast!</p>
-                    </div>
-                </div>
-
-                <!-- Rechter div: leeg, enkel voor layout -->
-                <div class="w-1/2 h-full"></div>
-            </div>
-        </section>
-    </section>
+    <x-fact-area class="flex-end" :title="'Hallo daar :)'">
+        <p>Dit wordt ons feitje<br>
+            Best cool he!</p>
+    </x-fact-area>
 
     @auth()
         <div id="challengePopup">
@@ -131,7 +107,5 @@
             </x-main-button>
         </div>
     </section>
-
-
 
 </x-app-layout>
