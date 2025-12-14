@@ -23,6 +23,9 @@ Route::get('/profiel', function () {
     return view('profiel');
 })->middleware(['auth', 'verified'])->name('profiel');
 
+//Route::get('/facts', [\App\Http\Controllers\FactController::class, 'index']);
+Route::get('/facts', [\App\Http\Controllers\FactController::class, 'playFacts']);
+
 Route::get('/game-end/', function () {
     return view('game-end');
 })->name('game-end');
