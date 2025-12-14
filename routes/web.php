@@ -4,13 +4,18 @@ use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/homepage', function () {
     return view('homepage');
 });
 
 Route::get('/about-us', function () {
     return view('about-us');
 });
+
+Route::get('/friends', function () {
+    return view('friends');
+});
+
 
 
 Route::get('/game-end/', function () {
