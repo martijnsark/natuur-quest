@@ -43,5 +43,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/finish', [ChallengeController::class, 'finish'])->name('challenges.finish');
 });
 
+// routes/web.php
+Route::view('/photo-upload', 'challenges.photo-upload')->name('photo.upload');
+
 
 require __DIR__ . '/auth.php';
