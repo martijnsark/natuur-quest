@@ -1,31 +1,31 @@
 /**
- * countdownTimer(startTime)
+ * countdownTimer(startTime, redirectTo)
  *
- * Creates an Alpine.js reactive countdown object.
- * This function is imported inside app.js and used in countdown.blade.php.
- *
- * @param {number} startTime - The starting number of seconds for the countdown
- * @returns {object} - Alpine component with reactive time and start() method
+ * Alpine.js countdown with:
+ * - Accessible timer updates
+ * - Modal popup when time is over
+ * - Optional redirect link destination
  */
-export function countdownTimer(startTime) {
+export function countdownTimer(startTime, redirectTo = '/homepage') {
     return {
-        // The current countdown value
+        // Remaining seconds
         time: startTime,
 
-        /**
-         * Start the countdown.
-         * Decreases "time" every second.
-         * Stops automatically when it reaches 0.
-         */
+        // Popup state
+        isDone: false,
+
+        // Where the "Verder" button goes
+        redirectTo,
+
         start() {
             const interval = setInterval(() => {
                 if (this.time > 0) {
                     this.time--;
                 } else {
-                    // Stop the countdown when time reaches zero
                     clearInterval(interval);
+                    this.isDone = true; // show popup
                 }
-            }, 1000); // 1000ms = 1 second
+            }, 1000);
         }
-    }
+    };
 }
