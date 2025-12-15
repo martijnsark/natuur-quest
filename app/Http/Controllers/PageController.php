@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Role;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -19,6 +21,21 @@ class PageController extends Controller
 //        }
 
         //return view('homepage', compact('assignment'));
-        return view('homepage');
+
+//        $createGroups = DB::table('users')
+//            ->where('user_id', Auth::id())
+//            ->count();
+
+        $user = Auth::user();
+
+        if ($user) {
+            $balance = $user->balance;
+        } else {
+            $balance = 0;
+
+        }
+
+
+        return view('homepage', compact('user', 'balance'));
     }
 }
