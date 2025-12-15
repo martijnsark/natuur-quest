@@ -6,7 +6,7 @@
     {{--    </x-slot>--}}
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
-    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>
+    {{--    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>--}}
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center
@@ -78,27 +78,30 @@
     </x-card>
 
     <!-- Hardcoded Feitje -->
-    <div class="relative w-1/2 sm:w-1/3 h-32 smh:h-40 -rotate-12 mt-8">
+    <div class="flex justify-start mt-8 px-4">
+        <div class="relative w-6/12 md:w-1/3 max-w-sm md:max-w-md -translate-y-6 border-4 border-[#F6692C] border-transparent
+                bg-primary rounded-3xl skew-x-2 shadow-lg overflow-hidden">
 
-        <div class="absolute inset-0 flex items-center justify-center z-0">
-            <div class="w-full h-full bg-[#F66D32] rounded-3xl blur-md -skew-x-12 opacity-95"></div>
-        </div>
+            <!-- Styling bolletjes -->
+            <div class="absolute bottom-0 -right-4 w-8 h-8 md:w-16 md:h-16 bg-[#F6692C] rounded-full opacity-70"></div>
+            <div
+                class="absolute top-4 right-6 w-6 h-6 md:w-10 md:h-10 bg-[#F6692C] rounded-full rotate-12 opacity-70"></div>
+            <div class="absolute bottom-1/4 -left-3 w-6 h-6 md:w-12 md:h-12 bg-[#F6692C] rounded-full opacity-70"></div>
 
-        <!-- Content -->
-        <div class="absolute inset-0 flex flex-col justify-start z-10 p-4">
-
-            <!-- Titel -->
-            <div class="w-full text-center text-2xl font-bold mb-2 text-white">
-                <p>Let op!</p>
+            <!-- Title vak -->
+            <div class="w-4/5 md:w-1/2 bg-[#F6692C] text-white text-center py-2 md:py-3 px-4 md:px-6 overflow-auto
+                    rounded-br-3xl font-bold text-base md:text-xl font-sans">
+                Let op!
             </div>
 
-            <!-- Content -->
-            <div class="w-full text-center px-2 text-white text-sm">
-                In NatuurQuest ga je leuke feitjes krijgen over de natuur. <br> Kan jij ze allemaal vinden?
+            <!-- Content vak -->
+            <div class="p-6 text-white">
+                <p class="text-sm md:text-base leading-relaxed">
+                    In NatuurQuest krijg je feitjes te zien over de natuur! <br>
+                    Wordt jij de nieuwe natuur-wetenschapper?
+                </p>
             </div>
-
         </div>
-
     </div>
 
     @auth()
@@ -122,7 +125,7 @@
     @endauth
 
     <section aria-label="Knop om naar challenge uitleg te gaan.">
-        <div class="flex justify-center items-center translate-y-1">
+        <div class="flex justify-center items-center mb-2">
             <x-main-button :href="route('challenges.connection')">
                 {{ __('Begin met spelen!') }}
             </x-main-button>

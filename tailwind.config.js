@@ -20,7 +20,7 @@ export default {
                 primary: '#36298B',
                 nav: '#007866',
                 secondary: '#E20147',
-                fact: '#F66D32',
+                fact: '#F6692C',
             },
             width: {
                 mainButton: '50vw',
