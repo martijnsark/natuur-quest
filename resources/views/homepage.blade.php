@@ -126,12 +126,11 @@
 
     <section aria-label="Knop om naar challenge uitleg te gaan.">
         <div class="flex justify-center items-center translate-y-1">
-            <x-main-button :href="route('challenges.details')">
+            <x-main-button :href="route('info')">
                 {{ __('Begin met spelen!') }}
             </x-main-button>
         </div>
     </section>
-
 
 
 </x-app-layout>

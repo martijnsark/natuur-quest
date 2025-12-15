@@ -39,8 +39,8 @@ export default {
                 bg: '25deg',
             },
             spacing: {
-                bg: '27rem',
-                bgDiagonal: '31rem',
+                bg: '32rem',
+                bgDiagonal: '36rem',
             },
 
             animation: {
