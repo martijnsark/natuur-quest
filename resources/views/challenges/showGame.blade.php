@@ -28,11 +28,10 @@
                                 @if($assignment)
                                     <div class="w-popupButton m-auto">
                                         <!-- route "spel leider" to assign score page based on the assignments id-->
-                                        <a href="{{ route('challenges.finish', ['challenge' => $assignment->id]) }}">
-                                            <x-form-button>
-                                                Geef score
-                                            </x-form-button>
-                                        </a>
+                                        <x-main-button href="{{ route('challenges.finish', ['challenge' => $assignment->id]) }}">
+                                            Geef score
+                                        </x-main-button>
+
                                     </div>
                                     {{-- Send the assignment to the player --}}
                                 @else
