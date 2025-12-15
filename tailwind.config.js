@@ -39,8 +39,33 @@ export default {
                 bg: '25deg',
             },
             spacing: {
-                bg: '32rem',
-                bgDiagonal: '37rem',
+                bg: '27rem',
+                bgDiagonal: '31rem',
+            },
+
+            animation: {
+                blob: "blob 7s infinite",
+                pan: "pan 20s linear infinite",
+            },
+            keyframes: {
+                blob: {
+                    "0%": {
+                        transform: "translate(0px, 0px) scale(1)"
+                    },
+                    "33%": {
+                        transform: "translate(30px, -50px) scale(1.2)"
+                    },
+                    "66%": {
+                        transform: "translate(-20px, 20px) scale(0.8)"
+                    },
+                    "100%": {
+                        transform: "translate(0px, 0px) scale(1)"
+                    }
+                },
+                pan: {
+                    "0%": {backgroundPosition: "0 0"},
+                    "100%": {backgroundPosition: "-100px 100px"},
+                }
             }
         },
     },

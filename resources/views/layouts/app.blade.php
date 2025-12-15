@@ -18,23 +18,27 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen flex flex-col font-sans antialiased">
-<div class="flex-grow flex flex-col ">
-    {{--    @include('layouts.navigation')--}}
+<body x-data="{ animations: true }" class="flex flex-col min-h-screen font-sans antialiased">
 
-    <!-- Page Heading -->
-    @isset($header)
-        <header role="banner" class="bg-nav shadow text-center">
-            <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endisset
+<!-- Header -->
+@isset($header)
+    <header role="banner" class="h-[13vh] bg-nav shadow w-full text-white flex items-center">
+        <div
+            class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center md:gap-x-8">
+            {{ $header }}
+        </div>
+    </header>
+@endisset
 
-    <!-- Page Content -->
-    <main class="flex-grow" role="main">
-        {{ $slot }}
-    </main>
-</div>
+<!-- Main content -->
+<main class="flex-1 w-full py-2" role="main">
+    {{ $slot }}
+</main>
+
+<!-- Footer -->
+<footer class="h-[7vh] bg-nav shadow w-full flex items-center justify-center text-white">
+    <p>Natuurquest</p>
+</footer>
+
 </body>
 </html>
