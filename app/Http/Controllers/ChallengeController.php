@@ -233,7 +233,7 @@ class ChallengeController extends Controller
         //
     }
 
-    // change score function
+    // handles score updates
     public function updateScore(Request $request)
     {
         $request->validate([
@@ -246,17 +246,14 @@ class ChallengeController extends Controller
         $assignment = Assignment::find($request->input('assignment_id'));
 
         // count the checked words
-        $score = count($request->input('correct', [])); // defaults to 0 if none
+        $score = count($request->input('correct', []));
 
         // save the score
         $assignment->score = $score;
         $assignment->save();
 
-        // save changes
-        $assignment->save();
 
-        return redirect()->route('challenges.finish', ['challenge' => $assignment->id])
-            ->with('success', 'Score updated!');
+        return redirect()->route('test.show', ['id' => $assignment->game->id]);
     }
 
 

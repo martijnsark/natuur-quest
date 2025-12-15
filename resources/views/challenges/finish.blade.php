@@ -37,8 +37,12 @@
                     <section aria-label="Aangekruiste woorden inleveren" class="w-mainButton m-auto">
                         <x-form-button type="submit">Voeg score toe</x-form-button>
                     </section>
+
+                    <section aria-label="Weergave van gebruiker score" class="w-mainButton m-auto">
+                        <p class="font-text text-2xl">score: {{ $challenge->score }}</p>
+                    </section>
                 </div>
-                <p class="font-text text-2xl">score: {{ $challenge->score }}</p>
+
             </form>
         </section>
     </x-card>
