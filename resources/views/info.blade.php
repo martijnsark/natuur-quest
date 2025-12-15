@@ -34,15 +34,8 @@
         </div>
     </x-card>
 
-    {{-- If the user is not logedin then it shows login button --}}
-    @if(\Illuminate\Support\Facades\Auth::user())
-        <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
-            <x-main-button :href="route('challenges.connection')">Start</x-main-button>
-        </div>
-    @else
-        <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
-            <x-main-button :href="route('login')">Login</x-main-button>
-        </div>
-    @endif
+    <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
+        <x-main-button :href="route('challenge-info')">Start</x-main-button>
+    </div>
 
 </x-app-layout>

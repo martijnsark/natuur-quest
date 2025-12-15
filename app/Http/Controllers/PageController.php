@@ -26,4 +26,9 @@ class PageController extends Controller
     {
         return view('info');
     }
+
+    public function challengeInfo()
+    {
+        return view('challenge-info');
+    }
 }
