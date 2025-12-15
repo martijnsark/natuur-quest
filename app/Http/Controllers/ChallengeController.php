@@ -233,4 +233,28 @@ class ChallengeController extends Controller
         //
     }
 
+    // handles score updates
+    public function updateScore(Request $request)
+    {
+        $request->validate([
+            'assignment_id' => 'required|exists:assignments,id',
+            'correct' => 'nullable|array',
+            'correct.*' => 'exists:words,id',
+        ]);
+
+        // get the assignment
+        $assignment = Assignment::find($request->input('assignment_id'));
+
+        // count the checked words
+        $score = count($request->input('correct', []));
+
+        // save the score
+        $assignment->score = $score;
+        $assignment->save();
+
+
+        return redirect()->route('test.show', ['id' => $assignment->game->id]);
+    }
+
+    
 }
