@@ -7,7 +7,7 @@
 
     <x-card>
         <div class="flex flex-col gap-12">
-            <section class="text-center">
+            <section aria-label="informatie over waar je op moet letten" class="text-center">
                 <x-h2>Let op!</x-h2>
                 <p class="font-text text-white text-xl">
                     Om NatuurQuest te kunnen spelen moet je in de natuur zijn! Als je dit al bent helemaal goed! Zo niet
@@ -22,7 +22,7 @@
                     flex py-2 bg-secondary items-center font-medium rounded-xl justify-center">Richtlijnen</a>
             </div>
 
-            <section class="text-center">
+            <section aria-label="informatie over het spel" class="text-center">
                 <p class="font-text text-white text-xl">
                     Op dit apparaat zal je de spelleider worden van het spel. Wil je nou niet de spelleider worden zorg
                     dan dat iemand anders naar deze pagina verder zal gaan. Als je dit allemaal gelezen hebt en je de
