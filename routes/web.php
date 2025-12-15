@@ -4,17 +4,17 @@ use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/homepage', function () {
+Route::get('/', function () {
     return view('homepage');
-});
+})->name('homepage');
 
 Route::get('/about-us', function () {
     return view('about-us');
-});
+})->name('about-us');
 
 Route::get('/friends', function () {
     return view('friends');
-});
+})->name('friends');
 
 
 
