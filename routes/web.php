@@ -51,6 +51,9 @@ route::get('/challenges/details', [ChallengeController::class, 'details'])->name
 
 route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
 
+// change score route
+Route::post('/challenges/update-score', [ChallengeController::class, 'updateScore'])->name('challenges.update-score');
+
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
 //Route::get('/play/{challenge}', [ChallengeController::class, 'play'])->name('challenges.play')

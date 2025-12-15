@@ -11,8 +11,9 @@
         <section aria-label="Checklist vijf natuur woorden"
                  class="text-white mt-7 flex flex-col items-center gap-10 text-center w-full">
 
-            <form method="GET" action="{{ route('game-end') }}">
+            <form method="POST" action="{{ route('challenges.update-score') }}">
                 @csrf
+                <input type="hidden" name="assignment_id" value="{{ $challenge->id }}">
                 <div class="flex flex-col gap-10 w-full">
                     <fieldset class="flex flex-col gap-2">
                         <legend class="font-text text-4xl font-bold mb-6 [-webkit-text-stroke:1px_black]">Kruis de
@@ -34,9 +35,10 @@
                 </div>
                 <div class="mt-10">
                     <section aria-label="Aangekruiste woorden inleveren" class="w-mainButton m-auto">
-                        <x-form-button type="submit">Inleveren</x-form-button>
+                        <x-form-button type="submit">Voeg score toe</x-form-button>
                     </section>
                 </div>
+                <p class="font-text text-2xl">score: {{ $challenge->score }}</p>
             </form>
         </section>
     </x-card>
