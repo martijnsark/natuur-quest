@@ -26,16 +26,7 @@ class PageController extends Controller
 //            ->where('user_id', Auth::id())
 //            ->count();
 
-        $user = Auth::user();
 
-        if ($user) {
-            $balance = $user->balance;
-        } else {
-            $balance = 0;
-
-        }
-
-
-        return view('homepage', compact('user', 'balance'));
+        return view('homepage');
     }
 }

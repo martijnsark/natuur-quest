@@ -55,7 +55,7 @@
             <!-- Balans -->
             <div class="flex flex-col text-right md:text-left">
                 <x-h3>Balans</x-h3>
-                <p class="font-text text-xl"> 🌸{{ $balance ?? 0 }}</p>
+                <p class="font-text text-xl"> 🌸{{ auth()->user()->balance ?? 0 }}</p>
             </div>
 
         </div>
