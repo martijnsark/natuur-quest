@@ -34,13 +34,17 @@
                     </fieldset>
                 </div>
                 <div class="mt-10">
-                    <section aria-label="Aangekruiste woorden inleveren" class="w-mainButton m-auto">
-                        <x-form-button type="submit">Voeg score toe</x-form-button>
-                    </section>
-
+                    <!-- display user score-->
                     <section aria-label="Weergave van gebruiker score" class="w-mainButton m-auto">
                         <p class="font-text text-2xl">score: {{ $challenge->score }}</p>
                     </section>
+
+                    <!-- has to be a div to avoid primary action errors-->
+                    <div aria-label="Aangekruiste woorden inleveren" class="w-mainButton m-auto">
+                        <x-form-button type="submit">Voeg score toe</x-form-button>
+                    </div>
+
+
                 </div>
 
             </form>
