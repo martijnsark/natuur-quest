@@ -30,6 +30,8 @@ export default {
                 body: '100vw',
                 fact: '76vw',
                 bgImg: '150vw',
+                mainButtonDesktop: '25vw',
+                secondaryButtonDesktop: '15vw',
             },
             height: {
                 bg: '40vh',
