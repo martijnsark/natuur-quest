@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Feitjes per categorie</title>
-</head>
-<body>
+<x-app-layout>
 
-@if ($facts)
-    <h2>{{ $facts->title }}</h2>
-    <p>{{ $facts->content }}</p>
-@else
-    <p>No fact found.</p>
-@endif
+    <x-slot name="header"></x-slot>
 
-</body>
-</html>
+    <div class="flex justify-center items-center">
+        <x-fact-area :facts="$facts"/>
+    </div>
+
+</x-app-layout>

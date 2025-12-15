@@ -11,8 +11,8 @@ class FactSeeder extends Seeder
     public function run(): void
     {
         // Categorieën toevoegen
-        $wistjedat = Category::create(['name' => 'Wist je dat...']);
-        $letop = Category::create(['name' => 'Let op!']);
+        $wistjedat = Category::firstOrCreate(['name' => 'Wist je dat...']);
+        $letop = Category::firstOrCreate(['name' => 'Let op!']);
 
         // Feitjes voor "Wist je dat..."
         Fact::create([
@@ -81,6 +81,66 @@ class FactSeeder extends Seeder
             'category_id' => $wistjedat->id
         ]);
 
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Veel dieren in het donker leven en ‘s nachts wakker zijn? Fel licht zorgt ervoor dat ze in de war raken en heel moe worden. Zet ‘s nachts je tuinlicht uit en help de dieren in de nacht fijn te leven.',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Dieren afval snel verwarren met eten? Ze kunnen hier heel ziek van worden en zelfs aan dood gaan. Zie je afval ergens liggen? Ruim dit op om de dieren te laten leven.',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Dieren door hard geluid gestrest raken? Ze horen elkaar niet meer en kunnen elkaar kwijtraken. Wees rustig in de natuur en laat de dieren rustig leven. ',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Jonge kleine dieren en planten vaak verstopt zitten naast het pad? Door erop te lopen kunnen ze beschadigd of gewond raken. Blijf op het pad en bescherm de dieren die je niet ziet.',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Bijen en insecten super belangrijk zijn voor bloemen, planten en fruit maar ze steeds minder plekken hebben om te wonen? Bouw een insectenhotel en redt de bijen.',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Vlinders met hun poten proeven?! Vlinders zijn erg belangrijke dieren voor de bestuiving van planten!',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Niet alle lavendel het zelfde ruikt?! Lavendel is een plant die veel bijen en vlinders aantrekt en is dus heel belangrijk voor een bio diverse tuin!',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Je een margrietje kunt eten?! Margrietjes zijn heel belangrijk voor de biodiversiteit, omdat het een hele waardevolle bloem is voor insecten.',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Een eikenboom een levend ecosysteem is?! De boom bied onderdak en voedsel voor veel verschillende dieren waaronder vogelsoorten en insecten.',
+            'category_id' => $wistjedat->id
+        ]);
+
+        Fact::create([
+            'title' => 'Wist je dat...',
+            'content' => 'Ratten niet kunnen overgeven?! Ratten zijn de belangrijkste opruimers van de natuur doordat ze organisch afval opruimen en de bodemstructuur verbeteren met hun gegraaf.',
+            'category_id' => $wistjedat->id
+        ]);
+
         // Feitjes voor "Let op!"
         Fact::create([
             'title' => 'Let op!',
@@ -94,28 +154,5 @@ class FactSeeder extends Seeder
             'category_id' => $letop->id
         ]);
 
-        Fact::create([
-            'title' => 'Let op!',
-            'content' => '',
-            'category_id' => $letop->id
-        ]);
-
-        Fact::create([
-            'title' => 'Let op!',
-            'content' => '',
-            'category_id' => $letop->id
-        ]);
-
-        Fact::create([
-            'title' => 'Let op!',
-            'content' => '',
-            'category_id' => $letop->id
-        ]);
-
-        Fact::create([
-            'title' => 'Let op!',
-            'content' => '',
-            'category_id' => $letop->id
-        ]);
     }
 }

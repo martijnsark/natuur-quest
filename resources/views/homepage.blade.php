@@ -6,7 +6,7 @@
     {{--    </x-slot>--}}
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
-    {{--    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>--}}
+    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center
@@ -61,6 +61,7 @@
         </div>
     </x-slot>
 
+    <x-card>
     <section aria-labelledby="NatuurQuestTitel" class="text-white text-center pt-24 p-4">
         <div class="py-4">
             <x-h1
@@ -74,11 +75,31 @@
 
         </div>
     </section>
+    </x-card>
 
-    <x-fact-area class="flex-end" :title="'Hallo daar :)'">
-        <p>Dit wordt ons feitje<br>
-            Best cool he!</p>
-    </x-fact-area>
+    <!-- Hardcoded Feitje -->
+    <div class="relative w-1/2 sm:w-1/3 h-32 smh:h-40 -rotate-12 mt-8">
+
+        <div class="absolute inset-0 flex items-center justify-center z-0">
+            <div class="w-full h-full bg-[#F66D32] rounded-3xl blur-md -skew-x-12 opacity-95"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="absolute inset-0 flex flex-col justify-start z-10 p-4">
+
+            <!-- Titel -->
+            <div class="w-full text-center text-2xl font-bold mb-2 text-white">
+                <p>Let op!</p>
+            </div>
+
+            <!-- Content -->
+            <div class="w-full text-center px-2 text-white text-sm">
+                In NatuurQuest ga je leuke feitjes krijgen over de natuur. <br> Kan jij ze allemaal vinden?
+            </div>
+
+        </div>
+
+    </div>
 
     @auth()
         <div id="challengePopup">

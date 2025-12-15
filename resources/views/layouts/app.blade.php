@@ -31,7 +31,7 @@
 @endisset
 
 <!-- Main content -->
-<main class="flex-1 w-full py-2" role="main">
+<main class="flex-1 w-full" role="main">
     {{ $slot }}
 </main>
 

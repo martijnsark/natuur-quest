@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fact;
 use App\Models\Assignment;
 use App\Models\Role;
 use Auth;
@@ -19,6 +20,7 @@ class PageController extends Controller
 //        }
 
         //return view('homepage', compact('assignment'));
-        return view('homepage');
+        $facts = Fact::inRandomOrder()->first();
+        return view('homepage', compact('facts'));
     }
 }
