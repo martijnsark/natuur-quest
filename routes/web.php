@@ -1,28 +1,17 @@
 <?php
 
 use App\Http\Controllers\ChallengeController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-//login
-Route::get('/login', function () {
-    return redirect()->route('login');
+Route::get('/', function () {
+    return view('homepage');
 });
 
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('about-us');
 
-//register
-Route::get('/register', function () {
-    return redirect()->route('register');
-});
-
-
-//home
-Route::get('/', [PageController::class, 'home'])->name('home');
-
-Route::get('/profiel', function () {
-    return view('profiel');
-})->middleware(['auth', 'verified'])->name('profiel');
 
 Route::get('/game-end/', function () {
     return view('game-end');
@@ -37,11 +26,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/test', [ChallengeController::class, 'connectionTest'])->name('test');
-Route::post('/test/send', [ChallengeController::class, 'connectionSend'])->name('test.name');
-Route::get('/test/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
-Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');
 
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
 //route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
