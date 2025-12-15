@@ -252,6 +252,11 @@ class ChallengeController extends Controller
         $assignment->score = $score;
         $assignment->save();
 
+        // Update the user's balance based on score
+        $user = $assignment->user;
+        // multiply score by 100
+        $user->balance += $score * 100;
+        $user->save();
 
         return redirect()->route('test.show', ['id' => $assignment->game->id]);
     }
