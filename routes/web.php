@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\FactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Assignment;
@@ -23,6 +24,12 @@ Route::get('/profiel', function () {
     return view('profiel');
 })->middleware(['auth', 'verified'])->name('profiel');
 
+//Route::get('/facts', [\App\Http\Controllers\FactController::class, 'index']);
+Route::get('/facts/{assignment}', [FactController::class, 'playFacts'])->name('facts');
+
+//deactivate route
+Route::post('/game/deactivate', [ChallengeController::class, 'deactivateCurrentGame'])->name('game.deactivate');
+
 Route::get('/game-end/', function () {
     return view('game-end');
 })->name('game-end');
@@ -36,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/info', [PageController::class, 'info'])->name('info');
+Route::get('/info/challenge', [PageController::class, 'challengeInfo'])->name('challenge-info');
 
 Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])
     ->name('challenges.connection');
@@ -51,6 +61,9 @@ route::get('/challenges/details', [ChallengeController::class, 'details'])->name
 
 route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
 
+// change score route
+Route::post('/challenges/update-score', [ChallengeController::class, 'updateScore'])->name('challenges.update-score');
+
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
 //Route::get('/play/{challenge}', [ChallengeController::class, 'play'])->name('challenges.play')
@@ -61,13 +74,15 @@ Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('c
 Route::get('/challenges/finish/{challenge}', [ChallengeController::class, 'finish'])->name('challenges.finish');
 
 Route::get('/popup/check', function () {
-    $assignmentCheck = Assignment::with(['role', 'user', 'game'])->where('user_id', '=', Auth::user()->id)->where('active', '=', 1)->first();
-    if ($assignmentCheck != null) {
-        $assignment = $assignmentCheck;
-    } else {
-        $assignment = '';
-    }
+    $assignment = Assignment::with(['role', 'user', 'game.roles'])
+        ->where('user_id', Auth::user()->id)
+        ->whereHas('game', function ($query) {
+            $query->where('active', true);
+        })
+        ->first();
+
     return view('components.challenge-popup', compact('assignment'))->render();
 })->name('refresh');
+
 
 require __DIR__ . '/auth.php';

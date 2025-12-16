@@ -39,9 +39,9 @@
         </section>
         <section aria-label="Uitleg van bonus punten verkrijgen"
                  class="text-white pt-10 px-14 flex flex-col items-center mt-20 -rotate-2 lg:rotate-0 text-center">
-            <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van de goed geraden
-                natuurwoorden
-                een bijpassende foto.De scheidsrechter kijkt jullie creaties na en geeft bonuspunten!</p>
+            <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van een van de
+                natuurwoorden een bijpassende foto.
+                De spelleider kijkt jullie creaties na en geeft bonuspunten!</p>
         </section>
     </div>
 
@@ -79,9 +79,25 @@
     {{--        </form>--}}
     {{--    </section>--}}
     <div class="mt-5 flex justify-center items-center">
-        <x-main-button :href="route('challenges.connection')">
-            {{ __('Start') }}
-        </x-main-button>
+        @auth()
+            <div id="challengePopup">
+                @include('components.challenge-popup')
+            </div>
+
+            {{-- Refreshed only the popup --}}
+            <script>
+                function refreshPopup() {
+                    fetch('{{ route('refresh') }}')
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('challengePopup').innerHTML = html;
+                        });
+                }
+
+                // update elke 3 seconden
+                setInterval(refreshPopup, 1000);
+            </script>
+        @endauth
     </div>
 
 </x-app-layout>

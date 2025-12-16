@@ -9,10 +9,11 @@
 
     <x-card>
         <section aria-label="Checklist vijf natuur woorden"
-                 class="text-white mt-7 flex flex-col items-center gap-10 text-center w-full">
+                 class="text-white mt-7 flex flex-col  gap-10 text-center w-full">
 
-            <form method="GET" action="{{ route('game-end') }}">
+            <form method="POST" action="{{ route('challenges.update-score') }}" class="w-full">
                 @csrf
+                <input type="hidden" name="assignment_id" value="{{ $challenge->id }}">
                 <div class="flex flex-col gap-10 w-full">
                     <fieldset class="flex flex-col gap-2">
                         <legend class="font-text text-4xl font-bold mb-6 [-webkit-text-stroke:1px_black]">Kruis de
@@ -33,41 +34,21 @@
                     </fieldset>
                 </div>
                 <div class="mt-10">
-                    <section aria-label="Aangekruiste woorden inleveren" class="w-mainButton m-auto">
-                        <x-form-button type="submit">Inleveren</x-form-button>
+                    <!-- display user score-->
+                    <section aria-label="Weergave van gebruiker score" class="flex justify-center">
+                        <p class="font-text text-2xl">score: {{ $challenge->score }}</p>
                     </section>
+
+                    <!-- has to be a div to avoid primary action errors-->
+                    <div aria-label="Aangekruiste woorden inleveren" class="flex justify-center">
+                        <x-form-button type="submit">Voeg score toe</x-form-button>
+                    </div>
+
+
                 </div>
+
             </form>
         </section>
     </x-card>
-
-
-    {{-- Score section --}}
-    {{--    <section aria-labelledby="score" class="w-full overflow-hidden">--}}
-    {{--        <div class="text-white pt-28 px-14 flex flex-col items-center gap-8 rotate-2 text-center">--}}
-    {{--            <x-h2 id="score">Jouw score</x-h2>--}}
-    {{--            <p class="font-text text-2xl">{{ $points }}</p> --}}{{-- Insert score --}}
-
-    {{--            <x-h2>Gespeelde challenges:</x-h2>--}}
-    {{--            <p class="font-text text-2xl">{{ $challenge }}/3</p> --}}{{-- Insert number of challenges played --}}
-    {{--        </div>--}}
-    {{--    </section>--}}
-
-    {{--    <section aria-labelledby="fact"--}}
-    {{--             class="-z-50 w-fact text-white mt-20 py-8 px-6 flex flex-col gap-2 -rotate-2--}}
-    {{--             bg-[url(../images/backgroundFact.png)] bg-center bg-cover">--}}
-    {{--        <p id="fact" class="font-heading text-white text-2xl text-shadow-outline">Wist je dat?</p>--}}
-    {{--        <p class="font-heading text-white text-xl text-shadow-outline">Er zijn 3000 verschillende soorten tulpen--}}
-    {{--            wereldWijd!</p> --}}{{-- Insert random fact from database --}}
-    {{--    </section>--}}
-
-    {{--    --}}{{-- Button for next game --}}
-    {{--    <section class="flex w-full justify-center pt-10">--}}
-    {{--        <div class="w-mainButton">--}}
-    {{--            <x-main-button :href="route('game-end')"> --}}{{-- Insert route next challenge --}}
-    {{--                {{ __('Volgende') }}--}}
-    {{--            </x-main-button>--}}
-    {{--        </div>--}}
-    {{--    </section>--}}
 
 </x-app-layout>
