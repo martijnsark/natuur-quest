@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fact;
 use App\Models\Assignment;
 use App\Models\Role;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -19,6 +22,22 @@ class PageController extends Controller
 //        }
 
         //return view('homepage', compact('assignment'));
-        return view('homepage');
+
+//        $createGroups = DB::table('users')
+//            ->where('user_id', Auth::id())
+//            ->count();
+
+        $facts = Fact::inRandomOrder()->first();
+        return view('homepage', compact('facts'));
+    }
+
+    public function info()
+    {
+        return view('info');
+    }
+
+    public function challengeInfo()
+    {
+        return view('challenge-info');
     }
 }

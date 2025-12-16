@@ -25,4 +25,11 @@ class Game extends Model
     {
         return $this->hasMany(Assignment::class);
     }
+
+    // Role.php
+    public function assignedUser() {
+        return $this->belongsTo(User::class, 'id', 'id')
+            ->usingPivot('user_id'); // pseudo-code, explained below
+    }
+
 }

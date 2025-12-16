@@ -11,25 +11,43 @@
         @foreach($game->roles as $role)
             <article aria-label="{{ $role->name }}" class="mt-5 flex flex-col gap-2">
                 <x-h2>{{ $role->name }}</x-h2>
+
                 @foreach($game->users as $user)
                     @if($role->id === $user->pivot->role_id)
                         <div class="flex flex-col gap-2">
                             <p class="font-text text-xl">{{ $user->name }}</p>
-                            @if($role->name !== "Spelleider")
-                                <form action="{{ route('assignment.send')}}" method="post">
-                                    @csrf
-                                    <input type="hidden" id="user_id" name="user_id" value="{{ $user->id }}">
-                                    <input type="hidden" id="game_id" name="game_id" value="{{ $game->id }}">
-                                    <input type="hidden" id="role_id" name="role_id"
-                                           value="{{ $user->pivot->role_id }}">
 
-                                    {{-- Send the assignment to the player --}}
+                            @if($role->name !== "Spelleider")
+                                @php
+                                    $assignment = $game->assignments()
+                                        ->where('user_id', $user->id)
+                                        ->first();
+                                @endphp
+
+                                <!-- change button if invite is send to add score-->
+                                @if($assignment)
                                     <div class="w-popupButton m-auto">
-                                        <x-form-button>
-                                            Stuur opdracht
-                                        </x-form-button>
+                                        <!-- route "spel leider" to assign score page based on the assignments id-->
+                                        <x-main-button href="{{ route('challenges.finish', ['challenge' => $assignment->id]) }}">
+                                            Geef score
+                                        </x-main-button>
+
                                     </div>
-                                </form>
+                                    {{-- Send the assignment to the player --}}
+                                @else
+                                    <form action="{{ route('assignment.send')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                        <input type="hidden" name="game_id" value="{{ $game->id }}">
+                                        <input type="hidden" name="role_id" value="{{ $user->pivot->role_id }}">
+
+                                        <div class="w-popupButton m-auto">
+                                            <x-form-button>
+                                                Stuur opdracht
+                                            </x-form-button>
+                                        </div>
+                                    </form>
+                                @endif
                             @endif
                         </div>
                     @endif

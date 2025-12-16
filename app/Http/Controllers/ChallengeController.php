@@ -174,7 +174,7 @@ class ChallengeController extends Controller
 //        }
 //
 //        return redirect()->route('done', $right);
-        return redirect()->route('challenges.finish', ['challenge' => $challenge]);
+        return redirect()->route('facts', ['assignment' => $challenge->id]);
 
     }
 
@@ -231,6 +231,50 @@ class ChallengeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    // handles score updates
+    public function updateScore(Request $request)
+    {
+        $request->validate([
+            'assignment_id' => 'required|exists:assignments,id',
+            'correct' => 'nullable|array',
+            'correct.*' => 'exists:words,id',
+        ]);
+
+        // get the assignment
+        $assignment = Assignment::find($request->input('assignment_id'));
+
+        // count the checked words
+        $score = count($request->input('correct', []));
+
+        // save the score
+        $assignment->score = $score;
+        $assignment->save();
+
+        // Update the user's balance based on score
+        $user = $assignment->user;
+        // multiply score by 100
+        $user->balance += $score * 100;
+        $user->save();
+
+        return redirect()->route('test.show', ['id' => $assignment->game->id]);
+    }
+
+    public function deactivateCurrentGame(Request $request)
+    {
+        $user = $request->user();
+
+        $game = Game::whereHas('users', function($q) use ($user) {
+            $q->where('user_id', $user->id);
+        })->where('active', true)->first();
+
+        if ($game) {
+            $game->active = false;
+            $game->save();
+        }
+
+        return redirect()->route('home');
     }
 
 }

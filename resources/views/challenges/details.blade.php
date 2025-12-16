@@ -39,9 +39,9 @@
         </section>
         <section aria-label="Uitleg van bonus punten verkrijgen"
                  class="text-white pt-10 px-14 flex flex-col items-center mt-20 -rotate-2 lg:rotate-0 text-center">
-            <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van de goed geraden
-                natuurwoorden
-                een bijpassende foto.De scheidsrechter kijkt jullie creaties na en geeft bonuspunten!</p>
+            <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van een van de
+                natuurwoorden een bijpassende foto.
+                De spelleider kijkt jullie creaties na en geeft bonuspunten!</p>
         </section>
     </div>
 
