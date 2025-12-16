@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\Fact;
+use App\Models\Assignment;
 
 class FactController extends Controller
 {
@@ -16,11 +17,16 @@ class FactController extends Controller
 //    }
 
 
-    public function playFacts()
+    public function playFacts(Assignment $assignment)
     {
-        $facts = Fact::select('id', 'title', 'content')->inRandomOrder()->first();
+        $facts = Fact::select('id', 'title', 'content')
+            ->inRandomOrder()
+            ->first();
 
-        return view('facts', compact('facts'));
+        return view('facts', [
+            'facts' => $facts,
+            'score' => $assignment->score,
+        ]);
     }
 
 }

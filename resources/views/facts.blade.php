@@ -14,4 +14,16 @@
         @endif
     </section>
 
+    <section class="flex flex-col items-center min-h-[20vh]">
+        <p>
+            Score: <span class="font-bold text-xl">{{ $score }}</span>
+        </p>
+
+        @if ($score > 0)
+            <x-main-button href="{{ route('home') }}"
+               class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                Naar home
+            </x-main-button>
+        @endif
+    </section>
 </x-app-layout>

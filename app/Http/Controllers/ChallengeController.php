@@ -174,7 +174,7 @@ class ChallengeController extends Controller
 //        }
 //
 //        return redirect()->route('done', $right);
-        return redirect()->route('challenges.finish', ['challenge' => $challenge]);
+        return redirect()->route('facts', ['assignment' => $challenge->id]);
 
     }
 

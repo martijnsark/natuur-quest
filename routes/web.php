@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\FactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Assignment;
@@ -24,7 +25,8 @@ Route::get('/profiel', function () {
 })->middleware(['auth', 'verified'])->name('profiel');
 
 //Route::get('/facts', [\App\Http\Controllers\FactController::class, 'index']);
-Route::get('/facts', [\App\Http\Controllers\FactController::class, 'playFacts']);
+Route::get('/facts/{assignment}', [FactController::class, 'playFacts'])->name('facts');
+
 
 Route::get('/game-end/', function () {
     return view('game-end');
