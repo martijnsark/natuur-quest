@@ -27,7 +27,7 @@ export default {
                 secondaryButton: '35vw',
                 popup: '75vw',
                 popupButton: '60%',
-                bg: '150vw',
+                bg: '200vw',
                 body: '100vw',
                 fact: '76vw',
                 bgImg: '150vw',
@@ -37,6 +37,7 @@ export default {
             height: {
                 bg: '40vh',
                 bgImg: '40vh',
+                maxBg: '87vh',
             },
             rotate: {
                 bg: '25deg',

@@ -1,7 +1,6 @@
 <a href="#h1" class="skip-link">Ga naar hoofdinhoud</a>
 <x-app-layout>
-
-    <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
+    
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center w-full">
