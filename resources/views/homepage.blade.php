@@ -60,7 +60,7 @@
 
             <!-- Balans -->
             <div class="flex-1 flex justify-end">
-                <div class="flex flex-col text-right">
+                <div class="flex flex-col text-center">
                     <x-h3>Balans</x-h3>
                     <p class="font-text text-xl"> 🌸{{ auth()->user()->balance ?? 0 }}</p>
                 </div>
