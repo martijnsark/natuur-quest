@@ -21,4 +21,14 @@ class PageController extends Controller
         //return view('homepage', compact('assignment'));
         return view('homepage');
     }
+
+    public function info()
+    {
+        return view('info');
+    }
+
+    public function challengeInfo()
+    {
+        return view('challenge-info');
+    }
 }
