@@ -70,6 +70,7 @@
     </x-slot>
 
     <x-card>
+        <div class="bg-primary/90 rounded-2xl p-10 shadow-2xl space-y-10 max-w-lg mt-10 mb-10">
         <section aria-labelledby="NatuurQuestTitel" class="text-white text-center pt-10 p-4">
             <div class="py-4">
                 <x-h1
@@ -83,6 +84,7 @@
 
             </div>
         </section>
+        </div>
     </x-card>
 
     <!-- Hardcoded Feitje -->
@@ -151,6 +153,5 @@
             </x-main-button>
         </div>
     </section>
-
 
 </x-app-layout>
