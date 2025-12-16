@@ -21,7 +21,7 @@ class FactController extends Controller
     {
         // Add the 403 check here
         if ($assignment->user_id !== auth()->id()) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina.');
         }
 
         $facts = Fact::select('id', 'title', 'content')

@@ -66,7 +66,7 @@ class ChallengeController extends Controller
             ->exists();
 
         if (! $isSpelleider) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina.');
         }
 
 
@@ -84,7 +84,7 @@ class ChallengeController extends Controller
 
         // check if correct user
         if (! $game->users->contains(auth()->id())) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina.');
         }
 
         //makes the assignment and sends it to the user
@@ -137,7 +137,7 @@ class ChallengeController extends Controller
 
         // 403 check: only allow the owner
         if ($challenge->user_id !== auth()->id()) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina.');
         }
 
         return view('challenges.play', compact('challenge'));
@@ -235,7 +235,7 @@ class ChallengeController extends Controller
 
         // 1️⃣ Check if user is part of this game
         if (! $game->users->contains($user->id)) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina..');
         }
 
         // 2️⃣ Option A: Only Spelleider can access (replace role_id with your Spelleider ID)
@@ -246,7 +246,7 @@ class ChallengeController extends Controller
             ->exists();
 
         if (! $isSpelleider) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina.');
         }
 
         // Now safe to return the view
@@ -281,9 +281,10 @@ class ChallengeController extends Controller
     public function updateScore(Request $request)
     {
         $assignment = Assignment::findOrFail($request->assignment_id);
+
         $game = $assignment->game;
         if (! $game->users->contains(auth()->id())) {
-            abort(403);
+            abort(403, 'U hebt geen toegang tot deze pagina.');
         }
 
         $request->validate([
@@ -321,7 +322,7 @@ class ChallengeController extends Controller
 
 
         if (! $game) {
-            abort(403);
+            return redirect()->route('home');
         }
 
         if ($game) {
