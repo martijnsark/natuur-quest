@@ -22,7 +22,7 @@
 @isset($header)
     <header role="banner" class="h-[13vh] bg-nav shadow w-full text-white flex items-center">
         <div
-            class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center md:gap-x-8">
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center md:gap-x-8">
             {{ $header }}
         </div>
     </header>
