@@ -24,7 +24,85 @@ This project utilizes several open-source PHP and Laravel packages to streamline
 
 The Entity Relationship Diagram (ERD) below showcases the logical structure of the database, illustrating the relationships between entities.
 
-![Entity Relationship Diagram](./docs/erd.png)
+Copilot said: Here’s how you can add the **Entity
+Here’s how you can add the Entity Relationship Diagram (ERD) into your README in a written format:
+
+Markdown
+---
+
+## Entity Relationship Diagram (ERD)
+
+### **Assignment**
+- **Columns**: `id`, `game_id`, `user_id`, `role_id`, `created_at`, `updated_at`
+- **Relationships**:
+  - Belongs to **Game**
+  - Belongs to **User**
+  - Belongs to **Role**
+  - Belongs to many **Word** _(via pivot)_
+
+---
+
+### **Game**
+- **Columns**: `id`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`
+- **Relationships**:
+  - Belongs to many **User** _(via `user_game_role` pivot, with pivot column `role_id`)_
+  - Belongs to many **Role** _(via `user_game_role` pivot, with pivot column `user_id`)_
+  - Has many **Assignment**
+
+---
+
+### **User**
+- **Columns**: `id`, `name`, `email`, `password`, `created_at`, `updated_at`
+- **Relationships**:
+  - Belongs to many **Game** _(via `user_game_role` pivot, with pivot column `score`)_
+  - Belongs to many **Role** _(via `user_game_role` pivot)_
+
+---
+
+### **Role**
+- **Columns**: `id`, `name`, `created_at`, `updated_at`
+- **Relationships**:
+  - Belongs to many **Game** _(via `user_game_role` pivot, with pivot column `user_id`)_
+  - Has many **Assignment**
+
+---
+
+### **Word**
+- **Columns**: `id`, `word`, `definition`, `created_at`, `updated_at`
+- **Relationships**:
+  - Belongs to many **Assignment** _(via pivot)_
+
+---
+
+### **Category**
+- **Columns**: `id`, `name`, `created_at`, `updated_at`
+- **Relationships**:
+  - Has many **Fact**
+
+---
+
+### **Fact**
+- **Columns**: `id`, `title`, `content`, `category_id`, `created_at`, `updated_at`
+- **Relationships**:
+  - Belongs to **Category**
+
+---
+
+### **Challenge**
+- **Columns**: `id`, `title`, `nature_word`, `created_at`, `updated_at`
+- **Relationships**:
+  - None explicitly defined in the model.
+
+---
+
+### **UserGameRole (Pivot Table)**  
+- **Columns**:
+  - `user_id` _(foreign key to **User**)_
+  - `game_id` _(foreign key to **Game**)_
+  - `role_id` _(foreign key to **Role**)_
+- **Used for**:
+  - Associating **Users** with **Games** and their corresponding **Roles**.
+
 
 ---
 
