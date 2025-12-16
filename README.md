@@ -23,7 +23,6 @@ This project utilizes several open-source PHP and Laravel packages to streamline
 - `nunomaduro/collision` (version ^8.6)
 - `pestphp/pest` (version ^4.1)
 - `pestphp/pest-plugin-laravel` (version ^4.0)
-More information can be found in the [composer.json file](https://github.com/martijnsark/natuur-quest/blob/main/composer.json).
 
 
 ---
