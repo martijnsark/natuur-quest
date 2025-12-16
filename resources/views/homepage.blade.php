@@ -6,7 +6,7 @@
     {{--    </x-slot>--}}
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
-    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>
+    {{--    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>--}}
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center
@@ -73,38 +73,35 @@
             </div>
             <div class="py-4">
 
-            </div>
-        </section>
-    </x-card>
-
-    <section aria-labelledby="NatuurFeitje" class="flex flex-row text-center pt-24 p-4">
-        <section class="w-full p-4">
-            <div class="flex flex-row gap-4 translate-y-8">
-                <!-- Linker div: afbeelding + overlay tekst -->
-                <div class="w-3/5 relative -rotate-12 -translate-x-8 -translate-y-4">
-                    <img
-                        src="{{ Vite::asset('resources/images/backgroundFact.png') }}"
-                        alt="Feitjes markeerstift"
-                        class="w-full h-auto max-h-28 rounded-lg mx-auto
-                        max-w-[220px] sm:max-w-[280px] md:max-w-[320px]"
-
-
-                    >
-                    <!-- Overlay tekst -->
-                    <div
-                        class="absolute inset-0 flex flex-col items-center justify-center text-black  p-4 rounded-lg -translate-x-1 -translate-y-2">
-                        <h3 class="text-2xl font-bold">Wist je dat?</h3>
-                        <p class="font-text leading-none">Spinnen geen insecten zijn?!</p>
-                        <p class="font-text leading-none">Ze behoren tot de spinachtigen en<br>
-                            zijn cruciaal tegen insectenoverlast!</p>
-                    </div>
-                </div>
-
-                <!-- Rechter div: leeg, enkel voor layout -->
-                <div class="w-1/2 h-full"></div>
-            </div>
-        </section>
+        </div>
     </section>
+
+    <!-- Hardcoded Feitje -->
+    <div class="flex justify-start mt-8 px-4">
+        <div class="relative w-6/12 md:w-1/3 max-w-sm md:max-w-md -translate-y-6 border-4 border-[#F6692C] border-transparent
+                bg-primary rounded-3xl skew-x-2 shadow-lg overflow-hidden">
+
+            <!-- Styling bolletjes -->
+            <div class="absolute bottom-0 -right-4 w-8 h-8 md:w-16 md:h-16 bg-[#F6692C] rounded-full opacity-70"></div>
+            <div
+                class="absolute top-4 right-6 w-6 h-6 md:w-10 md:h-10 bg-[#F6692C] rounded-full rotate-12 opacity-70"></div>
+            <div class="absolute bottom-1/4 -left-3 w-6 h-6 md:w-12 md:h-12 bg-[#F6692C] rounded-full opacity-70"></div>
+
+            <!-- Title vak -->
+            <div class="w-4/5 md:w-1/2 bg-[#F6692C] text-white text-center py-2 md:py-3 px-4 md:px-6 overflow-auto
+                    rounded-br-3xl font-bold text-base md:text-xl font-sans">
+                Let op!
+            </div>
+
+            <!-- Content vak -->
+            <div class="p-6 text-white">
+                <p class="text-sm md:text-base leading-relaxed">
+                    In NatuurQuest krijg je feitjes te zien over de natuur! <br>
+                    Wordt jij de nieuwe natuur-wetenschapper?
+                </p>
+            </div>
+        </div>
+    </div>
 
     @auth()
         <div id="challengePopup">
@@ -127,8 +124,8 @@
     @endauth
 
     <section aria-label="Knop om naar challenge uitleg te gaan.">
-        <div class="flex justify-center items-center translate-y-1">
-            <x-main-button :href="route('info')">
+        <div class="flex justify-center items-center mb-2">
+            <x-main-button :href="route('challenges.connection')">
                 {{ __('Begin met spelen!') }}
             </x-main-button>
         </div>

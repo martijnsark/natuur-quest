@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ChallengeSeeder::class,
-            RoleSeeder::class
+            RoleSeeder::class,
+            FactSeeder::class,
         ]);
 
         User::factory(10)->create();

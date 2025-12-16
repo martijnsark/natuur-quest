@@ -16,6 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body x-data="{ animations: true }" class="flex flex-col min-h-screen font-sans antialiased">
+<x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>
 
 <!-- Header -->
 @isset($header)
@@ -28,7 +29,7 @@
 @endisset
 
 <!-- Main content -->
-<main class="flex-1 w-full py-2" role="main">
+<main class="flex-1 w-full" role="main">
     {{ $slot }}
 </main>
 
