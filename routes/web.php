@@ -4,6 +4,7 @@ use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\FactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PhotoController;
 use App\Models\Assignment;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,12 @@ Route::get('/popup/check', function () {
 
     return view('components.challenge-popup', compact('assignment'))->render();
 })->name('refresh');
+
+Route::get('/photo-upload', [PhotoController::class, 'create'])->name('photos.create');
+Route::post('/photo-upload', [PhotoController::class, 'store'])->name('photos.store');
+
+Route::get('/test/{game}/judge-photos', [ChallengeController::class, 'judgePhotos'])->name('test.judgePhotos');
+Route::post('/test/{game}/judge-photos', [ChallengeController::class, 'storeJudgePhotos'])->name('test.judgePhotos.store');
 
 
 require __DIR__ . '/auth.php';

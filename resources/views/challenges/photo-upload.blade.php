@@ -33,39 +33,36 @@
 
         <p id="status-message" role="status" aria-live="polite" class="text-sm text-gray-700 mb-3"></p>
 
-            @php
-                $aid = old('assignment_id', $assignmentId ?? null);
-                $wid = old('word_id', $wordId ?? null);
-                $dbMissing = empty($aid) || empty($wid);
-            @endphp
+        @php
+            // Waarden uit controller (of old input na validatie error)
+            $aid = old('assignment_id', $assignmentId ?? null);
+            $wid = old('word_id', $wordId ?? null);
 
-            @if(!empty($blockingError))
-                <div class="mb-4 rounded-lg bg-red-100 text-red-800 px-4 py-2 text-sm">
-                    {{ $blockingError }}
-                </div>
-            @endif
+            // Upload blokkeren als ids missen OF controller zegt dat het niet kan
+            $dbMissing = empty($aid) || empty($wid) || !empty($blockingError);
+        @endphp
 
-            @if(!empty($blockingError))
-                <div class="mb-4 rounded-lg bg-red-100 text-red-800 px-4 py-2 text-sm">
-                    {{ $blockingError }}
-                </div>
-            @endif
+        {{-- ✅ Toon blockingError maar 1x --}}
+        @if(!empty($blockingError))
+            <div class="mb-4 rounded-lg bg-red-100 text-red-800 px-4 py-2 text-sm">
+                {{ $blockingError }}
+            </div>
+        @endif
 
+        {{-- ✅ Alleen de gele melding als er geen blockingError is (anders dubbel) --}}
+        @if($dbMissing && empty($blockingError))
+            <div class="mb-4 rounded-lg bg-yellow-100 text-yellow-900 px-4 py-2 text-sm">
+                Ik kan nu niet uploaden, want er bestaat nog geen geldige <b>assignment</b> en/of <b>word</b> in de database.
+                Maak er minimaal 1 aan (of seed je DB) en refresh de pagina.
+            </div>
+        @endif
 
-        @if($dbMissing)
-                <div class="mb-4 rounded-lg bg-yellow-100 text-yellow-900 px-4 py-2 text-sm">
-                    Ik kan nu niet uploaden, want er bestaat nog geen geldige <b>assignment</b> en/of <b>word</b> in de database.
-                    Maak er minimaal 1 aan (of seed je DB) en refresh de pagina.
-                </div>
-            @endif
+        <form id="photo-form" method="POST" action="{{ route('photos.store') }}" enctype="multipart/form-data">
+            @csrf
 
-            <form id="photo-form" method="POST" action="{{ route('photos.store') }}" enctype="multipart/form-data">
-                @csrf
-
-                {{-- CRUCIAAL: stuur de echte values mee --}}
-                <input type="hidden" name="assignment_id" value="{{ $aid }}">
-                <input type="hidden" name="word_id" value="{{ $wid }}">
-
+            {{-- ✅ Hidden ids: komen uit de echte flow --}}
+            <input type="hidden" name="assignment_id" value="{{ $aid }}">
+            <input type="hidden" name="word_id" value="{{ $wid }}">
 
             <p id="page-description" class="font-text text-2xl text-black">
                 Maak een foto voor de challenge en lever ‘m in. De scheids of begeleider kan dit dan nakijken.

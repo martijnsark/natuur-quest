@@ -8,8 +8,9 @@ use App\Models\Game;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Word;
+use App\Models\Photo;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use function Laravel\Prompts\error;
 
 class ChallengeController extends Controller
 {
@@ -265,7 +266,7 @@ class ChallengeController extends Controller
     {
         $user = $request->user();
 
-        $game = Game::whereHas('users', function($q) use ($user) {
+        $game = Game::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
         })->where('active', true)->first();
 
@@ -277,4 +278,140 @@ class ChallengeController extends Controller
         return redirect()->route('home');
     }
 
+
+    public function judgePhotos(Request $request, string $game)
+    {
+        $game = Game::findOrFail($game);
+
+        $refereeRoleId = 1;
+
+        $playerIds = DB::table('user_game_role')
+            ->where('game_id', $game->id)
+            ->where('role_id', '!=', $refereeRoleId)
+            ->pluck('user_id')
+            ->values();
+
+        if ($playerIds->count() < 2) {
+            return view('challenges.judge-photos', [
+                'game' => $game,
+                'entries' => [],
+                'word' => null,
+                'wordId' => null,
+                'error' => 'Er zijn nog niet 2 spelers gekoppeld aan dit spel.',
+            ]);
+        }
+
+        $assignments = Assignment::where('game_id', $game->id)
+            ->whereIn('user_id', $playerIds)
+            ->get();
+
+        if ($assignments->count() < 2) {
+            return view('challenges.judge-photos', [
+                'game' => $game,
+                'entries' => [],
+                'word' => null,
+                'wordId' => null,
+                'error' => 'Er zijn nog geen assignments voor beide spelers.',
+            ]);
+        }
+
+        $assignmentIds = $assignments->pluck('id');
+
+        // 1) Als ?word_id is meegegeven: gebruik die
+        $wordId = $request->query('word_id');
+
+        // 2) Anders: zoek een word_id waar minimaal 2 verschillende assignments een foto voor hebben
+        if (!$wordId) {
+            $wordId = DB::table('photos')
+                ->selectRaw('word_id, COUNT(DISTINCT assignment_id) as cnt, MAX(id) as max_id')
+                ->whereIn('assignment_id', $assignmentIds)
+                ->groupBy('word_id')
+                ->having('cnt', '>=', 2)
+                ->orderByDesc('max_id')
+                ->value('word_id');
+        }
+
+        // 3) Fallback: als er nog geen “beide spelers” match is, pak nieuwste foto (kan dan 1 kant leeg zijn)
+        if (!$wordId) {
+            $wordId = Photo::whereIn('assignment_id', $assignmentIds)
+                ->latest('id')
+                ->value('word_id');
+        }
+
+        if (!$wordId) {
+            return view('challenges.judge-photos', [
+                'game' => $game,
+                'entries' => [],
+                'word' => null,
+                'wordId' => null,
+                'error' => 'Er zijn nog geen foto’s ingezonden om te beoordelen.',
+            ]);
+        }
+
+        $entries = $assignments->map(function ($assignment) use ($wordId) {
+            $photo = Photo::where('assignment_id', $assignment->id)
+                ->where('word_id', $wordId)
+                ->latest('id')
+                ->first();
+
+            return [
+                'user' => $assignment->user,
+                'assignment' => $assignment,
+                'photo' => $photo,
+            ];
+        });
+
+        return view('challenges.judge-photos', [
+            'game' => $game,
+            'entries' => $entries,
+            'word' => Word::find($wordId),
+            'wordId' => $wordId,
+            'error' => null,
+        ]);
+    }
+
+
+    public function storeJudgePhotos(Request $request, string $game)
+    {
+        $game = Game::findOrFail($game);
+
+        $data = $request->validate([
+            'word_id' => ['required', 'integer', 'exists:words,id'],
+            'winner_user_id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        // Check: winnaar moet speler zijn binnen deze game (niet spelleider)
+        $refereeRoleId = 1;
+
+        $isPlayerInGame = DB::table('user_game_role')
+            ->where('game_id', $game->id)
+            ->where('user_id', $data['winner_user_id'])
+            ->where('role_id', '!=', $refereeRoleId)
+            ->exists();
+
+        if (!$isPlayerInGame) {
+            return back()->withErrors(['winner_user_id' => 'Deze speler hoort niet bij dit spel (of is de spelleider).']);
+        }
+
+        // Pak assignment van winnaar
+        $winnerAssignment = Assignment::where('game_id', $game->id)
+            ->where('user_id', $data['winner_user_id'])
+            ->first();
+
+        if (!$winnerAssignment) {
+            return back()->withErrors(['winner_user_id' => 'Geen assignment gevonden voor deze speler in dit spel.']);
+        }
+
+        // +1 score
+        $winnerAssignment->increment('score', 1);
+
+        // +100 balance
+        $winnerUser = $winnerAssignment->user;
+        $winnerUser->balance += 100;
+        $winnerUser->save();
+
+        return redirect()
+            ->route('test.show', ['id' => $game->id])
+            ->with('success', 'Winnaar gekozen en punt gegeven!');
+    }
 }
