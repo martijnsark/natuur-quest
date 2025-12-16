@@ -32,10 +32,11 @@
                     spelleider wil zijn, klik dan op de start knop om met NatuurQuest te beginnen!</p>
             </section>
         </div>
-    </x-card>
 
-    <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
-        <x-main-button :href="route('challenge-info')">Start</x-main-button>
-    </div>
+
+        <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
+            <x-main-button :href="route('challenge-info')">Start</x-main-button>
+        </div>
+    </x-card>
 
 </x-app-layout>
