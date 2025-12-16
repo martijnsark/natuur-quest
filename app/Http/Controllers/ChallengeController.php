@@ -273,8 +273,7 @@ class ChallengeController extends Controller
             $game->active = false;
             $game->save();
         }
-
-        return redirect()->route('home');
+        return redirect()->route('home')->with('status', '🎉🎊 Game is afgelopen! 🎊🎉');
     }
 
 }

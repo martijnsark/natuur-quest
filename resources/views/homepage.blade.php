@@ -104,7 +104,19 @@
         </div>
     </div>
 
-    @auth()
+    @if(session('status'))
+        <div class="flex justify-center mb-4">
+            <div class="relative w-full max-w-xs bg-primary text-white rounded-2xl shadow-md px-4 py-2 text-center">
+                <!-- Status message -->
+                <p class="font-semibold text-sm md:text-base">
+                    {{ session('status') }}
+                </p>
+            </div>
+        </div>
+    @endif
+
+
+@auth()
         <div id="challengePopup">
             @include('components.challenge-popup')
         </div>
