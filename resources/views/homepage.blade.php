@@ -55,25 +55,27 @@
             <!-- Balans -->
             <div class="flex flex-col text-right md:text-left">
                 <x-h3>Balans</x-h3>
-                <p class="font-text text-xl">🌸 1000</p>
+                <p class="font-text text-xl"> 🌸{{ auth()->user()->balance ?? 0 }}</p>
             </div>
 
         </div>
     </x-slot>
 
-    <section aria-labelledby="NatuurQuestTitel" class="text-white text-center pt-24 p-4">
-        <div class="py-4">
-            <x-h1
-                aria-label="NatuurQuest. Verken de natuur op een actieve, maar speelse manier! Speel alleen,met of tegen je vrienden!">
-                Natuurquest
-            </x-h1>
-            <p class="font-text text-2xl text-white">Verken de natuur op een actieve, maar speelse manier! Speel alleen,
-                met of tegen je vrienden!</p>
-        </div>
-        <div class="py-4">
+    <x-card>
+        <section aria-labelledby="NatuurQuestTitel" class="text-white text-center pt-24 p-4">
+            <div class="py-4">
+                <x-h1
+                    aria-label="NatuurQuest. Verken de natuur op een actieve, maar speelse manier! Speel alleen,met of tegen je vrienden!">
+                    Natuurquest
+                </x-h1>
+                <p class="font-text text-2xl text-white">Verken de natuur op een actieve, maar speelse manier! Speel
+                    tegen je vrienden en verdien punten!</p>
+            </div>
+            <div class="py-4">
 
-        </div>
-    </section>
+            </div>
+        </section>
+    </x-card>
 
     <section aria-labelledby="NatuurFeitje" class="flex flex-row text-center pt-24 p-4">
         <section class="w-full p-4">

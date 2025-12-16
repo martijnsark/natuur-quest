@@ -12,8 +12,6 @@ class Challenge extends Model
 
     protected $fillable = [
         'title',
-        'water_trough',
-        'water_description',
-        'right_answer'
+        'nature_word',
     ];
 }
