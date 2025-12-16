@@ -1,22 +1,34 @@
 <?php
 
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\FactController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Assignment;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('homepage');
-})->name('homepage');
+//login
+Route::get('/login', function () {
+    return redirect()->route('login');
+});
 
-Route::get('/about-us', function () {
-    return view('about-us');
-})->name('about-us');
+//register
+Route::get('/register', function () {
+    return redirect()->route('register');
+});
 
-Route::get('/friends', function () {
-    return view('friends');
-})->name('friends');
+//home
+Route::get('/', [PageController::class, 'home'])->name('home');
 
+Route::get('/profiel', function () {
+    return view('profiel');
+})->middleware(['auth', 'verified'])->name('profiel');
 
+//Route::get('/facts', [\App\Http\Controllers\FactController::class, 'index']);
+Route::get('/facts/{assignment}', [FactController::class, 'playFacts'])->name('facts');
+
+//deactivate route
+Route::post('/game/deactivate', [ChallengeController::class, 'deactivateCurrentGame'])->name('game.deactivate');
 
 Route::get('/game-end/', function () {
     return view('game-end');
@@ -32,21 +44,45 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/info', [PageController::class, 'info'])->name('info');
+Route::get('/info/challenge', [PageController::class, 'challengeInfo'])->name('challenge-info');
+
+Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])
+    ->name('challenges.connection');
+Route::post('/challenges/start', [ChallengeController::class, 'connectionSend'])
+    ->name('challenges.start');
+Route::get('/challenges/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
+Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');
+
 route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
 //route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
 route::get('/challenges/details', [ChallengeController::class, 'details'])->name('challenges.details');
 //route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
 
-route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+
+// change score route
+Route::post('/challenges/update-score', [ChallengeController::class, 'updateScore'])->name('challenges.update-score');
 
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
+//Route::get('/play/{challenge}', [ChallengeController::class, 'play'])->name('challenges.play')
+
 //middelware to make session work, starts session, encrypts cookies, csrf token
-Route::middleware(['web'])->group(function () {
-    Route::get('/play', [ChallengeController::class, 'play'])->name('challenges.play');
-    Route::post('/check', [ChallengeController::class, 'check'])->name('challenges.check');
-    Route::get('/finish', [ChallengeController::class, 'finish'])->name('challenges.finish');
-});
+//Route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
+Route::post('/challenges/check', [ChallengeController::class, 'check'])->name('challenges.check');
+Route::get('/challenges/finish/{challenge}', [ChallengeController::class, 'finish'])->name('challenges.finish');
+
+Route::get('/popup/check', function () {
+    $assignment = Assignment::with(['role', 'user', 'game.roles'])
+        ->where('user_id', Auth::user()->id)
+        ->whereHas('game', function ($query) {
+            $query->where('active', true);
+        })
+        ->first();
+
+    return view('components.challenge-popup', compact('assignment'))->render();
+})->name('refresh');
 
 
 require __DIR__ . '/auth.php';

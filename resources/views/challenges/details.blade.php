@@ -5,20 +5,47 @@
 
     <x-styling-arrow-right></x-styling-arrow-right>
 
-    <section aria-label="Uitleg van opdracht 30 seconds"
-             class="text-white pt-10 px-14 flex flex-col items-center mt-2 rotate-2 text-center ">
-        <p class="font-text text-xl"> Jullie gaan omstebeurt het spel 30 seconds spelen. Je krijgt 5 woorden die met de
-            Nederlands natuur te maken hebben en deze ga je proberen uit te leggen, zonder het woord of een deel van het
-            woord te zeggen, zodat de andere persoon de woorden kan raden. Je hebt hier 30 seconden voor. Wie de meeste
-            woorden heeft kunnen uitleggen
-            wint.
-    </section>
-    <section aria-label="Uitleg van bonus punten verkrijgen"
-             class="text-white pt-10 px-14 flex flex-col items-center mt-12 -rotate-2 text-center">
-        <p class="font-text text-xl">Nadat jullie beide zijn geweest volgt er nog een bonus ronde. Maak van de goed
-            geraden natuur woorden bijpassende
-            foto's om bonus punten te verdienen. Deze worden nagekeken door de scheidsrechter.</p>
-    </section>
+    <div class="hidden lg:flex lg:flex-col lg:items-center lg:justify-center">
+        <x-card>
+            <section aria-label="Uitleg van opdracht 30 seconds"
+                     class="text-white flex flex-col items-center text-center ">
+                <p class="font-text text-xl max-w-xl"> Jullie spelen om de beurt. Je krijgt 5 woorden over de
+                    Nederlandse
+                    natuur. Leg
+                    deze
+                    uit zonder het woord of een deel ervan te zeggen, zodat de andere kan raden. Je hebt 30 seconden per
+                    beurt.
+                    Wie de meeste woorden raadt, wint!
+            </section>
+            <section aria-label="Uitleg van bonus punten verkrijgen"
+                     class="text-white flex flex-col items-center text-center">
+                <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van de goed geraden
+                    natuurwoorden
+                    een bijpassende foto. De scheidsrechter kijkt jullie creaties na en geeft bonuspunten!</p>
+            </section>
+        </x-card>
+    </div>
+
+    {{--phone--}}
+    <div class="lg:hidden space-y-18 px-6">
+        <section aria-label="Uitleg van opdracht 30 seconds"
+                 class="text-white pt-10 px-14 lg:px-40 flex flex-col items-center mt-19 rotate-2 lg:rotate-0 text-center ">
+            <p class="font-text text-xl max-w-lg"> Jullie spelen om de beurt. Je krijgt 5 woorden over de Nederlandse
+                natuur. Leg
+                deze
+                uit zonder het woord of een deel ervan te zeggen, zodat de andere kan raden. Je hebt 30 seconden per
+                beurt.
+                Wie de meeste woorden raadt, wint!
+        </section>
+        <section aria-label="Uitleg van bonus punten verkrijgen"
+                 class="text-white pt-10 px-14 flex flex-col items-center mt-20 -rotate-2 lg:rotate-0 text-center">
+            <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van een van de
+                natuurwoorden een bijpassende foto.
+                De spelleider kijkt jullie creaties na en geeft bonuspunten!</p>
+        </section>
+    </div>
+
+
     {{--antwoorden van de challenge--}}
     {{--    <section aria-label="Antwoorden voor de opdracht" class="text-center text-white pt-36">--}}
     {{--        <h2>Rol kiezen</h2>--}}
@@ -51,8 +78,8 @@
 
     {{--        </form>--}}
     {{--    </section>--}}
-    <div class="mt-5">
-        <x-main-button :href="route('challenges.play')">
+    <div class="mt-5 flex justify-center items-center">
+        <x-main-button :href="route('challenges.connection')">
             {{ __('Start') }}
         </x-main-button>
     </div>

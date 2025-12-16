@@ -1,47 +1,97 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<x-app-layout>
+    <x-styling-arrow-left></x-styling-arrow-left>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <div class="flex flex-col items-center justify-center min-h-screen px-4">
+        <!-- main login section -->
+        <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center"
+                 aria-labelledby="login-page-heading">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <!-- page heading -->
+            <header class="text-center">
+                <x-header-h1 id="login-page-heading"
+                             class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0"
+                             aria-label="Loginpagina voor Natuur Quest">
+                    Inloggen
+                </x-header-h1>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
+                    Log in om Natuur Quest te spelen!
+                </p>
+            </header>
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <!-- session status -->
+            <x-auth-session-status class="mb-4" :status="session('status')"/>
+
+            <!-- form section with separate aria-label -->
+            <section aria-labelledby="login-form-heading">
+                <!-- hidden heading for accessibility -->
+                <h2 id="login-form-heading" class="sr-only">Login Formulier</h2>
+
+                <form name="login" method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <!-- email -->
+                    <div class="mb-4 text-left">
+                        <x-input-label for="email" :value="__('Email')"/>
+                        <x-text-input
+                            id="email"
+                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            type="email"
+                            name="email"
+                            :value="old('email')"
+                        />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2"/>
+                    </div>
+
+                    <!-- password -->
+                    <div class="mb-4 text-left">
+                        <x-input-label for="password" :value="__('Wachtwoord')"/>
+                        <x-text-input
+                            id="password"
+                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                             type="password"
                             name="password"
-                            required autocomplete="current-password" />
+                        />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2"/>
+                    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                    <!-- remember and reset password -->
+                    <div class="flex items-center justify-between mb-4">
+                        <label for="remember_me" class="inline-flex items-center">
+                            <input id="remember_me" type="checkbox"
+                                   class="rounded  border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
+                                   name="remember">
+                            <span class="ml-2 text-sm text-gray-200 ">Onthoud mijn gegevens</span>
+                        </label>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+                        @if (Route::has('password.request'))
+                            <a class="underline text-sm text-gray-200 hover:text-gray-900 dark:hover:text-white"
+                               href="{{ route('password.request') }}">
+                                Wachtwoord vergeten?
+                            </a>
+                        @endif
+                    </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+                    <!-- submit button -->
+                    <div class="mb-4">
+                        <button type="submit"
+                                class="font-heading text-shadow-outline text-2xl w-full py-2 bg-secondary text-white rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">
+                            Inloggen
+                        </button>
+                    </div>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+                    <!-- register link -->
+                    @if (Route::has('register'))
+                        <p class="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                            Heb je nog geen account?
+                            <a href="{{ route('register') }}"
+                               class="underline text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200">
+                                Registreren
+                            </a>
+                        </p>
+                    @endif
+                </form>
+            </section>
+        </section>
+    </div>
+</x-app-layout>
