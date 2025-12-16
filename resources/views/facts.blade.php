@@ -20,10 +20,13 @@
         </p>
 
         @if ($score > 0)
-            <x-main-button href="{{ route('home') }}"
-               class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                Naar home
-            </x-main-button>
+            <form action="{{ route('game.deactivate') }}" method="POST">
+                @csrf
+                <button type="submit"
+                        class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    Eindig spel voor beide spelers
+                </button>
+            </form>
         @endif
     </section>
 </x-app-layout>

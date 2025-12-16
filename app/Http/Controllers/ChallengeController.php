@@ -261,5 +261,20 @@ class ChallengeController extends Controller
         return redirect()->route('test.show', ['id' => $assignment->game->id]);
     }
 
+    public function deactivateCurrentGame(Request $request)
+    {
+        $user = $request->user();
+
+        $game = Game::whereHas('users', function($q) use ($user) {
+            $q->where('user_id', $user->id);
+        })->where('active', true)->first();
+
+        if ($game) {
+            $game->active = false;
+            $game->save();
+        }
+
+        return redirect()->route('home');
+    }
 
 }
