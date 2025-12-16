@@ -51,6 +51,13 @@ class ChallengeController extends Controller
     {
         //finds the game and sends it to the page
         $game = Game::find($id);
+
+        // check if correct user
+        if (! $game->users->contains(auth()->id())) {
+            abort(403);
+        }
+
+
         if ($game !== null) {
             return view('challenges.showGame', compact('game'));
         } else {
@@ -60,6 +67,14 @@ class ChallengeController extends Controller
 
     public function sendAssignment(Request $request)
     {
+        // get game id
+        $game = Game::findOrFail($request->input('game_id'));
+
+        // check if correct user
+        if (! $game->users->contains(auth()->id())) {
+            abort(403);
+        }
+
         //makes the assignment and sends it to the user
         $assignment = new Assignment();
         $assignment->user_id = $request->input('user_id');
@@ -224,6 +239,12 @@ class ChallengeController extends Controller
     // handles score updates
     public function updateScore(Request $request)
     {
+        $assignment = Assignment::findOrFail($request->assignment_id);
+        $game = $assignment->game;
+        if (! $game->users->contains(auth()->id())) {
+            abort(403);
+        }
+
         $request->validate([
             'assignment_id' => 'required|exists:assignments,id',
             'correct' => 'nullable|array',
@@ -256,6 +277,11 @@ class ChallengeController extends Controller
         $game = Game::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
         })->where('active', true)->first();
+
+
+        if (! $game) {
+            abort(403);
+        }
 
         if ($game) {
             $game->active = false;

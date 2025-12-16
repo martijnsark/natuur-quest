@@ -19,6 +19,11 @@ class FactController extends Controller
 
     public function playFacts(Assignment $assignment)
     {
+        // Add the 403 check here
+        if ($assignment->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         $facts = Fact::select('id', 'title', 'content')
             ->inRandomOrder()
             ->first();
