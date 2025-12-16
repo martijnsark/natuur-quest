@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Diagonal background like homepage -->
-    <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
+    <x-styling-arrow-left></x-styling-arrow-left>
 
     <!-- center form container -->
     <div class="flex flex-col items-center justify-center min-h-screen px-4">
