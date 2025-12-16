@@ -27,8 +27,6 @@ class PageController extends Controller
 //            ->where('user_id', Auth::id())
 //            ->count();
 
-
-        return view('homepage');
         $facts = Fact::inRandomOrder()->first();
         return view('homepage', compact('facts'));
     }
