@@ -1,23 +1,13 @@
 <a href="#h1" class="skip-link">Ga naar hoofdinhoud</a>
 <x-app-layout>
-    {{--    <x-slot name="meta">--}}
-    {{--        --}}{{-- Makes sure the page refreshes --}}
-    {{--        <meta http-equiv="refresh" content="10">--}}
-    {{--    </x-slot>--}}
 
     <x-styling-homepage-diagonal-background></x-styling-homepage-diagonal-background>
-    {{--    <x-bg-animation x-bind:class="animations ? 'animate-pan' : 'animate-none'"></x-bg-animation>--}}
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center w-full">
-            {{--        <div class="flex items-center--}}
-            {{--                justify-between--}}
-            {{--                gap-44--}}
-            {{--                md:justify-start        <!-- desktop: alles links -->--}}
-            {{--                md:gap-4">--}}
+
 
             <!-- Profiel -->
-            {{--            <div class="flex flex-col items-center gap-2">--}}
             <div class="flex-1 flex justify-start">
                 <div class="flex flex-col items-center gap-2">
                     <x-h3>Profiel</x-h3>
@@ -69,7 +59,6 @@
             </div>
 
             <!-- Balans -->
-            {{--            <div class="flex flex-col text-right md:text-left">--}}
             <div class="flex-1 flex justify-end">
                 <div class="flex flex-col text-right">
                     <x-h3>Balans</x-h3>
