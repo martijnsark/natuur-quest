@@ -13,7 +13,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                heading: ['spicy sale', 'sans-serif'],
+                heading: ['Spicy Rice', 'sans-serif'],
                 text: ['Comic Neue', 'sans-serif']
             },
             colors: {

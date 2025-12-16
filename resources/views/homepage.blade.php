@@ -1,6 +1,6 @@
 <a href="#h1" class="skip-link">Ga naar hoofdinhoud</a>
 <x-app-layout>
-    
+
     <x-styling-diagonal-right></x-styling-diagonal-right>
     <x-slot name="header">
         <div class="flex items-center w-full">
@@ -50,7 +50,7 @@
                     <a href="https://www.natuurmonumenten.nl/"
                        target="_blank"
                        rel="noopener noreferrer">
-                        <img class="w-20 md:w-24 cursor-pointer transition-transform hover:scale-105"
+                        <img class="w-26 md:w-28 cursor-pointer transition-transform hover:scale-105"
                              src="{{ Vite::asset('resources/images/NM_logo_header.jpg') }}"
                              alt="Ga naar de website van NatuurMonumenten">
                     </a>
