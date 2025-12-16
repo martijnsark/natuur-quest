@@ -73,8 +73,9 @@
             </div>
             <div class="py-4">
 
-        </div>
-    </section>
+            </div>
+        </section>
+    </x-card>
 
     <!-- Hardcoded Feitje -->
     <div class="flex justify-start mt-8 px-4">
