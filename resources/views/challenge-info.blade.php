@@ -15,21 +15,22 @@
                     afkeuren van de antwoorden.</p>
             </section>
         </div>
+
+
+        <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-14">
+            <x-main-button :href="route('home')">Toch geen spelleider zijn?</x-main-button>
+        </div>
+
+        {{-- If the user is not logedin then it shows login button --}}
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
+                <x-main-button :href="route('challenges.connection')">Start</x-main-button>
+            </div>
+        @else
+            <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
+                <x-main-button :href="route('login')">Login</x-main-button>
+            </div>
+        @endif
     </x-card>
-
-    <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-14">
-        <x-main-button :href="route('home')">Toch geen spelleider zijn?</x-main-button>
-    </div>
-
-    {{-- If the user is not logedin then it shows login button --}}
-    @if(\Illuminate\Support\Facades\Auth::user())
-        <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
-            <x-main-button :href="route('challenges.connection')">Start</x-main-button>
-        </div>
-    @else
-        <div class="w-mainButton m-auto lg:w-mainButtonDesktop mt-2">
-            <x-main-button :href="route('login')">Login</x-main-button>
-        </div>
-    @endif
 
 </x-app-layout>

@@ -133,18 +133,6 @@ class ChallengeController extends Controller
     }
 
 
-//    public function random()
-//    {
-//
-//        //steeds random challenge zichtbaar
-//        $challenge = Challenge::inRandomOrder()->limit(5)->get('nature_word');
-//
-//
-//
-//        return redirect()->route('challenges.play');
-//    }
-
-
     public function check(Request $request)
     {
 
@@ -265,7 +253,7 @@ class ChallengeController extends Controller
     {
         $user = $request->user();
 
-        $game = Game::whereHas('users', function($q) use ($user) {
+        $game = Game::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
         })->where('active', true)->first();
 
