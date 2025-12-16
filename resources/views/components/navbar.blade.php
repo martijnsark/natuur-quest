@@ -9,7 +9,9 @@
         $normal  = 'h-16';
     @endphp
 
-    <nav class="h-24 flex items-end justify-between gap-px">
+    <nav class="h-24 flex items-end justify-between gap-px"
+         aria-label="centrale navigatie"
+    >
 
         {{-- HOME (must stay on "/") --}}
         <a href="{{ route('homepage') }}"
@@ -21,7 +23,7 @@
         </a>
 
         {{-- FRIENDS --}}
-        <a href="{{ route('friends') }}"
+        <a href="{{ route('homepage') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'friends' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Friends-Icon.png') }}"
@@ -30,7 +32,7 @@
         </a>
 
         {{-- CHALLENGES --}}
-        <a href="{{ route('challenges') }}"
+        <a href="{{ route('homepage') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'challenges' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Play-Icon.png') }}"
@@ -39,7 +41,7 @@
         </a>
 
         {{-- SHOP --}}
-        <a href="{{ route('shop') }}"
+        <a href="{{ route('homepage') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'shop' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Shop-Icon.png') }}"
@@ -48,7 +50,7 @@
         </a>
 
         {{-- PROFILE --}}
-        <a href="{{ route('profile') }}"
+        <a href="{{ route('homepage') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'profile' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Profile-Icon.jpg') }}"
