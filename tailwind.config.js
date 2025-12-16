@@ -45,23 +45,28 @@ export default {
             },
 
             animation: {
-                blob: "blob 7s infinite",
+                glow: "glow 2.5s ease-in-out infinite",
                 pan: "pan 20s linear infinite",
+                factCard: "fadeSlide 2s ease-out forwards, glow 2.5s ease-in-out infinite"
             },
             keyframes: {
-                blob: {
+                fadeSlide: {
                     "0%": {
-                        transform: "translate(0px, 0px) scale(1)"
-                    },
-                    "33%": {
-                        transform: "translate(30px, -50px) scale(1.2)"
-                    },
-                    "66%": {
-                        transform: "translate(-20px, 20px) scale(0.8)"
+                        opacity: "0",
+                        transform: "translateY(20px) scale(0.98)",
                     },
                     "100%": {
-                        transform: "translate(0px, 0px) scale(1)"
-                    }
+                        opacity: "1",
+                        transform: "translateY(0) scale(1)",
+                    },
+                },
+                glow: {
+                    "0%, 100%": {
+                        boxShadow: "0 0 10px rgba(246,105,44,0.4), 0 0 20px rgba(246,105,44,0.2)"
+                    },
+                    "50%": {
+                        boxShadow: "0 0 30px rgba(246,105,44,0.8), 0 0 50px rgba(246,105,44,0.6)"
+                    },
                 },
                 pan: {
                     "0%": {backgroundPosition: "0 0"},

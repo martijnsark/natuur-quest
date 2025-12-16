@@ -2,7 +2,7 @@
 
 @if ($facts)
     <div
-        class="relative w-full sm:w-1/3 max-w-sm mx-auto bg-primary border-4 border-[#F6692C] rounded-3xl skew-x-2 shadow-lg overflow-hidden">
+        class="relative w-full sm:w-1/3 max-w-sm mx-auto bg-primary border-4 border-[#F6692C] rounded-3xl skew-x-2 animate-factCard overflow-hidden">
 
         <!-- Styling -->
         <div class="absolute bottom-0 -right-6 w-16 h-16 bg-[#F6692C] rounded-full opacity-70"></div>
