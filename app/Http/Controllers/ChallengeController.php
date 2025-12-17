@@ -8,6 +8,8 @@ use App\Models\Game;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Word;
+use App\Models\Photo;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\error;
@@ -182,6 +184,18 @@ class ChallengeController extends Controller
 
         return view('challenges.play', compact('challenge'));
     }
+
+
+//    public function random()
+//    {
+//
+//        //steeds random challenge zichtbaar
+//        $challenge = Challenge::inRandomOrder()->limit(5)->get('nature_word');
+//
+//
+//
+//        return redirect()->route('challenges.play');
+//    }
 
 
     public function check(Request $request)
@@ -360,7 +374,134 @@ class ChallengeController extends Controller
             $game->active = false;
             $game->save();
         }
-        return redirect()->route('home')->with('status', '🎉🎊 Game is afgelopen! 🎊🎉');
+
+        return redirect()->route('home');
     }
 
+
+    public function judgePhotos(Request $request, string $game)
+    {
+        $game = Game::findOrFail($game);
+
+        // In jullie project is role_id = 1 de spelleider
+        $refereeRoleId = 1;
+
+        // Pak alle spelers (geen spelleider) uit pivot
+        $playerIds = DB::table('user_game_role')
+            ->where('game_id', $game->id)
+            ->where('role_id', '!=', $refereeRoleId)
+            ->pluck('user_id')
+            ->values();
+
+        if ($playerIds->count() < 2) {
+            return view('challenges.judge-photos', [
+                'game' => $game,
+                'entries' => [],
+                'word' => null,
+                'wordId' => null,
+                'error' => 'Er zijn nog niet 2 spelers gekoppeld aan dit spel.',
+            ]);
+        }
+
+        // Pak assignments van spelers in dit game
+        $assignments = Assignment::where('game_id', $game->id)
+            ->whereIn('user_id', $playerIds)
+            ->get();
+
+        if ($assignments->count() < 2) {
+            return view('challenges.judge-photos', [
+                'game' => $game,
+                'entries' => [],
+                'word' => null,
+                'wordId' => null,
+                'error' => 'Er zijn nog geen assignments voor beide spelers.',
+            ]);
+        }
+
+        // Belangrijk: 1 vaste word_id voor photo round per game
+        // - eerst: game->photo_round_word_id
+        // - anders: query param (als je die ooit wil forceren)
+        $wordId = $game->photo_round_word_id ?: $request->query('word_id');
+
+        if (!$wordId) {
+            return view('challenges.judge-photos', [
+                'game' => $game,
+                'entries' => [],
+                'word' => null,
+                'wordId' => null,
+                'error' => 'Er is nog geen photo-round word gekozen. Laat spelers eerst via facts naar photo-upload gaan.',
+            ]);
+        }
+
+        // Bouw entries: per speler 1 foto voor precies dit word_id
+        $entries = $assignments->map(function ($assignment) use ($wordId) {
+            $photo = Photo::where('assignment_id', $assignment->id)
+                ->where('word_id', $wordId)
+                ->latest('id')
+                ->first();
+
+            return [
+                'user' => $assignment->user,
+                'assignment' => $assignment,
+                'photo' => $photo,
+            ];
+        });
+
+        return view('challenges.judge-photos', [
+            'game' => $game,
+            'entries' => $entries,
+            'word' => Word::find($wordId),
+            'wordId' => $wordId,
+            'error' => null,
+        ]);
+    }
+
+    public function storeJudgePhotos(Request $request, string $game)
+    {
+        $game = Game::findOrFail($game);
+
+        $data = $request->validate([
+            'word_id' => ['required', 'integer', 'exists:words,id'],
+            'winner_user_id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        // Winner moet speler zijn (geen spelleider)
+        $refereeRoleId = 1;
+
+        $isPlayerInGame = DB::table('user_game_role')
+            ->where('game_id', $game->id)
+            ->where('user_id', $data['winner_user_id'])
+            ->where('role_id', '!=', $refereeRoleId)
+            ->exists();
+
+        if (!$isPlayerInGame) {
+            return back()->withErrors(['winner_user_id' => 'Deze speler hoort niet bij dit spel (of is de spelleider).']);
+        }
+
+        // Pak assignment van winnaar
+        $winnerAssignment = Assignment::where('game_id', $game->id)
+            ->where('user_id', $data['winner_user_id'])
+            ->first();
+
+        if (!$winnerAssignment) {
+            return back()->withErrors(['winner_user_id' => 'Geen assignment gevonden voor deze speler in dit spel.']);
+        }
+
+        // Punt + balance
+        $winnerAssignment->increment('score', 1);
+
+        $winnerUser = $winnerAssignment->user;
+        $winnerUser->balance += 100;
+        $winnerUser->save();
+
+        // Markeer photo-round als beoordeeld op game
+        $game->photo_round_word_id = $data['word_id']; // zekerheid
+        $game->photo_round_winner_user_id = $data['winner_user_id'];
+        $game->photo_round_judged_at = now();
+        $game->save();
+
+        return redirect()
+            ->route('test.show', ['id' => $game->id])
+            ->with('success', 'Winnaar gekozen en punt gegeven!');
+    }
 }
