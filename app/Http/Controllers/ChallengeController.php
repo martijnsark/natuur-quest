@@ -55,29 +55,6 @@ class ChallengeController extends Controller
         $game = Game::find($id);
 
 
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-        if (! $game) {
-            return redirect()->route('home');
-        }
-
-        $user = auth()->user();
-
-        // Check if user is Spelleider in this game
-        $isSpelleider = \DB::table('user_game_role')
-            ->where('user_id', $user->id)
-            ->where('game_id', $game->id)
-            ->where('role_id', 1) // replace with the correct Spelleider role ID
-            ->exists();
-
-        if (! $isSpelleider) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-
         if ($game !== null) {
             return view('challenges.showGame', compact('game'));
         } else {
@@ -89,17 +66,6 @@ class ChallengeController extends Controller
     {
         // get game id
         $game = Game::findOrFail($request->input('game_id'));
-
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-        // check if correct user
-        if (! $game->users->contains(auth()->id())) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         //makes the assignment and sends it to the user
         $assignment = new Assignment();
@@ -146,17 +112,6 @@ class ChallengeController extends Controller
     public function show(string $id)
     {
         $challenge = Assignment::find($id);
-
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-        // 403 check: only allow the owner
-        if ($challenge->user_id !== auth()->id()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         return view('challenges.play', compact('challenge'));
     }
@@ -248,29 +203,6 @@ class ChallengeController extends Controller
 
         // Find the assignment
         $assignment = Assignment::findOrFail($challenge);
-        $user = auth()->user();
-        $game = $assignment->game;
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-        // 1️⃣ Check if user is part of this game
-        if (! $game->users->contains($user->id)) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-        // 2️⃣ Option A: Only Spelleider can access (replace role_id with your Spelleider ID)
-        $isSpelleider = \DB::table('user_game_role')
-            ->where('user_id', $user->id)
-            ->where('game_id', $game->id)
-            ->where('role_id', 1) // Spelleider role ID
-            ->exists();
-
-        if (! $isSpelleider) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         // Now safe to return the view
         return view('challenges.finish', ['challenge' => $assignment]);
@@ -304,17 +236,6 @@ class ChallengeController extends Controller
     public function updateScore(Request $request)
     {
         $assignment = Assignment::findOrFail($request->assignment_id);
-
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
-        $game = $assignment->game;
-        if (! $game->users->contains(auth()->id())) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         $request->validate([
             'assignment_id' => 'required|exists:assignments,id',
