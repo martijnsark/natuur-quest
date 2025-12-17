@@ -27,9 +27,10 @@
     </div>
 
     {{--phone--}}
-    <div class="lg:hidden space-y-18 px-6">
+    <div class="lg:hidden space-y-18 px-6">\
+        <x-card>
         <section aria-label="Uitleg van opdracht 30 seconds"
-                 class="text-white pt-10 px-14 lg:px-40 flex flex-col items-center mt-19 rotate-2 lg:rotate-0 text-center ">
+                 class="text-white lg:px-40 flex flex-col items-center mt-19 lg:rotate-0 text-center ">
             <p class="font-text text-xl max-w-lg"> Jullie spelen om de beurt. Je krijgt 5 woorden over de Nederlandse
                 natuur. Leg
                 deze
@@ -38,11 +39,12 @@
                 Wie de meeste woorden raadt, wint!
         </section>
         <section aria-label="Uitleg van bonus punten verkrijgen"
-                 class="text-white pt-10 px-14 flex flex-col items-center mt-20 -rotate-2 lg:rotate-0 text-center">
+                 class="text-white flex flex-col items-center mt-20 lg:rotate-0 text-center">
             <p class="font-text text-xl max-w-lg"> Na jullie beurten is er een bonus ronde. Maak van een van de
                 natuurwoorden een bijpassende foto.
                 De spelleider kijkt jullie creaties na en geeft bonuspunten!</p>
         </section>
+        </x-card>
     </div>
 
 
