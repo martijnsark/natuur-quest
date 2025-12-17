@@ -20,6 +20,15 @@ class FactController extends Controller
 
     public function playFacts(Assignment $assignment)
     {
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
+        // Add the 403 check here
+        if ($assignment->user_id !== auth()->id()) {
+            abort(403, 'U hebt geen toegang tot deze pagina.');
+        }
 
         $facts = Fact::select('id', 'title', 'content')
             ->inRandomOrder()

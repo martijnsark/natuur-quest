@@ -8,10 +8,9 @@ use App\Models\Game;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Word;
-use App\Models\Photo;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\error;
 
 class ChallengeController extends Controller
 {
@@ -51,8 +50,30 @@ class ChallengeController extends Controller
 
     public function showGame(string $id)
     {
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
         //finds the game and sends it to the page
         $game = Game::find($id);
+
+        if (! $game) {
+            return redirect()->route('home');
+        }
+
+        $user = auth()->user();
+
+        // Check if user is Spelleider in this game
+        $isSpelleider = \DB::table('user_game_role')
+            ->where('user_id', $user->id)
+            ->where('game_id', $game->id)
+            ->where('role_id', 1) // replace with the correct Spelleider role ID
+            ->exists();
+
+        if (! $isSpelleider) {
+            abort(403, 'U hebt geen toegang tot deze pagina.');
+        }
 
 
         if ($game !== null) {
@@ -64,8 +85,18 @@ class ChallengeController extends Controller
 
     public function sendAssignment(Request $request)
     {
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
         // get game id
         $game = Game::findOrFail($request->input('game_id'));
+
+        // check if correct user
+        if (! $game->users->contains(auth()->id())) {
+            abort(403, 'U hebt geen toegang tot deze pagina.');
+        }
 
         //makes the assignment and sends it to the user
         $assignment = new Assignment();
@@ -111,7 +142,19 @@ class ChallengeController extends Controller
      */
     public function show(string $id)
     {
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
         $challenge = Assignment::find($id);
+
+        // Add the 403 check here
+
+        // 403 check: only allow the owner
+        if ($challenge->user_id !== auth()->id()) {
+            abort(403, 'U hebt geen toegang tot deze pagina.');
+        }
 
         return view('challenges.play', compact('challenge'));
     }
@@ -201,8 +244,31 @@ class ChallengeController extends Controller
         //whereIn focuses only on if the ids are the same as the ids of the words on the play page, it skips over the nature words
 //        $challenge = Challenge::whereIn('id', $natureWordsId)->get();
 
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
         // Find the assignment
         $assignment = Assignment::findOrFail($challenge);
+        $user = auth()->user();
+        $game = $assignment->game;
+
+        // 1️⃣ Check if user is part of this game
+        if (! $game->users->contains($user->id)) {
+            abort(403, 'U hebt geen toegang tot deze pagina..');
+        }
+
+        // 2️⃣ Option A: Only Spelleider can access (replace role_id with your Spelleider ID)
+        $isSpelleider = \DB::table('user_game_role')
+            ->where('user_id', $user->id)
+            ->where('game_id', $game->id)
+            ->where('role_id', 1) // Spelleider role ID
+            ->exists();
+
+        if (! $isSpelleider) {
+            abort(403, 'U hebt geen toegang tot deze pagina.');
+        }
 
         // Now safe to return the view
         return view('challenges.finish', ['challenge' => $assignment]);
@@ -235,7 +301,17 @@ class ChallengeController extends Controller
     // handles score updates
     public function updateScore(Request $request)
     {
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
         $assignment = Assignment::findOrFail($request->assignment_id);
+
+        $game = $assignment->game;
+        if (! $game->users->contains(auth()->id())) {
+            abort(403, 'U hebt geen toegang tot deze pagina.');
+        }
 
         $request->validate([
             'assignment_id' => 'required|exists:assignments,id',
@@ -264,6 +340,11 @@ class ChallengeController extends Controller
 
     public function deactivateCurrentGame(Request $request)
     {
+        // double check user sign-in just in case
+        if (!Auth::check()) {
+            abort(403, 'U moet inloggen om toegang tot deze pagina te krijgen.');
+        }
+
         $user = $request->user();
 
         $game = Game::whereHas('users', function ($q) use ($user) {
@@ -282,140 +363,4 @@ class ChallengeController extends Controller
         return redirect()->route('home')->with('status', '🎉🎊 Game is afgelopen! 🎊🎉');
     }
 
-
-    public function judgePhotos(Request $request, string $game)
-    {
-        $game = Game::findOrFail($game);
-
-        $refereeRoleId = 1;
-
-        $playerIds = DB::table('user_game_role')
-            ->where('game_id', $game->id)
-            ->where('role_id', '!=', $refereeRoleId)
-            ->pluck('user_id')
-            ->values();
-
-        if ($playerIds->count() < 2) {
-            return view('challenges.judge-photos', [
-                'game' => $game,
-                'entries' => [],
-                'word' => null,
-                'wordId' => null,
-                'error' => 'Er zijn nog niet 2 spelers gekoppeld aan dit spel.',
-            ]);
-        }
-
-        $assignments = Assignment::where('game_id', $game->id)
-            ->whereIn('user_id', $playerIds)
-            ->get();
-
-        if ($assignments->count() < 2) {
-            return view('challenges.judge-photos', [
-                'game' => $game,
-                'entries' => [],
-                'word' => null,
-                'wordId' => null,
-                'error' => 'Er zijn nog geen assignments voor beide spelers.',
-            ]);
-        }
-
-        $assignmentIds = $assignments->pluck('id');
-
-        // 1) Als ?word_id is meegegeven: gebruik die
-        $wordId = $request->query('word_id');
-
-        // 2) Anders: zoek een word_id waar minimaal 2 verschillende assignments een foto voor hebben
-        if (!$wordId) {
-            $wordId = DB::table('photos')
-                ->selectRaw('word_id, COUNT(DISTINCT assignment_id) as cnt, MAX(id) as max_id')
-                ->whereIn('assignment_id', $assignmentIds)
-                ->groupBy('word_id')
-                ->having('cnt', '>=', 2)
-                ->orderByDesc('max_id')
-                ->value('word_id');
-        }
-
-        // 3) Fallback: als er nog geen “beide spelers” match is, pak nieuwste foto (kan dan 1 kant leeg zijn)
-        if (!$wordId) {
-            $wordId = Photo::whereIn('assignment_id', $assignmentIds)
-                ->latest('id')
-                ->value('word_id');
-        }
-
-        if (!$wordId) {
-            return view('challenges.judge-photos', [
-                'game' => $game,
-                'entries' => [],
-                'word' => null,
-                'wordId' => null,
-                'error' => 'Er zijn nog geen foto’s ingezonden om te beoordelen.',
-            ]);
-        }
-
-        $entries = $assignments->map(function ($assignment) use ($wordId) {
-            $photo = Photo::where('assignment_id', $assignment->id)
-                ->where('word_id', $wordId)
-                ->latest('id')
-                ->first();
-
-            return [
-                'user' => $assignment->user,
-                'assignment' => $assignment,
-                'photo' => $photo,
-            ];
-        });
-
-        return view('challenges.judge-photos', [
-            'game' => $game,
-            'entries' => $entries,
-            'word' => Word::find($wordId),
-            'wordId' => $wordId,
-            'error' => null,
-        ]);
-    }
-
-
-    public function storeJudgePhotos(Request $request, string $game)
-    {
-        $game = Game::findOrFail($game);
-
-        $data = $request->validate([
-            'word_id' => ['required', 'integer', 'exists:words,id'],
-            'winner_user_id' => ['required', 'integer', 'exists:users,id'],
-        ]);
-
-        // Check: winnaar moet speler zijn binnen deze game (niet spelleider)
-        $refereeRoleId = 1;
-
-        $isPlayerInGame = DB::table('user_game_role')
-            ->where('game_id', $game->id)
-            ->where('user_id', $data['winner_user_id'])
-            ->where('role_id', '!=', $refereeRoleId)
-            ->exists();
-
-        if (!$isPlayerInGame) {
-            return back()->withErrors(['winner_user_id' => 'Deze speler hoort niet bij dit spel (of is de spelleider).']);
-        }
-
-        // Pak assignment van winnaar
-        $winnerAssignment = Assignment::where('game_id', $game->id)
-            ->where('user_id', $data['winner_user_id'])
-            ->first();
-
-        if (!$winnerAssignment) {
-            return back()->withErrors(['winner_user_id' => 'Geen assignment gevonden voor deze speler in dit spel.']);
-        }
-
-        // +1 score
-        $winnerAssignment->increment('score', 1);
-
-        // +100 balance
-        $winnerUser = $winnerAssignment->user;
-        $winnerUser->balance += 100;
-        $winnerUser->save();
-
-        return redirect()
-            ->route('test.show', ['id' => $game->id])
-            ->with('success', 'Winnaar gekozen en punt gegeven!');
-    }
 }
