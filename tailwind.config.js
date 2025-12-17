@@ -13,7 +13,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                heading: ['spicy sale', 'sans-serif'],
+                heading: ['Spicy Rice', 'sans-serif'],
                 text: ['Comic Neue', 'sans-serif']
             },
             colors: {
@@ -26,8 +26,8 @@ export default {
                 mainButton: '50vw',
                 secondaryButton: '35vw',
                 popup: '75vw',
-                popupButton: '60%',
-                bg: '150vw',
+                popupButton: '100%',
+                bg: '200vw',
                 body: '100vw',
                 fact: '76vw',
                 bgImg: '150vw',
@@ -37,6 +37,7 @@ export default {
             height: {
                 bg: '40vh',
                 bgImg: '40vh',
+                maxBg: '87vh',
             },
             rotate: {
                 bg: '25deg',

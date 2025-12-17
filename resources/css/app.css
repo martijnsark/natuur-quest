@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
-
-@font-face {
-    font-family: 'spicy sale';
-    src: url('../fonts/SpicySale.ttf') format('ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
 
 .text-outline {
     -webkit-text-stroke: 4px black;
