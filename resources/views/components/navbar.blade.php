@@ -13,17 +13,17 @@
          aria-label="centrale navigatie"
     >
 
-        {{-- HOME (must stay on "/") --}}
-        <a href="{{ route('homepage') }}"
+        {{-- CHallenges (must stay on "/") --}}
+        <a href="{{ route('Challenges') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ empty($current) ? $active : $normal }}">
-            <img src="{{ Vite::asset('resources/images/Home.png') }}"
+            <img src="{{ Vite::asset('resources/images/Play-Icon.png') }}"
                  alt="Knop naar de homepagina"
                  class="w-8 h-8 object-contain">
         </a>
 
         {{-- FRIENDS --}}
-        <a href="{{ route('homepage') }}"
+        <a href="{{ route('') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'friends' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Friends-Icon.png') }}"
@@ -31,17 +31,17 @@
                  class="w-8 h-8 object-contain">
         </a>
 
-        {{-- CHALLENGES --}}
-        <a href="{{ route('homepage') }}"
+        {{-- Home --}}
+        <a href="{{ route('Home') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
-                  {{ $current === 'challenges' ? $active : $normal }}">
-            <img src="{{ Vite::asset('resources/images/Play-Icon.png') }}"
+                  {{ $current === 'homepage' ? $active : $normal }}">
+            <img src="{{ Vite::asset('resources/images/Home.png') }}"
                  alt="Knop naar de challenges"
                  class="w-10 h-10 object-contain">
         </a>
 
         {{-- SHOP --}}
-        <a href="{{ route('homepage') }}"
+        <a href="{{ route('shop') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'shop' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Shop-Icon.png') }}"
@@ -50,7 +50,7 @@
         </a>
 
         {{-- PROFILE --}}
-        <a href="{{ route('homepage') }}"
+        <a href="{{ route('profile') }}"
            class="bg-nav flex-1 border border-white/30 flex items-center justify-center
                   {{ $current === 'profile' ? $active : $normal }}">
             <img src="{{ Vite::asset('resources/images/Profile-Icon.jpg') }}"
