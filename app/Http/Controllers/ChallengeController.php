@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Word;
 use App\Models\Photo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -53,23 +54,6 @@ class ChallengeController extends Controller
         //finds the game and sends it to the page
         $game = Game::find($id);
 
-        if (! $game) {
-            return redirect()->route('home');
-        }
-
-        $user = auth()->user();
-
-        // Check if user is Spelleider in this game
-        $isSpelleider = \DB::table('user_game_role')
-            ->where('user_id', $user->id)
-            ->where('game_id', $game->id)
-            ->where('role_id', 1) // replace with the correct Spelleider role ID
-            ->exists();
-
-        if (! $isSpelleider) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
 
         if ($game !== null) {
             return view('challenges.showGame', compact('game'));
@@ -82,11 +66,6 @@ class ChallengeController extends Controller
     {
         // get game id
         $game = Game::findOrFail($request->input('game_id'));
-
-        // check if correct user
-        if (! $game->users->contains(auth()->id())) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         //makes the assignment and sends it to the user
         $assignment = new Assignment();
@@ -133,13 +112,6 @@ class ChallengeController extends Controller
     public function show(string $id)
     {
         $challenge = Assignment::find($id);
-
-        // Add the 403 check here
-
-        // 403 check: only allow the owner
-        if ($challenge->user_id !== auth()->id()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         return view('challenges.play', compact('challenge'));
     }
@@ -231,24 +203,6 @@ class ChallengeController extends Controller
 
         // Find the assignment
         $assignment = Assignment::findOrFail($challenge);
-        $user = auth()->user();
-        $game = $assignment->game;
-
-        // 1️⃣ Check if user is part of this game
-        if (! $game->users->contains($user->id)) {
-            abort(403, 'U hebt geen toegang tot deze pagina..');
-        }
-
-        // 2️⃣ Option A: Only Spelleider can access (replace role_id with your Spelleider ID)
-        $isSpelleider = \DB::table('user_game_role')
-            ->where('user_id', $user->id)
-            ->where('game_id', $game->id)
-            ->where('role_id', 1) // Spelleider role ID
-            ->exists();
-
-        if (! $isSpelleider) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         // Now safe to return the view
         return view('challenges.finish', ['challenge' => $assignment]);
@@ -282,11 +236,6 @@ class ChallengeController extends Controller
     public function updateScore(Request $request)
     {
         $assignment = Assignment::findOrFail($request->assignment_id);
-
-        $game = $assignment->game;
-        if (! $game->users->contains(auth()->id())) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         $request->validate([
             'assignment_id' => 'required|exists:assignments,id',

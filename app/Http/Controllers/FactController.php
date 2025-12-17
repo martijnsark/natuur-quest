@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Fact;
 use App\Models\Assignment;
+use Illuminate\Support\Facades\Auth;
 
 class FactController extends Controller
 {
@@ -19,10 +20,6 @@ class FactController extends Controller
 
     public function playFacts(Assignment $assignment)
     {
-        // Add the 403 check here
-        if ($assignment->user_id !== auth()->id()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         $facts = Fact::select('id', 'title', 'content')
             ->inRandomOrder()
