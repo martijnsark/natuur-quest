@@ -30,7 +30,6 @@ This project utilizes several open-source PHP and Laravel packages to streamline
 ## Entity Relationship Diagram (ERD)
 
 The Entity Relationship Diagram (ERD) below showcases the logical structure of the database, illustrating the relationships between entities.
-
 ```mermaid
 erDiagram
     users {
@@ -42,7 +41,7 @@ erDiagram
         string rememberToken
         timestamp created_at
         timestamp updated_at
-        int balance "Default: 0"
+        int balance
     }
 
     password_reset_tokens {
@@ -117,7 +116,7 @@ erDiagram
         int game_id FK
         int role_id FK
         int user_id FK
-        int score "Default: 0"
+        int score
         boolean active
         timestamp created_at
         timestamp updated_at
@@ -152,7 +151,7 @@ erDiagram
         int id PK
         int user_id FK
         int game_id FK
-        int score "Default: 0"
+        int score
         timestamp created_at
         timestamp updated_at
     }
@@ -239,8 +238,8 @@ erDiagram
     
     categories ||--o{ facts: "Has many facts"
     
-    photos ||--o{ assignments: "Belongs to assignment"
-    photos ||--o{ words: "Linked to specific word"
+    photos ||--o| assignments: "Belongs to assignment"
+    photos ||--o| words: "Linked to specific word"
 ```
 
 ---
