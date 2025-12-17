@@ -33,26 +33,26 @@ The Entity Relationship Diagram (ERD) below showcases the logical structure of t
 ```mermaid
 erDiagram
     users {
-        int id PK
+        int id
         string name
-        string email UNIQUE
+        string email
         timestamp email_verified_at
         string password
-        string rememberToken
+        string remember_token
         timestamp created_at
         timestamp updated_at
         int balance
     }
 
     password_reset_tokens {
-        string email PK
+        string email
         string token
         timestamp created_at
     }
 
     sessions {
-        string id PK
-        int user_id FK
+        string id
+        int user_id
         string ip_address
         text user_agent
         longText payload
@@ -60,19 +60,19 @@ erDiagram
     }
 
     cache {
-        string key PK
+        string key
         mediumText value
         int expiration
     }
 
     cache_locks {
-        string key PK
+        string key
         string owner
         int expiration
     }
 
     jobs {
-        int id PK
+        int id
         string queue
         longText payload
         tinyint attempts
@@ -82,7 +82,7 @@ erDiagram
     }
 
     job_batches {
-        string id PK
+        string id
         string name
         int total_jobs
         int pending_jobs
@@ -95,8 +95,8 @@ erDiagram
     }
 
     failed_jobs {
-        int id PK
-        string uuid UNIQUE
+        int id
+        string uuid
         text connection
         text queue
         longText payload
@@ -105,17 +105,17 @@ erDiagram
     }
 
     roles {
-        int id PK
+        int id
         char name
         timestamp created_at
         timestamp updated_at
     }
 
     assignments {
-        int id PK
-        int game_id FK
-        int role_id FK
-        int user_id FK
+        int id
+        int game_id
+        int role_id
+        int user_id
         int score
         boolean active
         timestamp created_at
@@ -123,50 +123,50 @@ erDiagram
     }
 
     assignment_word {
-        int id PK
-        int word_id FK
-        int assignment_id FK
+        int id
+        int word_id
+        int assignment_id
         timestamp created_at
         timestamp updated_at
     }
 
     words {
-        int id PK
+        int id
         char name
         timestamp created_at
         timestamp updated_at
     }
 
     games {
-        int id PK
+        int id
         boolean active
-        int photo_round_word_id FK
-        int photo_round_winner_user_id FK
+        int photo_round_word_id
+        int photo_round_winner_user_id
         timestamp photo_round_judged_at
         timestamp created_at
         timestamp updated_at
     }
 
     game_user {
-        int id PK
-        int user_id FK
-        int game_id FK
+        int id
+        int user_id
+        int game_id
         int score
         timestamp created_at
         timestamp updated_at
     }
 
     user_game_role {
-        int id PK
-        int user_id FK
-        int game_id FK
-        int role_id FK
+        int id
+        int user_id
+        int game_id
+        int role_id
         timestamp created_at
         timestamp updated_at
     }
 
     challenges {
-        int id PK
+        int id
         string title
         string nature_word
         timestamp created_at
@@ -174,25 +174,25 @@ erDiagram
     }
 
     categories {
-        int id PK
+        int id
         string name
         timestamp created_at
         timestamp updated_at
     }
 
     facts {
-        int id PK
+        int id
         string title
         text content
-        int category_id FK
+        int category_id
         timestamp created_at
         timestamp updated_at
     }
 
     photos {
-        int id PK
-        int assignment_id FK
-        int word_id FK
+        int id
+        int assignment_id
+        int word_id
         string photo
         string original_name
         string mime
@@ -202,44 +202,44 @@ erDiagram
     }
 
     photo_results {
-        int id PK
-        int game_id FK
-        int word_id FK
-        int winner_user_id FK
+        int id
+        int game_id
+        int word_id
+        int winner_user_id
         timestamp created_at
         timestamp updated_at
     }
 
     photo_judgements {
-        int id PK
-        int game_id FK
-        int word_id FK
-        int winner_user_id FK
+        int id
+        int game_id
+        int word_id
+        int winner_user_id
         timestamp created_at
         timestamp updated_at
     }
 
-    users ||--|| sessions: "Has many"
-    users ||--o| password_reset_tokens: "Has one"
-    users ||--o{ game_user: "Participates in many"
-    users ||--o{ user_game_role: "Has many roles in games"
-    users ||--o{ assignments: "Can have assignments"
-    users ||--o{ photo_results: "Can be winner"
-    users ||--o{ photo_judgements: "Can be winner"
+    users ||--|| sessions : "has many"
+    users ||--o| password_reset_tokens : "has one"
+    users ||--o{ game_user : "participates in"
+    users ||--o{ user_game_role : "has roles in games"
+    users ||--o{ assignments : "can have assignments"
+    users ||--o{ photo_results : "can be winner of"
+    users ||--o{ photo_judgements : "can be winner of"
     
-    games ||--o{ game_user: "Includes many players"
-    games ||--o| assignments: "Has assignments"
-    games ||--o{ photo_results: "Includes results"
-    games ||--|{ photo_judgements: "Includes judgements"
+    games ||--o{ game_user : "includes players"
+    games ||--o| assignments : "has assignments"
+    games ||--o{ photo_results : "includes results"
+    games ||--|{ photo_judgements : "includes judgements"
     
-    roles ||--o{ user_game_role: "Can be assigned"
+    roles ||--o{ user_game_role : "can be assigned"
     
-    assignments ||--|{ assignment_word: "Contains words"
+    assignments ||--|{ assignment_word : "contains words"
     
-    categories ||--o{ facts: "Has many facts"
+    categories ||--o{ facts : "has facts"
     
-    photos ||--o| assignments: "Belongs to assignment"
-    photos ||--o| words: "Linked to specific word"
+    photos ||--o| assignments : "belongs to assignment"
+    photos ||--o| words : "linked to word"
 ```
 
 ---
