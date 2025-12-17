@@ -1,23 +1,23 @@
 <x-app-layout>
     <x-styling-arrow-left></x-styling-arrow-left>
 
-    <div class="flex flex-col items-center justify-center min-h-screen px-4">
+    <x-slot name="header">
+        <x-header-h1 id="login-page-heading"
+                     tabindex="0"
+                     aria-label="Loginpagina voor Natuur Quest">
+            Inloggen
+        </x-header-h1>
+    </x-slot>
+
+    <div class="flex flex-col items-center justify-center h-maxBg px-4">
         <!-- main login section -->
         <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center"
                  aria-labelledby="login-page-heading">
 
             <!-- page heading -->
-            <header class="text-center">
-                <x-header-h1 id="login-page-heading"
-                             class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0"
-                             aria-label="Loginpagina voor Natuur Quest">
-                    Inloggen
-                </x-header-h1>
-
-                <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                    Log in om Natuur Quest te spelen!
-                </p>
-            </header>
+            <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
+                Log in om Natuur Quest te spelen!
+            </p>
 
             <!-- session status -->
             <x-auth-session-status class="mb-4" :status="session('status')"/>
