@@ -3,7 +3,7 @@
 @vite('resources/js/countdown.js')
 
 @php
-    $target = $redirectTo ?? (Route::has('homepage') ? route('homepage') : url('/homepage'));
+    $target = $redirectTo ?? (Route::has('homepage') ? route('homepage') : url('/'));
 @endphp
 
 <section
@@ -46,7 +46,6 @@
         aria-describedby="timer-popup-desc"
         x-effect="
             if (isDone) {
-                // Verberg ook slot-content HARD (niet alleen opacity)
                 if ($refs.content) $refs.content.style.display = 'none';
 
                 $nextTick(() => {
@@ -58,12 +57,12 @@
         @keydown.escape.prevent="redirectNow()"
         @close="redirectNow()"
     >
-        <header class="p-5 pb-0">
-            <h2 id="timer-popup-title" class="text-xl font-bold text-gray-900">
+        <header role="banner" class="p-5 pb-0">
+            <x-h2 id="timer-popup-title" class="text-gray-900">
                 Tijd is over!
-            </h2>
+            </x-h2>
 
-            <p id="timer-popup-desc" class="mt-2 text-gray-700">
+            <p id="timer-popup-desc" class="mt-2 text-gray-700 font-text">
                 De {{ $seconds }} seconden zijn voorbij. Klik op de knop om door te gaan.
             </p>
         </header>
@@ -71,9 +70,9 @@
         <footer class="p-5 pt-4 flex justify-end">
             <a
                 x-ref="continueBtn"
-                :href="redirectTo"
+                href="{{ $target }}"
                 class="inline-flex items-center justify-center rounded-md bg-secondary px-4 py-2
-                       text-white font-semibold hover:bg-secondary/90 transition
+                       text-white font-text hover:bg-secondary/90 transition
                        focus:outline-none focus:ring-4 focus:ring-secondary/40"
             >
                 Verder
@@ -81,9 +80,7 @@
         </footer>
     </dialog>
 
-    {{-- Extra: verberg ALLES buiten slot (zoals je navbar) zodra timer klaar is --}}
     <style>
-        /* Zodra overlay actief is, wil je dat niets anders "doorlekt" */
         [x-cloak] { display: none !important; }
     </style>
 </section>
