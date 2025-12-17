@@ -1,8 +1,9 @@
-import.meta.glob(["../images/**"]);
-import './bootstrap';
+import Alpine from 'alpinejs'
+import { countdownTimer } from './countdown.js'
+import './photo-upload';
 
-import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
+window.countdownTimer = countdownTimer;
 
-Alpine.start();
+Alpine.start()
