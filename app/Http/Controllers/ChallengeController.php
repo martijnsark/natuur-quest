@@ -9,7 +9,6 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Word;
 use App\Models\Photo;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -54,12 +53,6 @@ class ChallengeController extends Controller
         //finds the game and sends it to the page
         $game = Game::find($id);
 
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
         if (! $game) {
             return redirect()->route('home');
         }
@@ -89,12 +82,6 @@ class ChallengeController extends Controller
     {
         // get game id
         $game = Game::findOrFail($request->input('game_id'));
-
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         // check if correct user
         if (! $game->users->contains(auth()->id())) {
@@ -147,11 +134,7 @@ class ChallengeController extends Controller
     {
         $challenge = Assignment::find($id);
 
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
+        // Add the 403 check here
 
         // 403 check: only allow the owner
         if ($challenge->user_id !== auth()->id()) {
@@ -251,14 +234,9 @@ class ChallengeController extends Controller
         $user = auth()->user();
         $game = $assignment->game;
 
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
-
         // 1️⃣ Check if user is part of this game
         if (! $game->users->contains($user->id)) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
+            abort(403, 'U hebt geen toegang tot deze pagina..');
         }
 
         // 2️⃣ Option A: Only Spelleider can access (replace role_id with your Spelleider ID)
@@ -304,12 +282,6 @@ class ChallengeController extends Controller
     public function updateScore(Request $request)
     {
         $assignment = Assignment::findOrFail($request->assignment_id);
-
-
-        // double check user sign-in just in case
-        if (!Auth::check()) {
-            abort(403, 'U hebt geen toegang tot deze pagina.');
-        }
 
         $game = $assignment->game;
         if (! $game->users->contains(auth()->id())) {
