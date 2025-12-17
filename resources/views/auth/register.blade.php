@@ -2,24 +2,24 @@
     <!-- diagonal background like homepage -->
     <x-styling-arrow-left></x-styling-arrow-left>
 
+    <x-slot name="header">
+        <x-header-h1 tabindex="0"
+                     aria-label="Registratiepagina voor Natuur Quest">
+            Registreren
+        </x-header-h1>
+    </x-slot>
+
     <!-- div to center the form -->
-    <div class="flex flex-col items-center justify-center min-h-screen px-4">
+    <div class="flex flex-col items-center justify-center h-maxBg px-4">
         <!-- main registration section -->
         <section class="bg-white/80 dark:bg-gray-900/80 p-8 rounded-xl shadow-lg w-full max-w-md text-center"
                  aria-labelledby="register-page-heading">
 
             <!-- page header -->
-            <header class="text-center">
-                <x-header-h1 id="register-page-heading"
-                             class="text-4xl font-bold mb-4 font-heading text-black dark:text-white" tabindex="0"
-                             aria-label="Registratiepagina voor Natuur Quest">
-                    Registreren
-                </x-header-h1>
 
-                <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
-                    Creëer jouw account en begin met Natuur Quest!
-                </p>
-            </header>
+            <p class="font-text text-lg mb-6 text-gray-800 dark:text-gray-300">
+                Creëer jouw account en begin met Natuur Quest!
+            </p>
 
             <!-- session status -->
             <x-auth-session-status class="mb-4" :status="session('status')"/>

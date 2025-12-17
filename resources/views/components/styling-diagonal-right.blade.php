@@ -1,4 +1,6 @@
-<div class="max-w-full max-h-screen fixed -z-40 overflow-hidden">
-    <div class="bg-primary w-bg h-bg fixed top-44 -left-24 rotate-bg"></div>
-    <div class="bg-primary w-bg h-1 fixed top-bgDiagonal -left-24 rotate-bg"></div>
+<div class="w-full h-maxBg absolute -z-40 overflow-hidden">
+    <div class="absolute -left-44">
+        <div class="bg-primary w-bg h-bg rotate-bg"></div>
+        <div class="bg-primary w-bg h-1 relative top-10 rotate-bg"></div>
+    </div>
 </div>
