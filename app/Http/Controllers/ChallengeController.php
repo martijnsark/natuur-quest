@@ -134,18 +134,6 @@ class ChallengeController extends Controller
     }
 
 
-//    public function random()
-//    {
-//
-//        //steeds random challenge zichtbaar
-//        $challenge = Challenge::inRandomOrder()->limit(5)->get('nature_word');
-//
-//
-//
-//        return redirect()->route('challenges.play');
-//    }
-
-
     public function check(Request $request)
     {
 
@@ -274,8 +262,7 @@ class ChallengeController extends Controller
             $game->active = false;
             $game->save();
         }
-
-        return redirect()->route('home');
+        return redirect()->route('home')->with('status', '🎉🎊 Game is afgelopen! 🎊🎉');
     }
 
 

@@ -79,9 +79,25 @@
     {{--        </form>--}}
     {{--    </section>--}}
     <div class="mt-5 flex justify-center items-center">
-        <x-main-button :href="route('challenges.connection')">
-            {{ __('Start') }}
-        </x-main-button>
+        @auth()
+            <div id="challengePopup">
+                @include('components.challenge-popup')
+            </div>
+
+            {{-- Refreshed only the popup --}}
+            <script>
+                function refreshPopup() {
+                    fetch('{{ route('refresh') }}')
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('challengePopup').innerHTML = html;
+                        });
+                }
+
+                // update elke 3 seconden
+                setInterval(refreshPopup, 1000);
+            </script>
+        @endauth
     </div>
 
 </x-app-layout>
