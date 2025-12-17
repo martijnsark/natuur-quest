@@ -270,8 +270,10 @@ class ChallengeController extends Controller
     {
         $game = Game::findOrFail($game);
 
+        // In jullie project is role_id = 1 de spelleider
         $refereeRoleId = 1;
 
+        // Pak alle spelers (geen spelleider) uit pivot
         $playerIds = DB::table('user_game_role')
             ->where('game_id', $game->id)
             ->where('role_id', '!=', $refereeRoleId)
@@ -288,6 +290,7 @@ class ChallengeController extends Controller
             ]);
         }
 
+        // Pak assignments van spelers in dit game
         $assignments = Assignment::where('game_id', $game->id)
             ->whereIn('user_id', $playerIds)
             ->get();
@@ -302,28 +305,10 @@ class ChallengeController extends Controller
             ]);
         }
 
-        $assignmentIds = $assignments->pluck('id');
-
-        // 1) Als ?word_id is meegegeven: gebruik die
-        $wordId = $request->query('word_id');
-
-        // 2) Anders: zoek een word_id waar minimaal 2 verschillende assignments een foto voor hebben
-        if (!$wordId) {
-            $wordId = DB::table('photos')
-                ->selectRaw('word_id, COUNT(DISTINCT assignment_id) as cnt, MAX(id) as max_id')
-                ->whereIn('assignment_id', $assignmentIds)
-                ->groupBy('word_id')
-                ->having('cnt', '>=', 2)
-                ->orderByDesc('max_id')
-                ->value('word_id');
-        }
-
-        // 3) Fallback: als er nog geen “beide spelers” match is, pak nieuwste foto (kan dan 1 kant leeg zijn)
-        if (!$wordId) {
-            $wordId = Photo::whereIn('assignment_id', $assignmentIds)
-                ->latest('id')
-                ->value('word_id');
-        }
+        // Belangrijk: 1 vaste word_id voor photo round per game
+        // - eerst: game->photo_round_word_id
+        // - anders: query param (als je die ooit wil forceren)
+        $wordId = $game->photo_round_word_id ?: $request->query('word_id');
 
         if (!$wordId) {
             return view('challenges.judge-photos', [
@@ -331,10 +316,11 @@ class ChallengeController extends Controller
                 'entries' => [],
                 'word' => null,
                 'wordId' => null,
-                'error' => 'Er zijn nog geen foto’s ingezonden om te beoordelen.',
+                'error' => 'Er is nog geen photo-round word gekozen. Laat spelers eerst via facts naar photo-upload gaan.',
             ]);
         }
 
+        // Bouw entries: per speler 1 foto voor precies dit word_id
         $entries = $assignments->map(function ($assignment) use ($wordId) {
             $photo = Photo::where('assignment_id', $assignment->id)
                 ->where('word_id', $wordId)
@@ -357,7 +343,6 @@ class ChallengeController extends Controller
         ]);
     }
 
-
     public function storeJudgePhotos(Request $request, string $game)
     {
         $game = Game::findOrFail($game);
@@ -367,7 +352,7 @@ class ChallengeController extends Controller
             'winner_user_id' => ['required', 'integer', 'exists:users,id'],
         ]);
 
-        // Check: winnaar moet speler zijn binnen deze game (niet spelleider)
+        // Winner moet speler zijn (geen spelleider)
         $refereeRoleId = 1;
 
         $isPlayerInGame = DB::table('user_game_role')
@@ -389,13 +374,18 @@ class ChallengeController extends Controller
             return back()->withErrors(['winner_user_id' => 'Geen assignment gevonden voor deze speler in dit spel.']);
         }
 
-        // +1 score
+        // Punt + balance
         $winnerAssignment->increment('score', 1);
 
-        // +100 balance
         $winnerUser = $winnerAssignment->user;
         $winnerUser->balance += 100;
         $winnerUser->save();
+
+        // Markeer photo-round als beoordeeld op game
+        $game->photo_round_word_id = $data['word_id']; // zekerheid
+        $game->photo_round_winner_user_id = $data['winner_user_id'];
+        $game->photo_round_judged_at = now();
+        $game->save();
 
         return redirect()
             ->route('test.show', ['id' => $game->id])

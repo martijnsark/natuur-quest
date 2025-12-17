@@ -65,7 +65,7 @@
             <input type="hidden" name="word_id" value="{{ $wid }}">
 
             <p id="page-description" class="font-text text-2xl text-black">
-                Maak een foto voor de challenge en lever ‘m in. De scheids of begeleider kan dit dan nakijken.
+                Maak een foto van een van de 5 woorden die net uitgelegd zijn en lever ‘m in. De spelleider kan dit dan nakijken.
             </p>
 
             <div class="mt-4">
