@@ -4,9 +4,7 @@
 
 ## About This Project
 
-Natuur-Quest is a project aimed at helping users explore, interact with, and gain insights related to nature. Built using a combination of Blade templates and PHP, the project ensures high performance and maintainable code. This repository encapsulates the logic, data structures, and user interfaces necessary for the application's core functionality.
-
-With 54% of the code written in Blade, the project leans heavily on dynamic and interactive front-end interfaces, while the back-end logic is predominantly written in PHP. This repository is engineered for enthusiasts and developers passionate about blending code and nature.
+Natuur-Quest was made by request of Natuurmonumenten, It focuses on the target audience of age 12-14. Natuur-Quest works to achieve the following goals of the assignment, to connect users to nature, 
 
 ---
 
