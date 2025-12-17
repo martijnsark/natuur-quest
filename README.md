@@ -4,7 +4,9 @@
 
 ## About This Project
 
-Natuur-Quest was made by request of Natuurmonumenten, It focuses on the target audience of age 12-14. Natuur-Quest works to achieve the following goals of the assignment, to connect users to nature, 
+Natuur-Quest was made by request of Natuurmonumenten, It focuses on the target audience of age 12-14 and  mobile devices no support for other devices as of now. Natuur-Quest achieves the following goals of the assignment, to connect users to nature(convince users to be in nature), aware users about nature(why its important), and green behaviour(simple ways to help nature).
+
+So, how does it work? Nature-Quest was made with the idea where a parent and 2 childen play for this you need 3 players logged into a account, one will play the role "spel leider" which was the rol imaged for the parent, as the "spel leider" you will start the game by inviting the other players using the button of "begin met spelen" on the home screen, the two other players can navigate to the waiting room by using the "kijk voor uitnodigingen" button on home.
 
 ---
 
