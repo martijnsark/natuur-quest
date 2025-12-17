@@ -26,18 +26,14 @@ Route::get('/profiel', function () {
 })->middleware(['auth', 'verified'])->name('profiel');
 
 //Route::get('/facts', [\App\Http\Controllers\FactController::class, 'index']);
-Route::get('/facts/{assignment}', [FactController::class, 'playFacts'])->name('facts');
+Route::get('/facts/{assignment}', [FactController::class, 'playFacts'])->middleware(['auth', 'verified'])->name('facts');
 
-//deactivate route
-Route::post('/game/deactivate', [ChallengeController::class, 'deactivateCurrentGame'])->name('game.deactivate');
+//deactivate game route
+Route::post('/game/deactivate', [ChallengeController::class, 'deactivateCurrentGame'])->middleware(['auth', 'verified'])->name('game.deactivate');
 
 Route::get('/game-end/', function () {
     return view('game-end');
-})->name('game-end');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('game-end');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,22 +44,20 @@ Route::middleware('auth')->group(function () {
 Route::get('/info', [PageController::class, 'info'])->name('info');
 Route::get('/info/challenge', [PageController::class, 'challengeInfo'])->name('challenge-info');
 
-Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])
-    ->name('challenges.connection');
-Route::post('/challenges/start', [ChallengeController::class, 'connectionSend'])
-    ->name('challenges.start');
-Route::get('/challenges/show/{id}', [ChallengeController::class, 'showGame'])->name('test.show');
-Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->name('assignment.send');
+Route::get('/challenges/connection', [ChallengeController::class, 'connectionTest'])->middleware(['auth', 'verified'])->name('challenges.connection');
+Route::post('/challenges/start', [ChallengeController::class, 'connectionSend'])->middleware(['auth', 'verified'])->name('challenges.start');
+Route::get('/challenges/show/{id}', [ChallengeController::class, 'showGame'])->middleware(['auth', 'verified'])->name('test.show');
+Route::post('/test/assignment', [ChallengeController::class, 'sendAssignment'])->middleware(['auth', 'verified'])->name('assignment.send');
 
-route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
+route::get('/challenges', [ChallengeController::class, 'index'])->middleware(['auth', 'verified'])->name('challenges.index');
 //route::get('/challenges/random', [ChallengeController::class, 'random'])->name('challenges.random');
-route::get('/challenges/details', [ChallengeController::class, 'details'])->name('challenges.details');
+route::get('/challenges/details', [ChallengeController::class, 'details'])->middleware(['auth', 'verified'])->name('challenges.details');
 //route::get('/challenges/play', [ChallengeController::class, 'play'])->name('challenges.play');
 
-route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+route::get('/challenges/assignment/{challenge}', [ChallengeController::class, 'show'])->middleware(['auth', 'verified'])->name('challenges.show');
 
 // change score route
-Route::post('/challenges/update-score', [ChallengeController::class, 'updateScore'])->name('challenges.update-score');
+Route::post('/challenges/update-score', [ChallengeController::class, 'updateScore'])->middleware(['auth', 'verified'])->name('challenges.update-score');
 
 //Route::get('/challenges/end/{right}', [ChallengeController::class, 'end'])->name('done');
 
@@ -83,7 +77,7 @@ Route::get('/popup/check', function () {
         ->first();
 
     return view('components.challenge-popup', compact('assignment'))->render();
-})->name('refresh');
+})->middleware(['auth', 'verified'])->name('refresh');
 
 Route::get('/photo-upload', [PhotoController::class, 'create'])->name('photos.create');
 Route::post('/photo-upload', [PhotoController::class, 'store'])->name('photos.store');
