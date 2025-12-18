@@ -326,10 +326,10 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
 
 ## Deployment
 
-The orginal server was requested here: [deployment-tle folder](https://forms.office.com/pages/responsepage.aspx?id=zrpvyrp8U02GgaBihPf_RtjTrl0gJVJKgwRTTAsCquBUNzNUQklWRUxGWjNaTkZDQlRJM1laSU5WMy4u). 
+The orginal server was requested here: [server request](https://forms.office.com/pages/responsepage.aspx?id=zrpvyrp8U02GgaBihPf_RtjTrl0gJVJKgwRTTAsCquBUNzNUQklWRUxGWjNaTkZDQlRJM1laSU5WMy4u). 
 
 
-For deployment, see these instructions [deployment-tle folder](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
+For deployment, see these instructions [deployment](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
 
 
 ---
