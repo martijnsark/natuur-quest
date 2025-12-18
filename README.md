@@ -342,7 +342,7 @@ When using or deploying Natuur-Quest, consider the following edge cases to ensur
 - The web app is not fully responsive and may not display correctly on all screen sizes, its currently designed for the Samsung Galaxy S20 Ultra.
 
 ### 413 Request Entity Too Large 
-- The server uses nginx which seems to have a 1mb data limit on data upload for the database which images exceed.
+- The server uses nginx which seems to have a 1mb data limit on data upload for the database, which our bonus round that requires the upload of images exceeds.
 
 ### limited security
 - Due to a late addition of the, timer and image logic not all pages have been propperly secured against broken access control.
