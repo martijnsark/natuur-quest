@@ -1,12 +1,12 @@
 # Natuur-Quest
 ---
-A fun web app commissioned by Natuurmonumenten, where families can play a 30-second game with a bonus round as a twist to take photos while out in nature. This web app strives to make exploring nature an enjoyable experience for 12–14-year-olds and their families, while also informing them about the problems nature faces, why nature is important, and how they can help protect it.
+A fun web app commissioned by [Natuurmonumenten](https://www.natuurmonumenten.nl/), where families can play a 30-second game with a bonus round as a twist to take photos while out in nature. This web app strives to make exploring nature an enjoyable experience for 12–14-year-olds and their families, while also informing them about the problems nature faces, why nature is important, and how they can help protect it.
 
 ---
 
 ## About This Project
 
-Natuur-Quest was made at the request of Natuurmonumenten. It focuses on the target audience aged 12–14 and on mobile devices (no support for other devices as of now). Natuur-Quest achieves the following goals of the assignment: connecting users to nature (encouraging users to be in nature), making users aware of nature (why it is important), and promoting green behaviour (simple ways to help nature).
+Natuur-Quest was made at the request of [Natuurmonumenten](https://www.natuurmonumenten.nl/). It focuses on the target audience aged 12–14 and on mobile devices (no support for other devices as of now). Natuur-Quest achieves the following goals of the assignment: connecting users to nature (encouraging users to be in nature), making users aware of nature (why it is important), and promoting green behaviour (simple ways to help nature).
 
 ### So, how does it work?
 For each game, you will need three players. One will take on the role of “spel leider”; this player essentially acts as the referee, while the other two players compete against each other. Each game has two rounds and one bonus round. During a round, one of the two players will see five random nature-related words. This player needs to explain these words within 30 seconds or less. For each correctly guessed word, they will earn a point, which the “spel leider” will assign after the 30 seconds. The bonus round happens for both players at once: they will be tasked with taking a picture based on one of the five words from the previous round. The best picture will be assigned an additional point.
