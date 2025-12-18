@@ -249,7 +249,7 @@ erDiagram
 
 ## Installation
 
-To get started with Natuur-Quest locally, follow these steps:
+To get started with Natuur-Quest on Windows locally, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
@@ -257,30 +257,36 @@ To get started with Natuur-Quest locally, follow these steps:
    cd natuur-quest
    ```
 
-2. **Install Dependencies**:
+2. **Install Required software**:
+    Install composer: [composer-install](https://getcomposer.org/download/)
+    Install Phpstorm via jetbrains(Subscription required, important for database) [Jetbrains](https://www.jetbrains.com/idea/download/?section=windows)
+    install Laravel herd for local hosting [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installation)
+   
+
+4. **Install Dependencies**:
    Make sure you have Composer installed, then run:
    ```bash
    composer install
    ```
 
-3. **Set Up the Environment**:
+5. **Set Up the Environment**:
    Create a `.env` file from the provided example:
    ```bash
    cp .env.example .env
    ```
    Configure database and other environment variables in `.env`.
 
-4. **Generate Application Key**:
+6. **Generate Application Key**:
    ```bash
    php artisan key:generate
    ```
 
-5. **Run Database Migrations**:
+7. **Run Database Migrations**:
    ```bash
    php artisan migrate
    ```
 
-6. **Start the Server**:
+8. **Start the Server**:
    ```bash
    php artisan serve
    ```
