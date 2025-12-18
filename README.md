@@ -338,5 +338,8 @@ For deployment, see these instructions [deployment](https://github.com/HR-CMGT/P
 
 When using or deploying Natuur-Quest, consider the following edge cases to ensure smooth functionality:
 
+### Limited responsivenes
+- The website is not fully responsive and may not display correctly on all screen sizes, its currently designed for the Samsung Galaxy S20 Ultra.
+
 
 ---
