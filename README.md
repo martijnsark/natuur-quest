@@ -259,12 +259,14 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
    
     Install Laravel herd for local hosting in a logical folder(you will add the project later in this folder for hosting): [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installation)
 
+
 2. **Clone the Repository**:
    Clone the repository inside the Herd folder:
     ```bash
    git clone https://github.com/martijnsark/natuur-quest.git
    cd natuur-quest
    ```
+    
 
 3. **Install Dependencies**:
    
@@ -273,6 +275,7 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
    npm install
    composer install
    ```
+   
 
 4. **Set up the Environment**:
    
@@ -280,7 +283,17 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
 
    Configure database and other environment variables in `.env`.
 
-5. **Run Database Migrations**:
+
+
+5. **Generate Application Key**:
+   
+   To generate a orginal aplication key use the following code in the terminal of Phpstorm:
+   ```bash
+   php artisan key:generate
+   ```
+   
+
+6. **Run Database Migrations**:
    
    To create the database with all required data to test the aplication run:
    ```bash
@@ -292,15 +305,19 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
    php artisan migrate:fresh --seed
    ```
 
-6. **Ensure that the database uses sqlite**:
    
-Open Phpstorm, select the database icon (looks like a stack of coins), in the sidebar click on "data sources" looks the same as the database icon, click on  "go to driver" looks like a cog wheel, and check if you're driver uses the "org.sqlite.JDBC" as the class.
+
+7. **Ensure that the database uses sqlite**:
+   
+    Open Phpstorm, select the database icon (looks like a stack of coins), in the sidebar click on "data sources" looks the same as the database icon, click on  "go to driver" looks like a cog wheel, and check if you're driver uses the      "org.sqlite.JDBC" as the class.
+
+    If you do not have this scroll down till the option of "SQLite", click then on "apply and "ok"
   
 
-
    
-7. **Start the localhost Server**:
-    Open the website in htpps by opening laravel herd and opening the sites tab:
+8. **Start the localhost Server**:
+    
+    Open the website in htpps by opening laravel herd and opening the sites tab and selecting "natuur-quest", followed by this command in the Phpstorm terminal:
    ```bash
    npm run dev
    ```
@@ -309,7 +326,10 @@ Open Phpstorm, select the database icon (looks like a stack of coins), in the si
 
 ## Deployment
 
-For deployment instructions, see the [deployment-tle folder](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
+The orginal server was requested here: [deployment-tle folder](https://forms.office.com/pages/responsepage.aspx?id=zrpvyrp8U02GgaBihPf_RtjTrl0gJVJKgwRTTAsCquBUNzNUQklWRUxGWjNaTkZDQlRJM1laSU5WMy4u). 
+
+
+For deployment, see these instructions [deployment-tle folder](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
 
 
 ---
