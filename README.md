@@ -1,15 +1,13 @@
 # Natuur-Quest
 ---
-A fun web app commissioned by [Natuurmonumenten](https://www.natuurmonumenten.nl/), where families can play a 30-second game with a bonus round as a twist to take photos while out in nature. This web app strives to make exploring nature an enjoyable experience for 12–14-year-olds and their families, while also informing them about the problems nature faces, why nature is important, and how they can help protect it.
+A fun web app commissioned by [Natuurmonumenten](https://www.natuurmonumenten.nl/), where families can play a 30-second game with a bonus round as a twist to take photos while out in nature. This web [...] 
 
 ---
 
 ## About This Project
 
-[Natuur-Quest](http://145.24.237.63/) was made at the request of [Natuurmonumenten](https://www.natuurmonumenten.nl/). It focuses on the target audience aged 12–14 and on mobile devices (no support for other devices as of now). [Natuur-Quest](http://145.24.237.63/) achieves the following goals of the [assignment](https://brightspace.hr.nl/d2l/le/lessons/199618/topics/970836): connecting users to nature (encouraging users to be in nature), making users aware of nature (why it is important), and promoting green behaviour (simple ways to help nature).
-
-### So, how does it work?
-For each game, you will need three players. One will take on the role of “spel leider”; this player essentially acts as the referee, while the other two players compete against each other. Each game has two rounds and one bonus round. During a round, one of the two players will see five random nature-related words. This player needs to explain these words within 30 seconds or less. For each correctly guessed word, they will earn a point, which the “spel leider” will assign after the 30 seconds. The bonus round happens for both players at once: they will be tasked with taking a picture based on one of the five words from the previous round. The best picture will be assigned an additional point.
+[Natuur-Quest](http://145.24.237.63/) was made at the request of [Natuurmonumenten](https://www.natuurmonumenten.nl/). It focuses on the target audience aged 12–14 and on mobile devices (no support [...] ### So, how does it work?
+For each game, you will need three players. One will take on the role of “spel leider”; this player essentially acts as the referee, while the other two players compete against each other. Each ga[
 
 ---
 
@@ -26,7 +24,6 @@ This project utilizes several open-source PHP and Laravel packages to streamline
 - `nunomaduro/collision` (version ^8.6)
 - `pestphp/pest` (version ^4.1)
 - `pestphp/pest-plugin-laravel` (version ^4.0)
-
 
 ---
 
@@ -251,13 +248,13 @@ erDiagram
 
 To get started with Natuur-Quest on Windows locally, follow these steps:
 
-1. **Install the Required software**:
+1. **Install the Required Software**:
    
-    Install composer: [composer-install](https://getcomposer.org/download/)
+    Install Composer: [composer-install](https://getcomposer.org/download/)
    
-    Install Phpstorm via jetbrains(Subscription required, important for database): [Jetbrains](https://www.jetbrains.com/idea/download/?section=windows)
+    Install PhpStorm via JetBrains (Subscription required, important for database): [JetBrains](https://www.jetbrains.com/idea/download/?section=windows)
    
-    Install Laravel herd for local hosting in a logical folder(you will add the project later in this folder for hosting): [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installation)
+    Install Laravel Herd for local hosting in a logical folder (you will add the project later in this folder for hosting): [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installa[...]
 
 
 2. **Clone the Repository**:
@@ -270,7 +267,7 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
 
 3. **Install Dependencies**:
    
-   Once you have opend the code editor run the following commands:
+   Once you have opened the code editor, run the following commands:
    ```bash
    npm install
    composer install
@@ -281,13 +278,13 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
    
    Create a `.env` file based on the provided `.env.example`:
 
-   Configure database and other environment variables in `.env`.
+   Configure the database and other environment variables in `.env`.
 
 
 
 5. **Generate Application Key**:
    
-   To generate a orginal aplication key use the following code in the terminal of Phpstorm:
+   To generate an original application key, use the following code in the terminal of PhpStorm:
    ```bash
    php artisan key:generate
    ```
@@ -295,29 +292,29 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
 
 6. **Run Database Migrations**:
    
-   To create the database with all required data to test the aplication run:
+   To create the database with all required data to test the application, run:
    ```bash
    php artisan migrate --seed
    ```
 
-   For a refresh of the database run:
+   For a refresh of the database, run:
    ```bash
    php artisan migrate:fresh --seed
    ```
 
    
 
-7. **Ensure that the database uses sqlite**:
+7. **Ensure that the database uses SQLite**:
    
-    Open Phpstorm, select the database icon (looks like a stack of coins), in the sidebar click on "data sources" looks the same as the database icon, click on  "go to driver" looks like a cog wheel, and check if you're driver uses the      "org.sqlite.JDBC" as the class.
+    Open PhpStorm, select the database icon (looks like a stack of coins), in the sidebar click on "data sources" (looks the same as the database icon), click on "go to driver" (looks like a cog wheel), [...]
 
-    If you do not have this scroll down till the option of "SQLite", click then on "apply and "ok"
+    If you do not have this, scroll down to the option of "SQLite", click then on "apply" and "ok".
   
 
    
 8. **Start the localhost Server**:
     
-    Open the website in htpps by opening laravel herd and opening the sites tab and selecting "natuur-quest", followed by this command in the Phpstorm terminal:
+    Open the website in https by opening Laravel Herd and selecting the sites tab and "natuur-quest", followed by this command in the PhpStorm terminal:
    ```bash
    npm run dev
    ```
@@ -326,10 +323,10 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
 
 ## Deployment
 
-The orginal server was requested here: [server request](https://forms.office.com/pages/responsepage.aspx?id=zrpvyrp8U02GgaBihPf_RtjTrl0gJVJKgwRTTAsCquBUNzNUQklWRUxGWjNaTkZDQlRJM1laSU5WMy4u). 
+The original server was requested here: [server request](https://forms.office.com/pages/responsepage.aspx?id=zrpvyrp8U02GgaBihPf_RtjTrl0gJVJKgwRTTAsCquBUNzNUQklWRUxGWjNaTkZDQlRJM1laSU5WMy4u). 
 
 
-For deployment, see these instructions [deployment](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
+For deployment, see these instructions: [deployment](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
 
 
 ---
@@ -338,16 +335,16 @@ For deployment, see these instructions [deployment](https://github.com/HR-CMGT/P
 
 When using or deploying Natuur-Quest, consider the following edge cases to ensure smooth functionality:
 
-### Limited responsivenes
-- The web app is not fully responsive and may not display correctly on all screen sizes, its currently designed for the Samsung Galaxy S20 Ultra.
+### Limited Responsiveness
+- The web app is not fully responsive and may not display correctly on all screen sizes. It is currently designed for the Samsung Galaxy S20 Ultra.
 
 ### 413 Request Entity Too Large 
-- The server uses nginx which seems to have a 1mb data limit on data upload for the database, which our bonus round that requires the upload of images exceeds.
+- The server uses Nginx, which seems to have a 1 MB data limit on data upload for the database, which our bonus round that requires the upload of images exceeds.
 
-### limited security
-- Due to a late addition of the, timer and bonus round logic not all pages have been propperly secured against broken access control.
+### Limited Security
+- Due to a late addition of the timer and bonus round logic, not all pages have been properly secured against broken access control.
 
-### Dutch error messages
-- Some Dutch error messages do not initially work propperely until removed and repasted you can find the Dutch errors by going, lang > nl > validation.php.
+### Dutch Error Messages
+- Some Dutch error messages do not initially work properly until removed and repasted. You can find the Dutch errors by going to lang > nl > validation.php.
 
 ---
