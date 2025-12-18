@@ -289,7 +289,7 @@ To get started with Natuur-Quest locally, follow these steps:
 
 ## Deployment
 
-For deploying Natuur-Quest to a production environment, ensure the following steps are completed:
+For deployment instructions, see the [deployment-tle folder](https://github.com/HR-CMGT/PRG05-2025-2026/tree/main/deployment-tle).
 
 
 ---
