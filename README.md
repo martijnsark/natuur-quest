@@ -4,6 +4,19 @@ A fun web app commissioned by [Natuurmonumenten](https://www.natuurmonumenten.nl
 
 ---
 
+## Table of Contents
+
+- [About This Project](#about-this-project)
+- [Packages Used](#packages-used)
+- [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+- [Installation](#installation)
+- [Deployment](#deployment)
+- [Edge Cases](#edge-cases)
+
+
+
+---
+
 ## About This Project
 
 [Natuur-Quest](http://145.24.237.63/) was made at the request of [Natuurmonumenten](https://www.natuurmonumenten.nl/). It focuses on the target audience aged 12–14 and on mobile devices (no support for other devices as of now). [Natuur-Quest](http://145.24.237.63/) achieves the following goals of the [assignment](https://brightspace.hr.nl/d2l/le/lessons/199618/topics/970836): connecting users to nature (encouraging users to be in nature), making users aware of nature (why it is important), and promoting green behaviour (simple ways to help nature).
@@ -344,7 +357,7 @@ When using or deploying Natuur-Quest, consider the following edge cases to ensur
 ### 413 Request Entity Too Large 
 - The server uses nginx which seems to have a 1mb data limit on data upload for the database, which our bonus round that requires the upload of images exceeds.
 
-### limited security
+### Limited security
 - Due to a late addition of the, timer and bonus round logic not all pages have been propperly secured against broken access control.
 
 ### Dutch error messages
