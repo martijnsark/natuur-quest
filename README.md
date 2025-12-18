@@ -251,47 +251,58 @@ erDiagram
 
 To get started with Natuur-Quest on Windows locally, follow these steps:
 
-1. **Clone the Repository**:
-   ```bash
+1. **Install the Required software**:
+   
+    Install composer: [composer-install](https://getcomposer.org/download/)
+   
+    Install Phpstorm via jetbrains(Subscription required, important for database): [Jetbrains](https://www.jetbrains.com/idea/download/?section=windows)
+   
+    Install Laravel herd for local hosting in a logical folder(you will add the project later in this folder for hosting): [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installation)
+
+2. **Clone the Repository**:
+   Clone the repository inside the Herd folder:
+    ```bash
    git clone https://github.com/martijnsark/natuur-quest.git
    cd natuur-quest
    ```
 
-2. **Install Required software**:
+3. **Install Dependencies**:
    
-    Install composer: [composer-install](https://getcomposer.org/download/)
-   
-    Install Phpstorm via jetbrains(Subscription required, important for database) [Jetbrains](https://www.jetbrains.com/idea/download/?section=windows)
-   
-    install Laravel herd for local hosting [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installation)
-   
-
-4. **Install Dependencies**:
-   Make sure you have Composer installed, then run:
+   Once you have opend the code editor run the following commands:
    ```bash
+   npm install
    composer install
    ```
 
-5. **Set Up the Environment**:
-   Create a `.env` file from the provided example:
-   ```bash
-   cp .env.example .env
-   ```
+4. **Set up the Environment**:
+   
+   Create a `.env` file based on the provided `.env.example`:
+
    Configure database and other environment variables in `.env`.
 
-6. **Generate Application Key**:
+5. **Run Database Migrations**:
+   
+   To create the database with all required data to test the aplication run:
    ```bash
-   php artisan key:generate
+   php artisan migrate --seed
    ```
 
-7. **Run Database Migrations**:
+   For a refresh of the database run:
    ```bash
-   php artisan migrate
+   php artisan migrate:fresh --seed
    ```
 
-8. **Start the Server**:
+6. **Ensure that the database uses sqlite**:
+   
+Open Phpstorm, select the database icon (looks like a stack of coins), in the sidebar click on "data sources" looks the same as the database icon, click on  "go to driver" looks like a cog wheel, and check if you're driver uses the "org.sqlite.JDBC" as the class.
+  
+
+
+   
+7. **Start the localhost Server**:
+    Open the website in htpps by opening laravel herd and opening the sites tab:
    ```bash
-   php artisan serve
+   npm run dev
    ```
 
 ---
