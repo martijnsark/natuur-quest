@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import { countdownTimer } from './countdown.js'
+import { countdownTimer } from './countdown'
 import './photo-upload';
 import.meta.glob(['../images/**']);
 
