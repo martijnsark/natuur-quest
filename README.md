@@ -345,6 +345,9 @@ When using or deploying Natuur-Quest, consider the following edge cases to ensur
 - The server uses nginx which seems to have a 1mb data limit on data upload for the database, which our bonus round that requires the upload of images exceeds.
 
 ### limited security
-- Due to a late addition of the, timer and image logic not all pages have been propperly secured against broken access control.
+- Due to a late addition of the, timer and bonus round logic not all pages have been propperly secured against broken access control.
+
+### Dutch error messages
+- Some Dutch error messages do not initially work propperely until removed and repasted you can find the Dutch errors by going, lang > nl > validation.php.
 
 ---
