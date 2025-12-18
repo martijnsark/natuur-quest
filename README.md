@@ -259,7 +259,9 @@ To get started with Natuur-Quest on Windows locally, follow these steps:
 
 2. **Install Required software**:
     Install composer: [composer-install](https://getcomposer.org/download/)
+   
     Install Phpstorm via jetbrains(Subscription required, important for database) [Jetbrains](https://www.jetbrains.com/idea/download/?section=windows)
+   
     install Laravel herd for local hosting [Laravel Herd](https://herd.laravel.com/docs/windows/getting-started/installation)
    
 
