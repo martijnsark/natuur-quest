@@ -1,6 +1,6 @@
 @props(['seconds' => 30, 'redirectTo' => null])
 
-@vite('resources/js/countdown.js')
+@vite('resources/js/app.js')
 
 @php
     $target = $redirectTo ?? (Route::has('facts/{?assignment') ? route('facts') : url('/'));
