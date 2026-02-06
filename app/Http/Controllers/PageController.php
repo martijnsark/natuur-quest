@@ -40,4 +40,9 @@ class PageController extends Controller
     {
         return view('challenge-info');
     }
+
+    public function shop()
+    {
+        return view('shop');
+    }
 }

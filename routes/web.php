@@ -5,6 +5,7 @@ use App\Http\Controllers\FactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ShopController;
 use App\Models\Assignment;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/shop', [PageController::class, 'shop'])
+    ->middleware(['auth', 'verified'])
+    ->name('shop');
+
+Route::post('/shop/buy', [ShopController::class, 'buy'])
+    ->middleware('auth')
+    ->name('shop.buy');
 
 Route::get('/info', [PageController::class, 'info'])->name('info');
 Route::get('/info/challenge', [PageController::class, 'challengeInfo'])->name('challenge-info');

@@ -123,6 +123,12 @@
         </x-main-button>
     </div>
 
+    <div>
+        <x-main-button :href="route('shop')">
+            {{ __('Ga naar de winkel') }}
+        </x-main-button>
+    </div>
+
     <section aria-label="Knop om naar challenge uitleg te gaan.">
         <div class="flex justify-center items-center mb-2">
             <x-main-button :href="route('info')">
