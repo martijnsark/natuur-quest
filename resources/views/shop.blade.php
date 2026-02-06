@@ -79,6 +79,7 @@
                     type="button"
                     class="shop-item-btn"
                     data-item-id="brunelzaadjes"
+                    data-title="Brunelzaadjes"
                     data-image="{{ Vite::asset('resources/images/brunelzaadjes.jpg') }}"
                     data-price="500">
 
@@ -93,6 +94,7 @@
                     type="button"
                     class="shop-item-btn"
                     data-item-id="klaprooszaadjes"
+                    data-title="Klaprooszaadjes"
                     data-image="{{ Vite::asset('resources/images/klaprooszaadjes.jpg') }}"
                     data-price="1000">
 
@@ -107,6 +109,7 @@
                     type="button"
                     class="shop-item-btn"
                     data-item-id="korenbloemzaadjes"
+                    data-title="Korenbloemzaadjes"
                     data-image="{{ Vite::asset('resources/images/korenbloemzaadjes.webp') }}"
                     data-price="2000">
 
@@ -127,6 +130,8 @@
         <!-- Panel -->
         <div class="bg-white rounded-xl shadow-xl p-6 max-w-md w-full border-4 border-black relative z-10"
              id="popup-panel">
+
+            <h3 id="popup-title" class="text-xl font-bold text-gray-900 mb-2"></h3>
 
             <img
                 id="popup-image"
@@ -159,6 +164,8 @@
             const userBalanceEl = document.getElementById('user-balance');
             const userItems = document.getElementById('user-items');
 
+            const popupTitle = document.getElementById('popup-title');
+
             let currentItemId = null;
             let currentPrice = 0;
             let currentImage = '';
@@ -166,7 +173,6 @@
             const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
             const csrfToken = csrfTokenMeta ? csrfTokenMeta.getAttribute('content') : '';
 
-            // localStorage key
             const STORAGE_KEY = 'purchasedItems';
 
             function getDisplayedBalance() {
@@ -181,7 +187,6 @@
                 userBalanceEl.textContent = ' 🌸' + n;
             }
 
-            // ========= localStorage helpers =========
             function loadPurchasedFromStorage() {
                 try {
                     return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -202,7 +207,6 @@
 
             function markAsPurchasedInUI(itemId, imageSrc) {
                 if (!itemId) return;
-                // 1) disable shop button
                 const btn = document.querySelector(`.shop-item-btn[data-item-id="${itemId}"]`);
                 if (btn) {
                     btn.disabled = true;
@@ -212,9 +216,7 @@
                     if (img) img.classList.add('grayscale');
                 }
 
-                // 2) add to user-items list (if not already present)
                 if (userItems) {
-                    // check if already present
                     if (userItems.querySelector(`img[data-item-id="${itemId}"]`)) return;
 
                     const div = document.createElement('div');
@@ -229,7 +231,6 @@
                     userItems.appendChild(div);
                 }
 
-                // 3) persist in localStorage (if not already)
                 const arr = loadPurchasedFromStorage();
                 if (!arr.includes(itemId)) {
                     arr.push(itemId);
@@ -237,29 +238,29 @@
                 }
             }
 
-            // mark all already purchased items on page load (from localStorage)
+            // markeer al gekochte producten
             (function markPurchasedOnLoad() {
                 const purchased = loadPurchasedFromStorage();
                 if (!purchased || !purchased.length) return;
                 purchased.forEach(id => {
-                    // try to get image from button.dataset.image or leave blank
                     const btn = document.querySelector(`.shop-item-btn[data-item-id="${id}"]`);
                     const imageSrc = btn ? btn.dataset.image : '';
                     markAsPurchasedInUI(id, imageSrc);
                 });
             })();
 
-            // ========= Shop item open-popup handlers =========
+            // pop-up logica
             document.querySelectorAll('.shop-item-btn').forEach(button => {
-                // if already disabled (purchased), ignore clicks
                 if (button.disabled) return;
 
                 button.addEventListener('click', () => {
-                    // if click opens popup, fill current item vars
                     currentItemId = button.dataset.itemId || button.dataset.item || null;
                     currentPrice = parseInt(button.dataset.price || '0', 10) || 0;
                     currentImage = button.dataset.image || '';
+                    const currentTitle = button.dataset.title || ''; // ✅ haal titel uit data-title
 
+                    // Vul popup elementen
+                    popupTitle.textContent = currentTitle;  // ✅ titel
                     popupImage.src = currentImage;
                     popupPrice.textContent = (currentPrice ? currentPrice + ' punten' : '');
                     popup.classList.remove('hidden');
@@ -279,34 +280,27 @@
                 }
             });
 
-            // ========= Buy logic =========
+            // Koop logica
             buyButton.addEventListener('click', async () => {
                 if (!currentItemId) {
                     alert('Geen item geselecteerd.');
                     return;
                 }
 
-                // Local-only flow (no server)
                 if (useLocalOnly) {
-                    // check displayed balance and price
                     const bal = getDisplayedBalance();
                     if (currentPrice > bal) {
                         alert('Niet genoeg punten.');
                         return;
                     }
-                    // deduct locally (note: this does NOT persist server-side)
                     setDisplayedBalance(bal - currentPrice);
-
-                    // mark purchased in UI/localStorage
                     markAsPurchasedInUI(currentItemId, currentImage);
-
                     popup.classList.add('hidden');
                     popupImage.src = '';
                     alert('Aankoop gelukt!');
                     return;
                 }
 
-                // Server flow (existing fetch). On success: update UI + localStorage
                 buyButton.disabled = true;
                 try {
                     const res = await fetch('{{ route("shop.buy") }}', {
@@ -331,7 +325,6 @@
                         return;
                     }
 
-                    // success: update balance, UI and localStorage
                     if (data.balance !== undefined) setDisplayedBalance(data.balance);
                     const imageToUse = (data.purchase && data.purchase.image) ? data.purchase.image : currentImage;
                     markAsPurchasedInUI(currentItemId, imageToUse);

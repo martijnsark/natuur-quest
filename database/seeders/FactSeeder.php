@@ -10,11 +10,10 @@ class FactSeeder extends Seeder
 {
     public function run(): void
     {
-        // Categories
+
         $wistjedat = Category::firstOrCreate(['name' => 'Wist je dat...']);
         $letop = Category::firstOrCreate(['name' => 'Let op!']);
 
-        // Facts grouped per category
         $facts = [
             $wistjedat->id => [
                 'de oehoe, de grootste uilensoort, bedreigd is door verlies van leefgebied en voedselbronnen?',
@@ -43,7 +42,6 @@ class FactSeeder extends Seeder
             ],
         ];
 
-        // Insert facts
         foreach ($facts as $categoryId => $contents) {
             foreach ($contents as $content) {
                 Fact::create([
